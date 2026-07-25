@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mirqat Institute — Coming Soon</title>
+<meta name="description" content="Mirqat Institute — an online Qur'an and Islamic studies academy. Launching soon." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Outfit:wght@400;500;600;700&family=Noto+Naskh+Arabic:wght@500;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="glow" aria-hidden="true"></div>
+
+<header class="topbar">
+  <div class="brandmark">
+    <span class="brandmark__ar" lang="ar" dir="rtl">مِرْقاة</span>
+    <span class="brandmark__en">MIRQAT&nbsp;INSTITUTE</span>
+  </div>
+  <span class="eyebrow">Coming&nbsp;Soon</span>
+</header>
+
+<main class="hero">
+
+  <div class="star" aria-hidden="true">
+    <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+      <g class="star__spin">
+        <polygon class="star__ring star__ring--outer" points="200,20 231,120 200,180 169,120" />
+        <polygon class="star__ring star__ring--outer" points="380,200 280,231 220,200 280,169" />
+        <polygon class="star__ring star__ring--outer" points="200,380 169,280 200,220 231,280" />
+        <polygon class="star__ring star__ring--outer" points="20,200 120,169 180,200 120,231" />
+        <polygon class="star__ring star__ring--inner" points="200,80 250,150 200,200 150,150" />
+        <polygon class="star__ring star__ring--inner" points="320,200 250,250 200,200 250,150" />
+        <polygon class="star__ring star__ring--inner" points="200,320 150,250 200,200 250,250" />
+        <polygon class="star__ring star__ring--inner" points="80,200 150,150 200,200 150,250" />
+      </g>
+      <circle class="star__core" cx="200" cy="200" r="26" />
+    </svg>
+  </div>
+
+  <p class="eyebrow eyebrow--mobile">Launching&nbsp;Soon</p>
+
+  <h1 class="headline">
+    <span class="headline__line headline__line--light">A&nbsp;NEW&nbsp;PATH</span>
+    <span class="headline__line headline__line--gold">TO&nbsp;THE&nbsp;QUR'AN</span>
+  </h1>
+
+  <p class="kicker">
+    <span lang="ar" dir="rtl" class="kicker__ar">مِرْقاة</span>
+    <span class="kicker__divider">—</span>
+    <span>an ascending stairway, one lesson at a time</span>
+  </p>
+
+  <p class="lede">
+    Mirqat Institute is an online academy for Qur'an recitation&nbsp;(Tajweed),
+    memorisation&nbsp;(Hifz), and Islamic studies — guiding students step by
+    step, with qualified teachers and a pace built around real life.
+    We're putting the final touches on our classrooms.
+  </p>
+
+  <p class="meta">Live online classes · Enrollment opens soon</p>
+
+  <form class="notify" id="notifyForm" novalidate>
+    <label for="email" class="sr-only">Email address</label>
+    <input
+      type="email"
+      id="email"
+      name="email"
+      placeholder="Enter your email"
+      autocomplete="email"
+      required
+    />
+    <button type="submit">
+      <span class="btn-text">Notify&nbsp;Me</span>
+    </button>
+  </form>
+  <p class="notify__status" id="notifyStatus" role="status" aria-live="polite"></p>
+
+</main>
+
+<footer class="footer">
+  <span>© <span id="year">2026</span> Mirqat Institute</span>
+  <span class="footer__tag">Step by step, toward the Qur'an</span>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
