@@ -3,6 +3,82 @@
    Palette: #436E5B · #6A9C77 · #7DC384 · #FEF1BC
    ========================================================= */
 
+/* ---------- Somar Sans (Baianat Type — free for commercial and personal use) ---------- */
+
+/* Latin and Arabic are separate files; browsers only download what a page uses. */
+
+@font-face {
+  font-family: "Somar Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/somar-sans-latin-400-v1.woff2") format("woff2");
+  unicode-range: U+0020-007E, U+00A0-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F;
+}
+
+@font-face {
+  font-family: "Somar Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/somar-sans-arabic-400-v1.woff2") format("woff2");
+  unicode-range: U+0600-06FF, U+0750-077F, U+200C-200F, U+FB50-FDFF, U+FE70-FEFF;
+}
+
+@font-face {
+  font-family: "Somar Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/fonts/somar-sans-latin-500-v1.woff2") format("woff2");
+  unicode-range: U+0020-007E, U+00A0-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F;
+}
+
+@font-face {
+  font-family: "Somar Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/fonts/somar-sans-arabic-500-v1.woff2") format("woff2");
+  unicode-range: U+0600-06FF, U+0750-077F, U+200C-200F, U+FB50-FDFF, U+FE70-FEFF;
+}
+
+@font-face {
+  font-family: "Somar Sans";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("/fonts/somar-sans-latin-600-v1.woff2") format("woff2");
+  unicode-range: U+0020-007E, U+00A0-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F;
+}
+
+@font-face {
+  font-family: "Somar Sans";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("/fonts/somar-sans-arabic-600-v1.woff2") format("woff2");
+  unicode-range: U+0600-06FF, U+0750-077F, U+200C-200F, U+FB50-FDFF, U+FE70-FEFF;
+}
+
+@font-face {
+  font-family: "Somar Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/fonts/somar-sans-latin-700-v1.woff2") format("woff2");
+  unicode-range: U+0020-007E, U+00A0-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F;
+}
+
+@font-face {
+  font-family: "Somar Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/fonts/somar-sans-arabic-700-v1.woff2") format("woff2");
+  unicode-range: U+0600-06FF, U+0750-077F, U+200C-200F, U+FB50-FDFF, U+FE70-FEFF;
+}
+
 :root {
   /* brand */
   --green-700: #436e5b;   /* primary: bands, buttons, headings */
@@ -29,7 +105,7 @@
   --max-w: 1200px;
   --gutter: clamp(16px, 5vw, 48px);
 
-  --font-sans: "Outfit Variable", "Outfit", system-ui, sans-serif;
+  --font-sans: "Somar Sans", "Outfit Variable", system-ui, sans-serif;
   --font-serif: "Amiri", Georgia, serif;
   --font-ar: "Noto Naskh Arabic", "Amiri", serif;
 }

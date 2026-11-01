@@ -14,7 +14,7 @@ const { course, heading = 'Take your first step today.', edge = 'paper' } = Astr
 const STUDENTS = [
   { value: 'Child', emoji: '🧒' },
   { value: 'Youth', emoji: '🧑' },
-  { value: 'Adult', emoji: '🧑‍🦱' },
+  { value: 'Adult', emoji: '👤' },
 ];
 const TIMES = [
   { value: 'Morning', emoji: '🌅' },
@@ -70,41 +70,32 @@ const initialPreview = WA.enrol({ course });
         <input id="name" name="name" type="text" autocomplete="name" placeholder="e.g. Aisha" required />
       </div>
 
-      <fieldset class="chips" id="courseChips">
-        <legend>Course</legend>
-        <div class="chips__list">
+      <div class="field">
+        <label for="course">Course</label>
+        <select id="course" name="course" required>
+          <option value="" selected={!course} disabled>Choose a course</option>
           {COURSE_OPTIONS.map((c) => (
-            <label class="chip">
-              <input type="radio" name="course" value={c.value} checked={c.value === course} required />
-              <span><span aria-hidden="true">{c.emoji}</span> {c.label}</span>
-            </label>
+            <option value={c.value} selected={c.value === course}>{c.emoji}  {c.value}</option>
           ))}
-        </div>
-      </fieldset>
+        </select>
+      </div>
 
-      <fieldset class="chips">
-        <legend>Who is learning? <span class="opt">(optional)</span></legend>
-        <div class="chips__list">
-          {STUDENTS.map((s) => (
-            <label class="chip">
-              <input type="radio" name="student" value={s.value} />
-              <span><span aria-hidden="true">{s.emoji}</span> {s.value}</span>
-            </label>
-          ))}
+      <div class="field-row">
+        <div class="field">
+          <label for="student">Who is learning? <span class="opt">(optional)</span></label>
+          <select id="student" name="student">
+            <option value="">Select</option>
+            {STUDENTS.map((o) => <option value={o.value}>{o.emoji}  {o.value}</option>)}
+          </select>
         </div>
-      </fieldset>
-
-      <fieldset class="chips">
-        <legend>Preferred time <span class="opt">(optional · IST)</span></legend>
-        <div class="chips__list">
-          {TIMES.map((t) => (
-            <label class="chip">
-              <input type="radio" name="time" value={t.value} />
-              <span><span aria-hidden="true">{t.emoji}</span> {t.value}</span>
-            </label>
-          ))}
+        <div class="field">
+          <label for="time">Preferred time <span class="opt">(IST)</span></label>
+          <select id="time" name="time">
+            <option value="">Select</option>
+            {TIMES.map((o) => <option value={o.value}>{o.emoji}  {o.value}</option>)}
+          </select>
         </div>
-      </fieldset>
+      </div>
 
       <input type="hidden" name="timezone" id="timezone" />
 

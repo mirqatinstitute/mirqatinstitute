@@ -1,4 +1,4 @@
-// WhatsApp enquiry form: tap-to-choose chips, a live preview of the message,
+// WhatsApp enquiry form: name + dropdowns, a live preview of the message,
 // then opens WhatsApp with everything pre-filled.
 import { WA, waLink } from '../data/whatsapp';
 
@@ -9,7 +9,8 @@ if (form) {
   const preview = document.getElementById('waPreview')!;
   const tzInput = document.getElementById('timezone') as HTMLInputElement;
   const nameInput = document.getElementById('name') as HTMLInputElement;
-  const courseChips = document.getElementById('courseChips')!;
+  const courseSelect = document.getElementById('course') as HTMLSelectElement;
+  const courseField = courseSelect.closest('.field')!;
 
   try {
     tzInput.value = Intl.DateTimeFormat().resolvedOptions().timeZone;
@@ -42,20 +43,22 @@ if (form) {
     statusEl.classList.toggle('is-error', isError);
   };
 
-  form.addEventListener('input', () => {
+  const onChange = () => {
     render();
     if (nameInput.value.trim().length > 1) nameInput.closest('.field')?.classList.remove('is-invalid');
-    if (form.querySelector('input[name="course"]:checked')) courseChips.classList.remove('is-invalid');
+    if (courseSelect.value) courseField.classList.remove('is-invalid');
     if (statusEl.classList.contains('is-error')) setStatus('');
-  });
+  };
+  form.addEventListener('input', onChange);
+  form.addEventListener('change', onChange);
 
-  // "Choose this plan" / course buttons pre-select the matching course chip.
+  // "Choose this plan" buttons pre-select the matching course.
   document.querySelectorAll<HTMLElement>('[data-course]').forEach((btn) => {
     btn.addEventListener('click', () => {
-      const radio = form.querySelector<HTMLInputElement>(`input[name="course"][value="${CSS.escape(btn.dataset.course ?? '')}"]`);
-      if (radio) {
-        radio.checked = true;
-        courseChips.classList.remove('is-invalid');
+      const value = btn.dataset.course ?? '';
+      if ([...courseSelect.options].some((o) => o.value === value)) {
+        courseSelect.value = value;
+        courseField.classList.remove('is-invalid');
         render();
       }
     });
@@ -68,11 +71,12 @@ if (form) {
     const courseOk = Boolean(data.course);
     nameInput.closest('.field')?.classList.toggle('is-invalid', !nameOk);
     nameInput.setAttribute('aria-invalid', String(!nameOk));
-    courseChips.classList.toggle('is-invalid', !courseOk);
+    courseField.classList.toggle('is-invalid', !courseOk);
+    courseSelect.setAttribute('aria-invalid', String(!courseOk));
 
     if (!nameOk || !courseOk) {
       setStatus(!nameOk ? 'Please add your name.' : 'Please choose a course (or “Not sure”).', true);
-      (!nameOk ? nameInput : courseChips.querySelector<HTMLInputElement>('input'))?.focus();
+      (!nameOk ? nameInput : courseSelect).focus();
       return;
     }
 

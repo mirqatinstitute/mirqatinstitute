@@ -1,4 +1,5 @@
 ---
+// Outfit is only a fallback now (for ₹ and the long dash, which Somar Sans lacks).
 import '@fontsource-variable/outfit';
 import '@fontsource/amiri/400.css';
 import '@fontsource/amiri/700.css';
@@ -35,6 +36,8 @@ const { waMessage, ...props } = Astro.props;
     setTimeout(function () { if (!window.__motionReady) document.documentElement.classList.add('motion-off'); }, 3000);
   </script>
   <Seo {...props} />
+  <link rel="preload" href="/fonts/somar-sans-latin-400-v1.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/somar-sans-latin-600-v1.woff2" as="font" type="font/woff2" crossorigin />
   <!-- Favicons. Google Search uses square icons in multiples of 48px. -->
   <link rel="icon" href="/favicon.ico" sizes="48x48" />
   <link rel="icon" type="image/png" sizes="48x48" href="/assets/icons/favicon-48.png" />
