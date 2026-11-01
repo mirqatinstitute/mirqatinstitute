@@ -1,14 +1,7 @@
 ---
-import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
-import saahil from '../assets/teachers/muhammed-saahil.webp';
-import abdulMajid from '../assets/teachers/abdul-majid.webp';
-import female from '../assets/teachers/female-profile.webp';
 import WhatsAppIcon from './WhatsAppIcon.astro';
-import { TEACHERS } from '../data/site';
 import { WA, waLink } from '../data/whatsapp';
-
-const tutorCount = TEACHERS.length + 1; // + the featured teacher
 
 // ---- The Mirqat stairway: one step per course, ascending to the Qur'an ----
 const courses = (await getCollection('courses')).sort((a, b) => a.data.order - b.data.order);
@@ -51,8 +44,7 @@ const summitOrb = { x: summit.x, y: summit.y - 104 };
         Climb closer to the Qur'an, <em>one step at a time.</em>
       </h1>
       <p class="hero__lede">
-        One-to-one <strong>online Quran classes</strong> in Noorani Qaida, Tajweed, Qur'an reading, Hifz and revision —
-        for children, youth and adults, at a time that suits you.
+        One-to-one <strong>online Quran classes</strong> for children and adults, at a time that suits you.
       </p>
       <div class="hero__actions">
         <a href="#enrol" class="btn btn--primary btn--lg">Join a Qur'an class</a>
@@ -61,22 +53,6 @@ const summitOrb = { x: summit.x, y: summit.y - 104 };
         </a>
       </div>
 
-      <div class="hero__people">
-        <div class="avatars" aria-hidden="true">
-          <Image src={saahil} widths={[44, 88]} sizes="44px" alt="" loading="eager" />
-          <Image src={abdulMajid} widths={[44, 88]} sizes="44px" alt="" loading="eager" />
-          <Image src={female} widths={[44, 88]} sizes="44px" alt="" loading="eager" />
-          <Image src={female} widths={[44, 88]} sizes="44px" alt="" loading="eager" />
-          <span class="avatars__more">+{tutorCount - 4}</span>
-        </div>
-        <p><strong>{tutorCount} tutors</strong> — huffaz, hafilaths &amp; Tajweed specialists, male and female</p>
-      </div>
-
-      <ul class="hero__trust" aria-label="Highlights">
-        <li><svg aria-hidden="true" viewBox="0 0 20 20"><path d="M4 10.5l4 4 8-9"/></svg>1-on-1 live classes</li>
-        <li><svg aria-hidden="true" viewBox="0 0 20 20"><path d="M4 10.5l4 4 8-9"/></svg>Hafs &amp; Shu'bah certified</li>
-        <li><svg aria-hidden="true" viewBox="0 0 20 20"><path d="M4 10.5l4 4 8-9"/></svg>Flexible IST timings</li>
-      </ul>
     </div>
 
     <!-- The Mirqat stairway: each step is a course, ascending to the Qur'an -->

@@ -465,37 +465,6 @@ p {
   margin-bottom: 32px;
 }
 
-.hero__trust {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px 24px;
-  font-size: 15px;
-  font-weight: 500;
-  color: var(--green-800);
-}
-
-.hero__trust li {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.hero__trust svg {
-  width: 20px;
-  height: 20px;
-  padding: 3px;
-  background: var(--green-300);
-  border-radius: 50%;
-  fill: none;
-  stroke: var(--green-900);
-  stroke-width: 2.4;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
 .hero__bg {
   /* soft light + faint geometric pattern behind the hero */
   position: absolute;
@@ -505,48 +474,6 @@ p {
     radial-gradient(ellipse 60% 70% at 85% 35%, rgba(125, 195, 132, 0.22), transparent 70%),
     radial-gradient(ellipse 40% 50% at 10% 90%, rgba(254, 241, 188, 0.6), transparent 70%),
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56'%3E%3Cpath d='M28 6 L34 22 L50 28 L34 34 L28 50 L22 34 L6 28 L22 22 Z' fill='none' stroke='%23436E5B' stroke-opacity='.05'/%3E%3C/svg%3E");
-}
-
-.hero__people {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  margin-bottom: 22px;
-  font-size: 15px;
-  color: var(--muted);
-}
-
-.hero__people strong {
-  color: var(--green-800);
-}
-
-.avatars {
-  display: flex;
-  flex-shrink: 0;
-}
-
-.avatars img,
-.avatars__more {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 3px solid var(--paper);
-  margin-left: -12px;
-  background: var(--tint);
-}
-
-.avatars img:first-child {
-  margin-left: 0;
-}
-
-.avatars__more {
-  display: grid;
-  place-items: center;
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--cream);
-  background: var(--green-700);
 }
 
 /* ----- the Mirqat stairway (hero visual) ----- */
@@ -3476,11 +3403,6 @@ p {
 
   .about__facts {
     grid-template-columns: 1fr;
-  }
-
-  .hero__people {
-    align-items: flex-start;
-    font-size: 14px;
   }
 
   .stairway {
