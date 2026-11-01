@@ -465,37 +465,6 @@ p {
   margin-bottom: 32px;
 }
 
-.hero__trust {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px 24px;
-  font-size: 15px;
-  font-weight: 500;
-  color: var(--green-800);
-}
-
-.hero__trust li {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.hero__trust svg {
-  width: 20px;
-  height: 20px;
-  padding: 3px;
-  background: var(--green-300);
-  border-radius: 50%;
-  fill: none;
-  stroke: var(--green-900);
-  stroke-width: 2.4;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
 .hero__bg {
   /* soft light + faint geometric pattern behind the hero */
   position: absolute;
@@ -507,388 +476,170 @@ p {
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56'%3E%3Cpath d='M28 6 L34 22 L50 28 L34 34 L28 50 L22 34 L6 28 L22 22 Z' fill='none' stroke='%23436E5B' stroke-opacity='.05'/%3E%3C/svg%3E");
 }
 
-.hero__people {
+/* ----- the Mirqat stairway (hero visual) ----- */
+.stairway {
+  position: relative;
+  padding-top: 120px;
+}
+
+.stairway__svg {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.stair {
+  cursor: pointer;
+  outline: none;
+}
+
+.stair .stair__front,
+.stair .stair__top {
+  transition: filter 0.25s, transform 0.25s;
+}
+
+.stair:hover .stair__front,
+.stair:hover .stair__top,
+.stair:focus-visible .stair__front,
+.stair:focus-visible .stair__top,
+.stair.is-active .stair__front,
+.stair.is-active .stair__top {
+  filter: brightness(1.08) saturate(1.1);
+}
+
+.stair:focus-visible .stair__front {
+  stroke: var(--cream);
+  stroke-width: 3;
+}
+
+.stair__num {
+  font-family: var(--font-serif);
+  font-size: 22px;
+  font-weight: 700;
+  pointer-events: none;
+}
+
+.stair__label {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 600;
+  pointer-events: none;
+}
+
+.stairway__glow {
+  animation: glow-breathe 4s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+@keyframes glow-breathe {
+  50% { opacity: 0.75; transform: scale(1.06); }
+}
+
+.stairway__rays {
+  animation: rays-turn 30s linear infinite;
+  transform-box: view-box;
+  transform-origin: 85% 15%;
+}
+
+@keyframes rays-turn {
+  to { transform: rotate(360deg); }
+}
+
+.stairway__orb circle:first-child {
+  animation: orb-pulse 2.4s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+@keyframes orb-pulse {
+  50% { transform: scale(1.25); opacity: 0.8; }
+}
+
+/* info card that follows the selected step */
+.stair-card {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: min(300px, 70%);
   display: flex;
-  align-items: center;
-  gap: 14px;
-  margin-bottom: 22px;
-  font-size: 15px;
+  flex-direction: column;
+  gap: 4px;
+  padding: 16px 18px;
+  background: #fff;
+  border-radius: 16px;
+  border: 1px solid rgba(30, 51, 41, 0.06);
+  box-shadow: 0 20px 40px -18px rgba(30, 51, 41, 0.4);
+  z-index: 1;
+}
+
+.stair-card__step {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--green-500);
+}
+
+.stair-card__title {
+  font-size: 18px;
+  line-height: 1.25;
+  color: var(--green-900);
+}
+
+.stair-card__text {
+  font-size: 14px;
+  line-height: 1.45;
   color: var(--muted);
 }
 
-.hero__people strong {
-  color: var(--green-800);
+.stair-card__link {
+  margin-top: 4px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--green-700);
+  text-decoration: none;
 }
 
-.avatars {
-  display: flex;
-  flex-shrink: 0;
+.stair-card__link:hover {
+  text-decoration: underline;
 }
 
-.avatars img,
-.avatars__more {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 3px solid var(--paper);
-  margin-left: -12px;
-  background: var(--tint);
+.stair-card.is-changing > * {
+  animation: card-swap 0.35s ease;
 }
 
-.avatars img:first-child {
-  margin-left: 0;
-}
-
-.avatars__more {
-  display: grid;
-  place-items: center;
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--cream);
-  background: var(--green-700);
-}
-
-/* ----- realistic live-class preview ----- */
-.hero__visual {
-  position: relative;
-  padding: 24px 0 40px 28px;
-}
-
-.class-window {
-  margin: 0;
-  position: relative;
-  background: #fff;
-  border-radius: 22px;
-  overflow: hidden;
-  border: 1px solid rgba(30, 51, 41, 0.08);
-  box-shadow:
-    0 2px 4px rgba(30, 51, 41, 0.05),
-    0 40px 80px -30px rgba(30, 51, 41, 0.45);
-  animation: rise-in 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) both;
-}
-
-@keyframes rise-in {
-  from { opacity: 0; transform: translateY(24px) scale(0.98); }
+@keyframes card-swap {
+  from { opacity: 0; transform: translateY(4px); }
   to { opacity: 1; transform: none; }
 }
 
-.class-window__bar {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 12px 16px;
-  border-bottom: 1px solid var(--line);
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--green-900);
-}
-
-.class-window__dots {
-  display: flex;
-  gap: 6px;
-}
-
-.class-window__dots i {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: #e6e1cf;
-}
-
-.class-window__title {
-  flex: 1;
-  text-align: left;
-  color: var(--muted);
-  font-weight: 500;
-}
-
-.class-window__time {
-  font-variant-numeric: tabular-nums;
-  color: var(--muted);
-  font-weight: 500;
-}
-
-.live-pill {
-  position: absolute;
-  left: 12px;
-  top: 12px;
-  z-index: 1;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 3px 10px;
-  border-radius: 999px;
-  background: #d93025;
-  color: #fff;
-  font-size: 12px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-}
-
-.live-pill__dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #fff;
-  animation: live-blink 1.6s ease-in-out infinite;
-}
-
-@keyframes live-blink {
-  50% { opacity: 0.3; }
-}
-
-.class-window__stage {
+.stairway__art {
   position: relative;
-  aspect-ratio: 4 / 3;
-  background: #1e3329;
 }
 
-.class-window__video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: 50% 30%;
-  display: block;
-}
-
-.class-window__name {
+.stair-stat {
   position: absolute;
-  left: 12px;
-  bottom: 12px;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 6px 10px;
-  border-radius: 8px;
-  background: rgba(20, 30, 25, 0.62);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  color: #fff;
-  font-size: 13px;
-  font-weight: 500;
-}
-
-.class-window__self {
-  position: absolute;
-  right: 12px;
-  bottom: 12px;
-  width: 26%;
-  aspect-ratio: 4 / 3;
-  border-radius: 10px;
-  background: linear-gradient(160deg, #3b5a4c, #22392f);
-  border: 2px solid rgba(255, 255, 255, 0.85);
-  display: grid;
-  place-items: center;
-  align-content: center;
-  gap: 4px;
-  color: rgba(255, 255, 255, 0.85);
-  font-size: 11px;
-  font-weight: 600;
-  box-shadow: 0 8px 20px -8px rgba(0, 0, 0, 0.5);
-}
-
-.class-window__self-avatar svg {
-  width: 30px;
-  height: 30px;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.6;
-  stroke-linecap: round;
-}
-
-.class-window__controls {
+  /* matches the empty area above steps 1–2 in the drawing (x≈40, y≈226 of 600×520) */
+  left: 3%;
+  top: 24%;
+  pointer-events: none;
   display: flex;
-  justify-content: center;
-  gap: 10px;
-  padding: 10px;
-  background: #1e3329;
-}
-
-.class-window__controls span {
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  background: rgba(255, 255, 255, 0.12);
-  color: #fff;
-}
-
-.class-window__controls span.is-end {
-  background: #d93025;
-}
-
-.class-window__controls svg {
-  width: 17px;
-  height: 17px;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.8;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-.class-window__controls .is-end svg {
-  fill: currentColor;
-  stroke: none;
-}
-
-.lesson {
-  padding: 14px 18px 18px;
-  background: var(--paper);
-}
-
-.lesson__head {
-  display: flex;
-  justify-content: space-between;
   align-items: center;
   gap: 10px;
-  margin-bottom: 8px;
-  font-size: 13px;
-}
-
-.lesson__ref {
-  font-weight: 600;
-  color: var(--green-800);
-}
-
-.lesson__tag {
-  padding: 3px 10px;
-  border-radius: 999px;
-  background: var(--cream);
-  color: var(--green-800);
-  font-weight: 600;
-  white-space: nowrap;
-}
-
-.lesson__ayah {
-  font-family: var(--font-ar);
-  font-size: clamp(24px, 2.6vw, 32px);
-  font-weight: 700;
-  line-height: 1.9;
-  color: var(--green-900);
-  text-align: center;
-}
-
-.lesson__ayah mark {
-  background: linear-gradient(transparent 55%, rgba(125, 195, 132, 0.55) 55%);
-  color: var(--green-700);
-  border-radius: 4px;
-  padding: 0 2px;
-}
-
-/* floating cards */
-.hero-card {
-  position: absolute;
+  padding: 10px 16px;
   background: #fff;
-  border-radius: 16px;
-  box-shadow: 0 20px 40px -18px rgba(30, 51, 41, 0.45);
-  border: 1px solid rgba(30, 51, 41, 0.06);
-  animation: rise-in 0.8s 0.35s cubic-bezier(0.2, 0.8, 0.2, 1) both, float 6s 1.2s ease-in-out infinite;
-}
-
-@keyframes float {
-  50% { transform: translateY(-6px); }
-}
-
-.hero-card--stats {
-  left: 0;
-  top: 42%;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 14px 18px;
-}
-
-.hero-card__num {
-  font-family: var(--font-serif);
-  font-size: 28px;
-  font-weight: 700;
-  line-height: 1;
-  color: var(--green-700);
-}
-
-.hero-card__txt {
-  font-size: 13px;
-  line-height: 1.3;
-  color: var(--muted);
-}
-
-.hero-card--progress {
-  right: -18px;
-  top: -6px;
-  width: 220px;
-  padding: 14px 16px 16px;
-  font-size: 13px;
-  animation-delay: 0.55s, 2s;
-}
-
-.hero-card--progress strong {
-  display: block;
-  font-size: 14px;
-  color: var(--green-900);
-  margin-bottom: 8px;
-}
-
-.hero-card--progress ul {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 12px;
-  display: grid;
-  gap: 6px;
-}
-
-.hero-card--progress li {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  color: var(--muted);
-}
-
-.hero-card--progress li::before {
-  content: "";
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  flex-shrink: 0;
-  border: 2px solid var(--green-300);
-}
-
-.hero-card--progress li.is-done {
-  color: var(--green-900);
-}
-
-.hero-card--progress li.is-done::before {
-  border: 0;
-  background: var(--green-300)
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4.5 8.2l2.2 2.2 4.8-5' fill='none' stroke='%231E3329' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")
-    center / 100% no-repeat;
-}
-
-.hero-card--progress li.is-now {
-  color: var(--green-700);
-  font-weight: 600;
-}
-
-.hero-card--progress li.is-now::before {
-  background: conic-gradient(var(--green-300) 0 60%, transparent 60%);
-}
-
-.hero-card__bar {
-  display: block;
-  height: 6px;
   border-radius: 999px;
-  background: var(--tint);
-  overflow: hidden;
+  box-shadow: 0 14px 30px -16px rgba(30, 51, 41, 0.45);
+  font-size: 14px;
+  color: var(--muted);
 }
 
-.hero-card__bar span {
-  display: block;
-  height: 100%;
-  border-radius: inherit;
-  background: linear-gradient(90deg, var(--green-500), var(--green-300));
+.stair-stat__num {
+  font-family: var(--font-serif);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--green-700);
 }
 
 /* ---------- value strip ---------- */
@@ -3581,21 +3332,11 @@ p {
   }
 
   .hero__visual {
-    max-width: 520px;
+    max-width: 560px;
     width: 100%;
     margin: 8px auto 0;
-    padding: 16px 0 56px;
   }
 
-  .hero-card--stats {
-    left: -6px;
-    top: 38%;
-  }
-
-  .hero-card--progress {
-    right: -6px;
-    top: -10px;
-  }
 
   .strip__grid {
     grid-template-columns: repeat(2, 1fr);
@@ -3664,35 +3405,31 @@ p {
     grid-template-columns: 1fr;
   }
 
-  .hero__people {
-    align-items: flex-start;
-    font-size: 14px;
+  .stairway {
+    padding-top: 0;
   }
 
-  .hero-card--stats {
-    padding: 10px 14px;
+  .stair-card {
+    position: static;
+    width: 100%;
+    margin-bottom: 14px;
   }
 
-  .hero-card__num {
-    font-size: 22px;
+  .stair-stat {
+    position: static;
+    display: inline-flex;
+    margin-bottom: 8px;
+    font-size: 13px;
   }
 
-  .hero-card--progress {
-    width: 190px;
-    padding: 12px 14px 14px;
+  .stairway__art {
+    display: flex;
+    flex-direction: column;
   }
 
-  .class-window__name {
-    font-size: 12px;
-  }
-
-  .class-window__controls span {
-    width: 30px;
-    height: 30px;
-  }
-
-  .lesson__head {
-    flex-wrap: wrap;
+  .stairway__art .stair-stat {
+    order: -1;
+    align-self: flex-start;
   }
 
   .hero__actions .btn {
@@ -3734,5 +3471,11 @@ p {
 
   .scroll-progress {
     display: none;
+  }
+
+  .stairway__glow,
+  .stairway__rays,
+  .stairway__orb circle:first-child {
+    animation: none;
   }
 }

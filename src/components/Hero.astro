@@ -1,14 +1,36 @@
 ---
-import { Image } from 'astro:assets';
-import saahilWide from '../assets/teachers/muhammed-saahil-wide.webp';
-import saahil from '../assets/teachers/muhammed-saahil.webp';
-import abdulMajid from '../assets/teachers/abdul-majid.webp';
-import female from '../assets/teachers/female-profile.webp';
+import { getCollection } from 'astro:content';
 import WhatsAppIcon from './WhatsAppIcon.astro';
-import { TEACHERS } from '../data/site';
 import { WA, waLink } from '../data/whatsapp';
 
-const tutorCount = TEACHERS.length + 1; // + the featured teacher
+// ---- The Mirqat stairway: one step per course, ascending to the Qur'an ----
+const courses = (await getCollection('courses')).sort((a, b) => a.data.order - b.data.order);
+const SHORT: Record<string, string> = {
+  'noorani-qaida': 'Qaida', tajweed: 'Tajweed', 'quran-reading': 'Reading', hifz: 'Hifz', 'quran-revision': 'Revision',
+};
+const FRONT = ['#2f5444', '#436e5b', '#5b8c6b', '#7dc384', '#b6dfb4'];
+const TOP = ['#5f8a73', '#6f9a80', '#8dbb93', '#a9dbac', '#d8efce'];
+const INK = ['#fef1bc', '#fef1bc', '#fef1bc', '#1e3329', '#1e3329'];
+
+const X0 = 40, W = 96, H = 62, GROUND = 470, DX = 40, DY = -26;
+const steps = courses.map((c, i) => {
+  const left = X0 + i * W, right = left + W, top = GROUND - (i + 1) * H;
+  return {
+    id: c.id,
+    num: String(i + 1).padStart(2, '0'),
+    label: SHORT[c.id] ?? c.data.title,
+    title: c.data.title,
+    summary: c.data.summary,
+    left, right, top,
+    front: FRONT[i], topFill: TOP[i], ink: INK[i],
+    // where the light rests on this step
+    orbX: left + W / 2 + DX / 2,
+    orbY: top + DY / 2 - 14,
+  };
+});
+const last = steps[steps.length - 1];
+const summit = { x: last.orbX, y: last.top + DY / 2 };
+const summitOrb = { x: summit.x, y: summit.y - 104 };
 ---
 <section class="hero">
   <div class="hero__bg" aria-hidden="true"></div>
@@ -22,8 +44,7 @@ const tutorCount = TEACHERS.length + 1; // + the featured teacher
         Climb closer to the Qur'an, <em>one step at a time.</em>
       </h1>
       <p class="hero__lede">
-        One-to-one <strong>online Quran classes</strong> in Noorani Qaida, Tajweed, Qur'an reading, Hifz and revision —
-        for children, youth and adults, at a time that suits you.
+        One-to-one <strong>online Quran classes</strong> for children and adults, at a time that suits you.
       </p>
       <div class="hero__actions">
         <a href="#enrol" class="btn btn--primary btn--lg">Join a Qur'an class</a>
@@ -32,80 +53,90 @@ const tutorCount = TEACHERS.length + 1; // + the featured teacher
         </a>
       </div>
 
-      <div class="hero__people">
-        <div class="avatars" aria-hidden="true">
-          <Image src={saahil} widths={[44, 88]} sizes="44px" alt="" loading="eager" />
-          <Image src={abdulMajid} widths={[44, 88]} sizes="44px" alt="" loading="eager" />
-          <Image src={female} widths={[44, 88]} sizes="44px" alt="" loading="eager" />
-          <Image src={female} widths={[44, 88]} sizes="44px" alt="" loading="eager" />
-          <span class="avatars__more">+{tutorCount - 4}</span>
-        </div>
-        <p><strong>{tutorCount} tutors</strong> — huffaz, hafilaths &amp; Tajweed specialists, male and female</p>
-      </div>
-
-      <ul class="hero__trust" aria-label="Highlights">
-        <li><svg aria-hidden="true" viewBox="0 0 20 20"><path d="M4 10.5l4 4 8-9"/></svg>1-on-1 live classes</li>
-        <li><svg aria-hidden="true" viewBox="0 0 20 20"><path d="M4 10.5l4 4 8-9"/></svg>Hafs &amp; Shu'bah certified</li>
-        <li><svg aria-hidden="true" viewBox="0 0 20 20"><path d="M4 10.5l4 4 8-9"/></svg>Flexible IST timings</li>
-      </ul>
     </div>
 
-    <!-- A realistic preview of a live one-to-one class -->
-    <div class="hero__visual">
-      <figure class="class-window" aria-label="Preview of a live one-to-one Tajweed class with Muhammed Saahil">
-        <div class="class-window__bar" aria-hidden="true">
-          <span class="class-window__dots"><i></i><i></i><i></i></span>
-          <span class="class-window__title">Tajweed · 1-on-1 class</span>
-          <span class="class-window__time">24:18</span>
-        </div>
-
-        <div class="class-window__stage">
-          <span class="live-pill" aria-hidden="true"><span class="live-pill__dot"></span>Live</span>
-          <Image class="class-window__video" src={saahilWide} widths={[400, 600, 720]}
-                 sizes="(max-width: 860px) 92vw, 500px" loading="eager" fetchpriority="high"
-                 alt="Muhammed Saahil teaching a live online Qur'an class" />
-          <span class="class-window__name">
-            <svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M8 1.5a2.5 2.5 0 0 0-2.5 2.5v4a2.5 2.5 0 0 0 5 0V4A2.5 2.5 0 0 0 8 1.5zM3.5 7.5a4.5 4.5 0 0 0 9 0M8 12v2.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-            Muhammed Saahil · Qur'an Tutor
-          </span>
-          <div class="class-window__self" aria-hidden="true">
-            <span class="class-window__self-avatar">
-              <svg viewBox="0 0 24 24"><circle cx="12" cy="9" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>
-            </span>
-            <span>You</span>
-          </div>
-        </div>
-
-        <div class="class-window__controls" aria-hidden="true">
-          <span><svg viewBox="0 0 24 24"><path d="M12 3a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V6a3 3 0 0 0-3-3zM5 11a7 7 0 0 0 14 0M12 18v3"/></svg></span>
-          <span><svg viewBox="0 0 24 24"><rect x="3" y="7" width="12" height="10" rx="2"/><path d="M15 11l6-3v8l-6-3z"/></svg></span>
-          <span><svg viewBox="0 0 24 24"><path d="M4 5h16v11H8l-4 4z"/></svg></span>
-          <span class="is-end"><svg viewBox="0 0 24 24"><path d="M3 14c5-4 13-4 18 0l-2 3-4-1v-2a9 9 0 0 0-6 0v2l-4 1z"/></svg></span>
-        </div>
-
-        <figcaption class="lesson">
-          <div class="lesson__head">
-            <span class="lesson__ref">Al-Fātiḥah · 1:1</span>
-            <span class="lesson__tag">Madd ṭabīʿī · 2 counts</span>
-          </div>
-          <p class="lesson__ayah" lang="ar" dir="rtl">بِسْمِ اللَّهِ <mark>الرَّحْمَنِ</mark> الرَّحِيمِ</p>
-        </figcaption>
-      </figure>
-
-      <div class="hero-card hero-card--stats" aria-hidden="true">
-        <span class="hero-card__num" data-count="800" data-suffix="+">800+</span>
-        <span class="hero-card__txt">students<br />taught so far</span>
+    <!-- The Mirqat stairway: each step is a course, ascending to the Qur'an -->
+    <div class="hero__visual stairway" id="stairway">
+      <div class="stair-card" id="stairCard" aria-live="polite">
+        <span class="stair-card__step" id="stairCardStep">The summit</span>
+        <strong class="stair-card__title" id="stairCardTitle">Learn Qur'an. Live Qur'an. Inspire others.</strong>
+        <span class="stair-card__text" id="stairCardText">Every step brings you closer to the Book of Allah. Tap a step to explore it.</span>
+        <a class="stair-card__link" id="stairCardLink" href="/courses">See all courses →</a>
       </div>
 
-      <div class="hero-card hero-card--progress" aria-hidden="true">
-        <strong>Tajweed progress</strong>
-        <ul>
-          <li class="is-done">Makharij</li>
-          <li class="is-done">Sifaat</li>
-          <li class="is-now">Noon &amp; Meem rules</li>
-        </ul>
-        <span class="hero-card__bar"><span style="width:64%"></span></span>
+      <div class="stairway__art">
+      <svg class="stairway__svg" viewBox="0 0 600 520" data-summit-x={summitOrb.x} data-summit-y={summitOrb.y} role="group" aria-label="The Mirqat stairway: five course steps leading to the Qur'an">
+        <defs>
+          <radialGradient id="summitGlow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#fef1bc" stop-opacity="0.95" />
+            <stop offset="45%" stop-color="#fef1bc" stop-opacity="0.45" />
+            <stop offset="100%" stop-color="#fef1bc" stop-opacity="0" />
+          </radialGradient>
+          <radialGradient id="orbGlow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#fffbe6" stop-opacity="1" />
+            <stop offset="40%" stop-color="#fef1bc" stop-opacity="0.75" />
+            <stop offset="100%" stop-color="#fef1bc" stop-opacity="0" />
+          </radialGradient>
+          <linearGradient id="wood" x1="0" x2="0" y1="0" y2="1">
+            <stop offset="0%" stop-color="#a87a4f" />
+            <stop offset="100%" stop-color="#7a5434" />
+          </linearGradient>
+          <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="8" />
+          </filter>
+        </defs>
+
+        <!-- ground shadow -->
+        <ellipse cx="300" cy={GROUND + 18} rx="270" ry="22" fill="#1e3329" opacity="0.12" filter="url(#soft)" />
+
+        <!-- light from the summit -->
+        <circle class="stairway__glow" cx={summit.x} cy={summit.y - 70} r="120" fill="url(#summitGlow)" />
+        <g class="stairway__rays" stroke="#fef1bc" stroke-width="3" stroke-linecap="round" opacity="0.8">
+          {[-70, -40, -12, 16, 46, 76].map((deg) => (
+            <line x1={summit.x} y1={summit.y - 70} x2={summit.x + Math.sin((deg * Math.PI) / 180) * 150} y2={summit.y - 70 - Math.cos((deg * Math.PI) / 180) * 150} stroke-opacity="0.35" />
+          ))}
+        </g>
+
+        <!-- the steps -->
+        {steps.map((st, i) => (
+          <a class="stair" href={`/courses/${st.id}`} data-i={i} data-num={st.num} data-title={st.title}
+             data-summary={st.summary} data-x={st.orbX} data-y={st.orbY} aria-label={`Step ${st.num}: ${st.title}`}>
+            <path class="stair__top" d={`M${st.left},${st.top} L${st.right},${st.top} L${st.right + DX},${st.top + DY} L${st.left + DX},${st.top + DY} Z`} fill={st.topFill} />
+            <path class="stair__front" d={`M${st.left},${st.top} L${st.right},${st.top} L${st.right},${GROUND} L${st.left},${GROUND} Z`} fill={st.front} />
+            {i === steps.length - 1 && (
+              <path d={`M${st.right},${st.top} L${st.right + DX},${st.top + DY} L${st.right + DX},${GROUND + DY} L${st.right},${GROUND} Z`} fill="#94c79a" />
+            )}
+            <text x={st.left + 12} y={st.top + 27} class="stair__num" fill={st.ink}>{st.num}</text>
+            <text x={st.left + 12} y={st.top + 46} class="stair__label" fill={st.ink}>{st.label}</text>
+          </a>
+        ))}
+
+        <!-- summit: an open Qur'an on a rehal (wooden stand) -->
+        <g class="stairway__quran" aria-hidden="true" transform={`translate(${summit.x} ${summit.y})`}>
+          <path d="M-30,0 L22,-52 M30,0 L-22,-52" stroke="url(#wood)" stroke-width="9" stroke-linecap="round" />
+          <path d="M-52,-58 Q-26,-70 0,-58 L0,-40 Q-26,-52 -52,-40 Z" fill="#fffdf4" stroke="#2f5444" stroke-width="2.5" stroke-linejoin="round" />
+          <path d="M52,-58 Q26,-70 0,-58 L0,-40 Q26,-52 52,-40 Z" fill="#fffdf4" stroke="#2f5444" stroke-width="2.5" stroke-linejoin="round" />
+          <path d="M-44,-58 Q-24,-65 -6,-57 M-44,-52 Q-24,-59 -6,-51 M44,-58 Q24,-65 6,-57 M44,-52 Q24,-59 6,-51" stroke="#7dc384" stroke-width="1.6" fill="none" stroke-linecap="round" />
+          <path d="M-56,-38 Q-26,-50 0,-38 Q26,-50 56,-38" stroke="#2f5444" stroke-width="5" fill="none" stroke-linecap="round" />
+        </g>
+
+        <!-- the climbing light (starts at the summit when animations are off) -->
+        <g class="stairway__orb" id="stairOrb" style={`transform: translate(${summitOrb.x}px, ${summitOrb.y}px)`} aria-hidden="true">
+          <circle r="26" fill="url(#orbGlow)" />
+          <circle r="9" fill="#fffbe6" stroke="#7dc384" stroke-width="3" />
+        </g>
+      </svg>
+
+      <!-- sits in the empty space above the lower steps; never blocks taps on them -->
+      <div class="stair-stat">
+        <span class="stair-stat__num" data-count="800" data-suffix="+">800+</span>
+        <span>students taught so far</span>
+      </div>
       </div>
     </div>
   </div>
 </section>
+
+<script>
+  import '../scripts/stairway';
+</script>
