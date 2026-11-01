@@ -62,11 +62,12 @@ if (reduce) {
     });
   });
 
-  // 5. Hero: gentle parallax on the staircase illustration as you scroll away.
-  const heroVisual = document.querySelector('.hero__visual');
+  // 5. Hero: the class window drifts down as you scroll away, while the floating
+  // cards keep their own gentle CSS float — a simple sense of depth.
   const hero = document.querySelector('.hero');
-  if (heroVisual && hero) {
-    scroll(animate(heroVisual, { y: [0, 70], rotate: [0, -2] }, { ease: 'linear' }), {
+  const classWindow = document.querySelector('.class-window');
+  if (hero && classWindow) {
+    scroll(animate(classWindow, { y: [0, 60] }, { ease: 'linear' }), {
       target: hero,
       offset: ['start start', 'end start'],
     });
