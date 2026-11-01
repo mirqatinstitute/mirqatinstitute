@@ -1,4 +1,17 @@
+---
+import { Image } from 'astro:assets';
+import saahilWide from '../assets/teachers/muhammed-saahil-wide.webp';
+import saahil from '../assets/teachers/muhammed-saahil.webp';
+import abdulMajid from '../assets/teachers/abdul-majid.webp';
+import female from '../assets/teachers/female-profile.webp';
+import WhatsAppIcon from './WhatsAppIcon.astro';
+import { TEACHERS } from '../data/site';
+import { WA, waLink } from '../data/whatsapp';
+
+const tutorCount = TEACHERS.length + 1; // + the featured teacher
+---
 <section class="hero">
+  <div class="hero__bg" aria-hidden="true"></div>
   <div class="container hero__grid">
     <div class="hero__copy">
       <p class="eyebrow">
@@ -14,49 +27,84 @@
       </p>
       <div class="hero__actions">
         <a href="#enrol" class="btn btn--primary btn--lg">Join a Qur'an class</a>
-        <a href="#courses" class="btn btn--ghost btn--lg">Explore courses</a>
+        <a href={waLink(WA.general())} class="btn btn--wa-ghost btn--lg" target="_blank" rel="noopener">
+          <WhatsAppIcon size={20} /> Chat on WhatsApp
+        </a>
       </div>
+
+      <div class="hero__people">
+        <div class="avatars" aria-hidden="true">
+          <Image src={saahil} widths={[44, 88]} sizes="44px" alt="" loading="eager" />
+          <Image src={abdulMajid} widths={[44, 88]} sizes="44px" alt="" loading="eager" />
+          <Image src={female} widths={[44, 88]} sizes="44px" alt="" loading="eager" />
+          <Image src={female} widths={[44, 88]} sizes="44px" alt="" loading="eager" />
+          <span class="avatars__more">+{tutorCount - 4}</span>
+        </div>
+        <p><strong>{tutorCount} tutors</strong> — huffaz, hafilaths &amp; Tajweed specialists, male and female</p>
+      </div>
+
       <ul class="hero__trust" aria-label="Highlights">
-        <li><svg aria-hidden="true" viewBox="0 0 20 20"><path d="M4 10.5l4 4 8-9"/></svg>1-on-1 online classes</li>
+        <li><svg aria-hidden="true" viewBox="0 0 20 20"><path d="M4 10.5l4 4 8-9"/></svg>1-on-1 live classes</li>
         <li><svg aria-hidden="true" viewBox="0 0 20 20"><path d="M4 10.5l4 4 8-9"/></svg>Hafs &amp; Shu'bah certified</li>
-        <li><svg aria-hidden="true" viewBox="0 0 20 20"><path d="M4 10.5l4 4 8-9"/></svg>Flexible timings</li>
+        <li><svg aria-hidden="true" viewBox="0 0 20 20"><path d="M4 10.5l4 4 8-9"/></svg>Flexible IST timings</li>
       </ul>
     </div>
 
-    <div class="hero__visual" aria-hidden="true">
-      <svg viewBox="0 0 440 440" class="stairs">
-        <defs>
-          <pattern id="geo" width="44" height="44" patternUnits="userSpaceOnUse">
-            <path d="M22 4 L27 17 L40 22 L27 27 L22 40 L17 27 L4 22 L17 17 Z" fill="none" stroke="#FEF1BC" stroke-opacity=".08" stroke-width="1"/>
-          </pattern>
-        </defs>
-        <rect width="440" height="440" rx="36" fill="#436E5B"/>
-        <rect width="440" height="440" rx="36" fill="url(#geo)"/>
+    <!-- A realistic preview of a live one-to-one class -->
+    <div class="hero__visual">
+      <figure class="class-window" aria-label="Preview of a live one-to-one Tajweed class with Muhammed Saahil">
+        <div class="class-window__bar" aria-hidden="true">
+          <span class="class-window__dots"><i></i><i></i><i></i></span>
+          <span class="class-window__title">Tajweed · 1-on-1 class</span>
+          <span class="class-window__time">24:18</span>
+        </div>
 
-        <g class="stairs__star">
-          <g transform="translate(345 92)">
-            <g class="stairs__spin">
-              <polygon points="0,-46 11,-11 46,0 11,11 0,46 -11,11 -46,0 -11,-11" fill="none" stroke="#FEF1BC" stroke-width="1.6"/>
-              <polygon points="0,-46 11,-11 46,0 11,11 0,46 -11,11 -46,0 -11,-11" transform="rotate(45)" fill="none" stroke="#FEF1BC" stroke-opacity=".55" stroke-width="1.6"/>
-            </g>
-            <circle r="9" fill="#FEF1BC"/>
-          </g>
-        </g>
+        <div class="class-window__stage">
+          <span class="live-pill" aria-hidden="true"><span class="live-pill__dot"></span>Live</span>
+          <Image class="class-window__video" src={saahilWide} widths={[400, 600, 720]}
+                 sizes="(max-width: 860px) 92vw, 500px" loading="eager" fetchpriority="high"
+                 alt="Muhammed Saahil teaching a live online Qur'an class" />
+          <span class="class-window__name">
+            <svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M8 1.5a2.5 2.5 0 0 0-2.5 2.5v4a2.5 2.5 0 0 0 5 0V4A2.5 2.5 0 0 0 8 1.5zM3.5 7.5a4.5 4.5 0 0 0 9 0M8 12v2.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            Muhammed Saahil · Qur'an Tutor
+          </span>
+          <div class="class-window__self" aria-hidden="true">
+            <span class="class-window__self-avatar">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="9" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>
+            </span>
+            <span>You</span>
+          </div>
+        </div>
 
-        <rect class="step step--1" x="36"  y="336" width="368" height="68" rx="12" fill="#2F5444"/>
-        <rect class="step step--2" x="112" y="262" width="292" height="66" rx="12" fill="#6A9C77"/>
-        <rect class="step step--3" x="188" y="188" width="216" height="66" rx="12" fill="#7DC384"/>
-        <rect class="step step--4" x="264" y="150" width="140" height="30" rx="10" fill="#FEF1BC"/>
+        <div class="class-window__controls" aria-hidden="true">
+          <span><svg viewBox="0 0 24 24"><path d="M12 3a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V6a3 3 0 0 0-3-3zM5 11a7 7 0 0 0 14 0M12 18v3"/></svg></span>
+          <span><svg viewBox="0 0 24 24"><rect x="3" y="7" width="12" height="10" rx="2"/><path d="M15 11l6-3v8l-6-3z"/></svg></span>
+          <span><svg viewBox="0 0 24 24"><path d="M4 5h16v11H8l-4 4z"/></svg></span>
+          <span class="is-end"><svg viewBox="0 0 24 24"><path d="M3 14c5-4 13-4 18 0l-2 3-4-1v-2a9 9 0 0 0-6 0v2l-4 1z"/></svg></span>
+        </div>
 
-        <text x="60"  y="378" class="step__label">Qaida</text>
-        <text x="136" y="302" class="step__label">Tajweed</text>
-        <text x="212" y="228" class="step__label step__label--dark">Hifz</text>
-        <text x="282" y="171" class="step__label step__label--dark step__label--sm">Revision</text>
-      </svg>
+        <figcaption class="lesson">
+          <div class="lesson__head">
+            <span class="lesson__ref">Al-Fātiḥah · 1:1</span>
+            <span class="lesson__tag">Madd ṭabīʿī · 2 counts</span>
+          </div>
+          <p class="lesson__ayah" lang="ar" dir="rtl">بِسْمِ اللَّهِ <mark>الرَّحْمَنِ</mark> الرَّحِيمِ</p>
+        </figcaption>
+      </figure>
 
-      <div class="hero__badge">
-        <span class="hero__badge-num" data-count="800" data-suffix="+">800+</span>
-        <span class="hero__badge-txt">students<br>taught so far</span>
+      <div class="hero-card hero-card--stats" aria-hidden="true">
+        <span class="hero-card__num" data-count="800" data-suffix="+">800+</span>
+        <span class="hero-card__txt">students<br />taught so far</span>
+      </div>
+
+      <div class="hero-card hero-card--progress" aria-hidden="true">
+        <strong>Tajweed progress</strong>
+        <ul>
+          <li class="is-done">Makharij</li>
+          <li class="is-done">Sifaat</li>
+          <li class="is-now">Noon &amp; Meem rules</li>
+        </ul>
+        <span class="hero-card__bar"><span style="width:64%"></span></span>
       </div>
     </div>
   </div>
