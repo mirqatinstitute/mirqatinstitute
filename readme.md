@@ -22,6 +22,6 @@ Courses, about, teacher, pricing and contact/enrolment details come from the aca
 ## Still to add
 
 - Teacher photo (the card currently shows initials).
-- Social media links (Instagram / Facebook / YouTube) once available — add them to the footer.
-- Testimonials (section removed until real ones with permission are available).
+- **Social media links**: the footer Instagram, Facebook and YouTube icons use `href="#"` placeholders — replace with real profile URLs.
+- **Testimonials**: the three quotes in `#testimonials` are SAMPLE content — replace with real ones (with permission) before going live.
 - Social preview: add a 1200×630 `og-image.png` and uncomment the `og:image` tag.

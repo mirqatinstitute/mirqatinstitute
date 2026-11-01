@@ -1078,6 +1078,99 @@ p {
   color: var(--green-800);
 }
 
+/* ---------- testimonials ---------- */
+.testimonials {
+  background-color: var(--green-700);
+  background-image: radial-gradient(circle at 15% 0%, rgba(125, 195, 132, 0.22), transparent 45%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56'%3E%3Cpath d='M28 6 L34 22 L50 28 L34 34 L28 50 L22 34 L6 28 L22 22 Z' fill='none' stroke='%23FEF1BC' stroke-opacity='.07'/%3E%3C/svg%3E");
+}
+
+.quotes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  align-items: stretch;
+}
+
+.quote {
+  margin: 0;
+  padding: 36px 30px 30px;
+  border-radius: var(--radius);
+  background: var(--paper);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 28px;
+  position: relative;
+  box-shadow: 0 24px 48px -28px rgba(0, 0, 0, 0.45);
+}
+
+.quote:nth-child(2) {
+  background: var(--cream);
+}
+
+.quote::before {
+  content: "\201C";
+  position: absolute;
+  top: 4px;
+  right: 22px;
+  font-family: var(--font-serif);
+  font-size: 96px;
+  line-height: 1;
+  color: var(--green-300);
+  opacity: 0.7;
+}
+
+.quote blockquote {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: 20px;
+  line-height: 1.5;
+  color: var(--green-900);
+  position: relative;
+}
+
+.quote figcaption {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+}
+
+.quote figcaption > span:last-child {
+  display: flex;
+  flex-direction: column;
+}
+
+.quote figcaption strong {
+  font-weight: 600;
+  color: var(--green-900);
+}
+
+.quote figcaption span span {
+  color: var(--muted);
+}
+
+.quote__avatar {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--green-700);
+  color: var(--cream);
+  font-family: var(--font-serif);
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.quote:nth-child(2) .quote__avatar {
+  background: var(--green-500);
+}
+
 /* ---------- pricing ---------- */
 .plans {
   display: grid;
@@ -1612,7 +1705,12 @@ p {
 .social {
   display: flex;
   gap: 10px;
-  margin-top: 8px;
+  margin-top: 22px;
+}
+
+.social a:hover {
+  color: var(--green-300);
+  border-color: var(--green-300);
 }
 
 .social a {
@@ -1620,8 +1718,10 @@ p {
   height: 40px;
   border-radius: 50%;
   border: 1px solid rgba(254, 241, 188, 0.2);
+  color: rgba(254, 241, 188, 0.8);
   display: grid;
   place-items: center;
+  transition: color 0.2s, border-color 0.2s;
 }
 
 .social svg {
@@ -1691,6 +1791,12 @@ p {
 
 /* ---------- responsive ---------- */
 @media (max-width: 1024px) {
+  .quotes {
+    grid-template-columns: 1fr;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
   .courses {
     grid-template-columns: repeat(2, 1fr);
   }
