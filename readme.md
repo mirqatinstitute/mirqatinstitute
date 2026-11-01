@@ -26,7 +26,7 @@ Vercel builds automatically on every push (settings are in `vercel.json`): pushe
 | `src/scripts/` | `motion.ts` (animations), `enrol.ts` (WhatsApp enquiry form with live preview), `wa-float.ts` (floating button greeting), `nav.ts` (mobile menu). |
 | `src/styles/global.css` | All styles. Colour tokens are at the top. |
 | `src/assets/teachers/` | Teacher photos. Astro resizes and compresses them at build time. |
-| `public/fonts/` | **Somar Sans** web fonts (Baianat Type, free for commercial and personal use), subset to Latin and Arabic in 400/500/600/700. The site's body text uses it; Amiri stays for headings and Noto Naskh Arabic for Arabic text and the Qur'an verse. |
+| `public/fonts/` | **Somar Sans** web fonts (Baianat Type, free for commercial and personal use), subset to Latin and Arabic in 400/500/600/700. **All text on the site uses it** — headings, body, numbers and Arabic. Outfit and Noto Naskh Arabic remain only as fallbacks for the few characters Somar Sans lacks (₹, the long dash, rare Arabic glyphs). |
 | `public/` | Files served as-is: favicons, `og-image.png`, `robots.txt`, `site.webmanifest`, `brand/` logo files, and the Google Search Console verification file (keep it). |
 
 ## SEO built in
@@ -36,7 +36,7 @@ Vercel builds automatically on every push (settings are in `vercel.json`): pushe
 - Structured data: organisation, website, and on each page FAQPage, Course and BreadcrumbList, plus an ItemList of courses.
 - `sitemap-index.xml` generated automatically on every build (`@astrojs/sitemap`).
 - Clean URLs without `.html` or trailing slashes (`/courses/tajweed`).
-- Self-hosted fonts (Somar Sans, Amiri, Noto Naskh Arabic; no Google Fonts request), optimised images, zero JavaScript except the small animation, menu and form scripts.
+- Self-hosted fonts (Somar Sans; no Google Fonts request), optimised images, zero JavaScript except the small animation, menu and form scripts.
 
 See `SEO-GUIDE.md` for what to do outside the code: Search Console, Google Business Profile, reviews and more.
 

@@ -106,8 +106,10 @@
   --gutter: clamp(16px, 5vw, 48px);
 
   --font-sans: "Somar Sans", "Outfit Variable", system-ui, sans-serif;
-  --font-serif: "Amiri", Georgia, serif;
-  --font-ar: "Noto Naskh Arabic", "Amiri", serif;
+  /* Everything uses Somar Sans. --font-serif is kept as the name for display text
+     (headings, numbers); Noto Naskh Arabic is only a fallback for rare Arabic glyphs. */
+  --font-serif: "Somar Sans", "Outfit Variable", system-ui, sans-serif;
+  --font-ar: "Somar Sans", "Noto Naskh Arabic", sans-serif;
 }
 
 *,
@@ -423,15 +425,15 @@ p {
 .hero__title {
   font-family: var(--font-serif);
   font-weight: 700;
-  font-size: clamp(42px, 6.4vw, 78px);
-  line-height: 1.02;
-  letter-spacing: -0.015em;
+  font-size: clamp(40px, 6vw, 74px);
+  line-height: 1.08;
+  letter-spacing: -0.025em;
   margin-bottom: 24px;
 }
 
 .hero__title em {
-  font-style: italic;
-  font-weight: 400;
+  font-style: normal;
+  font-weight: 500;
   color: var(--green-700);
   white-space: nowrap;
   text-decoration: underline;
@@ -1665,7 +1667,7 @@ p {
 
 .cta__verse-en {
   font-family: var(--font-serif);
-  font-style: italic;
+  font-style: normal;
   font-size: 18px;
   color: rgba(254, 241, 188, 0.85);
   margin-bottom: 36px;
