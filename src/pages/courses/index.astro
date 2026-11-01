@@ -1,0 +1,53 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import CoursesGrid from '../../components/CoursesGrid.astro';
+import Ladder from '../../components/Ladder.astro';
+import Pricing from '../../components/Pricing.astro';
+import HowToEnrol from '../../components/HowToEnrol.astro';
+import Enrol from '../../components/Enrol.astro';
+import { SITE } from '../../data/site';
+
+const courses = (await getCollection('courses')).sort((a, b) => a.data.order - b.data.order);
+const crumbs = [{ name: 'Home', href: '/' }, { name: 'Courses' }];
+
+const jsonLd = [
+  {
+    '@type': 'ItemList',
+    name: 'Online Quran courses',
+    itemListElement: courses.map((c, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      url: `${SITE.url}/courses/${c.id}`,
+      name: c.data.seoTitle,
+    })),
+  },
+  {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE.url}/` },
+      { '@type': 'ListItem', position: 2, name: 'Courses', item: `${SITE.url}/courses` },
+    ],
+  },
+];
+---
+<BaseLayout
+  title="Online Quran Courses for Kids & Adults | Mirqat Institute"
+  description="Explore one-to-one online Quran courses at Mirqat Institute: Noorani Qaida, Tajweed, Quran reading, Hifz and Quran revision. Flexible timings, from ₹1,000/month."
+  jsonLd={jsonLd}
+>
+  <section class="page-hero page-hero--center">
+    <div class="container">
+      <Breadcrumbs items={crumbs} />
+      <h1 class="page-hero__title">Online Quran courses for every learner.</h1>
+      <p class="page-hero__lede">From your very first Arabic letter to memorising and revising the Qur'an —
+        every course is taught one-to-one, live online, at a time that suits you.</p>
+    </div>
+  </section>
+  <CoursesGrid heading="Choose your course." tint={false} />
+  <Ladder />
+  <Pricing />
+  <HowToEnrol />
+  <Enrol edge="tint" />
+</BaseLayout>

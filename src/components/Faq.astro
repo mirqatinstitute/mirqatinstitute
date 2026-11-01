@@ -1,0 +1,29 @@
+---
+import { SITE, whatsappLink } from '../data/site';
+
+interface Props {
+  items: { q: string; a: string }[];
+  heading?: string;
+  tint?: boolean;
+}
+const { items, heading = 'Questions, answered.', tint = false } = Astro.props;
+---
+<section class:list={['section', { 'section--tint': tint }]} id="faq">
+  <div class="container faq">
+    <header class="section-head section-head--left">
+      <p class="kicker">FAQ</p>
+      <h2>{heading}</h2>
+      <p>Still have a question? <a href={whatsappLink()} target="_blank" rel="noopener">Message us on WhatsApp</a>
+        or <a href={`mailto:${SITE.email}`}>email us</a>.</p>
+    </header>
+
+    <div class="faq__list">
+      {items.map((item) => (
+        <details>
+          <summary>{item.q}</summary>
+          <p>{item.a}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,54 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import Strip from '../components/Strip.astro';
+import Ladder from '../components/Ladder.astro';
+import About from '../components/About.astro';
+import CoursesGrid from '../components/CoursesGrid.astro';
+import Why from '../components/Why.astro';
+import Teachers from '../components/Teachers.astro';
+import Testimonials from '../components/Testimonials.astro';
+import Pricing from '../components/Pricing.astro';
+import HowToEnrol from '../components/HowToEnrol.astro';
+import Faq from '../components/Faq.astro';
+import Enrol from '../components/Enrol.astro';
+import { SITE, HOME_FAQ } from '../data/site';
+
+const courses = (await getCollection('courses')).sort((a, b) => a.data.order - b.data.order);
+
+const jsonLd = [
+  {
+    '@type': 'ItemList',
+    name: 'Quran courses at Mirqat Institute',
+    itemListElement: courses.map((c, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: c.data.title,
+      url: `${SITE.url}/courses/${c.id}`,
+    })),
+  },
+  {
+    '@type': 'FAQPage',
+    mainEntity: HOME_FAQ.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+  },
+];
+---
+<BaseLayout
+  title="Online Quran Classes – Tajweed, Hifz & Noorani Qaida | Mirqat Institute"
+  description={SITE.description}
+  jsonLd={jsonLd}
+>
+  <Hero />
+  <Strip />
+  <Ladder />
+  <About />
+  <CoursesGrid />
+  <Why />
+  <Teachers />
+  <Testimonials />
+  <Pricing />
+  <HowToEnrol />
+  <Faq items={HOME_FAQ} />
+  <Enrol />
+</BaseLayout>

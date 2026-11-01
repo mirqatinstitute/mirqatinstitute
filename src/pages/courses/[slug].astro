@@ -1,0 +1,124 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import Pricing from '../../components/Pricing.astro';
+import Teachers from '../../components/Teachers.astro';
+import Faq from '../../components/Faq.astro';
+import CoursesGrid from '../../components/CoursesGrid.astro';
+import Enrol from '../../components/Enrol.astro';
+import { SITE, PLANS, inr, whatsappLink } from '../../data/site';
+
+export async function getStaticPaths() {
+  const courses = await getCollection('courses');
+  return courses.map((course) => ({ params: { slug: course.id }, props: { course } }));
+}
+
+const { course } = Astro.props;
+const { Content } = await render(course);
+const d = course.data;
+const plan = d.plan ? PLANS[d.plan] : null;
+const url = `${SITE.url}/courses/${course.id}`;
+
+const crumbs = [
+  { name: 'Home', href: '/' },
+  { name: 'Courses', href: '/courses' },
+  { name: d.title },
+];
+
+const jsonLd = [
+  {
+    '@type': 'Course',
+    '@id': `${url}#course`,
+    name: d.seoTitle,
+    description: d.description,
+    url,
+    inLanguage: 'en',
+    provider: { '@id': `${SITE.url}/#organization` },
+    educationalLevel: d.level,
+    teaches: d.learn,
+    ...(plan && {
+      offers: {
+        '@type': 'Offer',
+        category: 'Paid',
+        price: plan.from,
+        priceCurrency: 'INR',
+        url: `${url}#pricing`,
+      },
+    }),
+    hasCourseInstance: { '@type': 'CourseInstance', courseMode: 'online', location: 'Online' },
+  },
+  {
+    '@type': 'BreadcrumbList',
+    itemListElement: crumbs.map((c, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: c.name,
+      item: c.href ? new URL(c.href, SITE.url).href : url,
+    })),
+  },
+  {
+    '@type': 'FAQPage',
+    mainEntity: d.faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+  },
+];
+---
+<BaseLayout title={`${d.seoTitle} | ${SITE.name}`} description={d.description} jsonLd={jsonLd}>
+  <section class="page-hero">
+    <div class="container page-hero__grid">
+      <div>
+        <Breadcrumbs items={crumbs} />
+        <div class="page-hero__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d={d.icon} /></svg>
+        </div>
+        <h1 class="page-hero__title">{d.seoTitle}</h1>
+        <p class="page-hero__lede">{d.summary}</p>
+        <ul class="course__meta course__meta--lg">
+          <li>{d.level}</li><li>{d.schedule}</li><li>{d.format}</li>
+        </ul>
+        <div class="hero__actions">
+          <a href="#enrol" class="btn btn--primary btn--lg">Enrol in {d.title}</a>
+          <a href={whatsappLink(`Assalamu alaikum! I have a question about the ${d.title} course.`)} class="btn btn--ghost btn--lg" target="_blank" rel="noopener">Ask on WhatsApp</a>
+        </div>
+      </div>
+
+      <aside class="glance reveal" aria-label="Course at a glance">
+        <h2 class="glance__title">At a glance</h2>
+        <dl>
+          <div><dt>Level</dt><dd>{d.level}</dd></div>
+          <div><dt>Schedule</dt><dd>{d.schedule}</dd></div>
+          <div><dt>Format</dt><dd>One-to-one, live online</dd></div>
+          <div><dt>Timings</dt><dd>{SITE.timings}</dd></div>
+          <div><dt>Fees</dt><dd>{plan ? <>from <strong>{inr(plan.from)}</strong>/month</> : 'Ask us for a plan'}</dd></div>
+        </dl>
+        <a href="#enrol" class="btn btn--cream btn--block">Book your place</a>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container course-body">
+      <article class="prose">
+        <Content />
+      </article>
+
+      <div class="course-lists">
+        <div class="list-card reveal">
+          <h2>What you'll learn</h2>
+          <ul class="checklist">{d.learn.map((item) => <li>{item}</li>)}</ul>
+        </div>
+        <div class="list-card list-card--alt reveal">
+          <h2>Who it's for</h2>
+          <ul class="checklist">{d.forWhom.map((item) => <li>{item}</li>)}</ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* Sections alternate paper / tint backgrounds whether or not the course has a plan. */}
+  {plan && d.plan && <Pricing only={d.plan} tint />}
+  <Teachers tint={!plan} />
+  <Faq items={d.faqs} heading={`${d.title}: your questions.`} tint={Boolean(plan)} />
+  <CoursesGrid heading="Explore other courses." intro="Every learner has a next step — see where yours could lead." exclude={course.id} tint={!plan} />
+  <Enrol course={d.formCourse} heading={`Start ${d.title} today.`} edge={plan ? 'paper' : 'tint'} />
+</BaseLayout>

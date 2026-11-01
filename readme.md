@@ -1,6 +1,54 @@
-# Mirqat Institute — landing page
+# Mirqat Institute — website
 
-Static landing page (`index.html`, `style.css`, `script.js`) — no build step. Open `index.html` in a browser or deploy the folder to any static host.
+Built with [Astro](https://astro.build) (static output) and [Motion](https://motion.dev) for animations. Hosted on Vercel.
+
+## Run it locally
+
+```bash
+npm install
+npm run dev      # http://localhost:4321
+npm run build    # production build into dist/
+npm run preview  # serve the production build
+```
+
+Vercel builds automatically on every push (settings are in `vercel.json`): pushes to `main` go live, and every other branch gets its own preview URL.
+
+## Where things live
+
+| Path | What it is |
+|---|---|
+| `src/data/site.ts` | **Academy facts in one place**: contact details, social links, plans and prices, homepage FAQ. Update facts here and every page and the SEO data follow. |
+| `src/content/courses/*.md` | **One file per course page** (`/courses/<file-name>`). The frontmatter holds the title, SEO title and description, level, plan, "what you'll learn", "who it's for" and FAQs; the text below it is the page's article. Add a new `.md` file to add a course page. |
+| `src/pages/` | Routes: `index.astro` (homepage), `courses/index.astro` (all courses), `courses/[slug].astro` (course page template), `404.astro`. |
+| `src/components/` | Page sections (Hero, Ladder, About, Teachers, Pricing, Faq, Enrol, …) and `Seo.astro` (meta tags and structured data). |
+| `src/layouts/BaseLayout.astro` | Shared page shell: head, header, footer, fonts, scripts. |
+| `src/scripts/` | `motion.ts` (animations), `enrol.ts` (enrolment form → WhatsApp), `nav.ts` (mobile menu). |
+| `src/styles/global.css` | All styles. Colour tokens are at the top. |
+| `src/assets/teachers/` | Teacher photos. Astro resizes and compresses them at build time. |
+| `public/` | Files served as-is: favicons, `og-image.png`, `robots.txt`, `site.webmanifest`, `brand/` logo files, and the Google Search Console verification file (keep it). |
+
+## SEO built in
+
+- A unique title, description and canonical URL on every page (`Seo.astro`).
+- Open Graph and Twitter tags with a preview image.
+- Structured data: organisation, website, and on each page FAQPage, Course and BreadcrumbList, plus an ItemList of courses.
+- `sitemap-index.xml` generated automatically on every build (`@astrojs/sitemap`).
+- Clean URLs without `.html` or trailing slashes (`/courses/tajweed`).
+- Self-hosted fonts (no Google Fonts request), optimised images, zero JavaScript except the small animation, menu and form scripts.
+
+See `SEO-GUIDE.md` for what to do outside the code: Search Console, Google Business Profile, reviews and more.
+
+## Animations
+
+`src/scripts/motion.ts` uses Motion for:
+- staggered reveals as sections scroll into view
+- the ladder steps rising with a spring
+- count-up numbers (800+)
+- a gentle hero parallax
+- a reading-progress bar
+- springy button presses
+
+Content is only hidden while JavaScript is running. Everything shows immediately for visitors with "reduce motion" turned on, and also if the script fails to load.
 
 ## Brand palette
 
@@ -12,26 +60,7 @@ Static landing page (`index.html`, `style.css`, `script.js`) — no build step. 
 | `--cream` | `#FEF1BC` | Warm accent, text on deep green |
 | `--green-900` | `#1E3329` | Body text, footer |
 
-## Content
+## Still sample content
 
-Courses, about, teacher, pricing and contact/enrolment details come from the academy's content form.
-
-- **Enrolment form**: opens WhatsApp (+91 94007 38280) with the enquiry pre-filled. To collect submissions elsewhere instead, set `CONFIG.formEndpoint` (e.g. Formspree) in `script.js`.
-- **Contact**: WhatsApp/phone and email are in `index.html` (enrol section, FAQ, footer) and `CONFIG` in `script.js`.
-
-## Still to add
-
-- **Nihala Jamal**: her role, bio and qualifications are SAMPLE content, and her picture is a generic profile illustration. Replace with real details.
-- **Testimonials**: the three quotes in `#testimonials` are SAMPLE content — replace with real ones (with permission) before going live.
-
-## Files
-
-| Path | What it is |
-|---|---|
-| `assets/teachers/` | Teacher photos (480×480 WebP) |
-| `brand/` | Logo files: stairway mark (SVG + 1024px PNG) and horizontal logo (dark and light text) |
-| `assets/icons/` | Favicons and app icons |
-| `assets/og-image.png` | 1200×630 preview shown when the link is shared |
-| `favicon.ico`, `site.webmanifest` | Browser icon and app manifest |
-| `robots.txt`, `sitemap.xml` | Search engine crawling; update `<lastmod>` when content changes |
-| `SEO-GUIDE.md` | Step-by-step guide to improving search rankings |
+- **Testimonials** (`src/components/Testimonials.astro`): the three quotes are SAMPLE content. Replace them with real ones (with permission).
+- **Nihala Jamal** (`src/components/Teachers.astro`): her role, bio and qualifications are SAMPLE content, and her picture is a generic profile illustration.

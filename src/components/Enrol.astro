@@ -1,0 +1,100 @@
+---
+import { COURSE_OPTIONS, SITE, whatsappLink } from '../data/site';
+
+interface Props {
+  course?: string;
+  heading?: string;
+  /** Background of the section above, so the stepped edge blends in. */
+  edge?: 'paper' | 'tint';
+}
+const { course, heading = 'Take your first step today.', edge = 'paper' } = Astro.props;
+---
+<section class="cta" id="enrol">
+  <div class:list={['stepped-edge', 'stepped-edge--top', { 'stepped-edge--tint': edge === 'tint' }]} aria-hidden="true"></div>
+  <div class="container cta__grid">
+    <div class="cta__copy">
+      <p class="cta__verse" lang="ar" dir="rtl">وَقُل رَّبِّ زِدْنِي عِلْمًا</p>
+      <p class="cta__verse-en">“And say: My Lord, increase me in knowledge.” <span>— Qur'an 20:114</span></p>
+      <h2>{heading}</h2>
+      <p>Send us your details and we'll help you choose the right course and a class time that suits you.</p>
+
+      <ul class="contact-list">
+        <li>
+          <span class="contact-list__label">WhatsApp &amp; phone</span>
+          <a href={whatsappLink()} target="_blank" rel="noopener">{SITE.phoneDisplay}</a>
+        </li>
+        <li>
+          <span class="contact-list__label">Email</span>
+          <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
+        </li>
+        <li>
+          <span class="contact-list__label">Class timings</span>
+          <span>Flexible · IST (GMT+5:30)</span>
+        </li>
+        <li>
+          <span class="contact-list__label">Location</span>
+          <span>Kollam, Kerala, India · Online worldwide</span>
+        </li>
+      </ul>
+    </div>
+
+    <form class="trial-form" id="enrolForm" novalidate>
+      <h3>Enrolment enquiry</h3>
+
+      <div class="field">
+        <label for="name">Your name</label>
+        <input id="name" name="name" type="text" autocomplete="name" required />
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="phone">WhatsApp number</label>
+          <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="+91 …" required />
+        </div>
+        <div class="field">
+          <label for="email">Email <span class="opt">(optional)</span></label>
+          <input id="email" name="email" type="email" autocomplete="email" />
+        </div>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="course">Course</label>
+          <select id="course" name="course" required>
+            <option value="" selected={!course}>Choose a course</option>
+            {COURSE_OPTIONS.map((c) => <option selected={c === course}>{c}</option>)}
+            <option>Not sure — please advise</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="student">Student</label>
+          <select id="student" name="student">
+            <option>Child</option>
+            <option>Youth</option>
+            <option>Adult</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="length">Preferred class length</label>
+        <select id="length" name="length">
+          <option>Not sure yet</option>
+          <option>30 minutes</option>
+          <option>45 minutes</option>
+          <option>60 minutes</option>
+        </select>
+      </div>
+
+      <input type="hidden" name="timezone" id="timezone" />
+      <p class="trial-form__tz">Your time zone: <strong id="tzLabel">—</strong> · Classes are scheduled in IST</p>
+
+      <button type="submit" class="btn btn--primary btn--block btn--lg">Send on WhatsApp</button>
+      <p class="trial-form__status" id="formStatus" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+
+<script>
+  import '../scripts/enrol';
+</script>
