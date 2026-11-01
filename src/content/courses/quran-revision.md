@@ -19,6 +19,14 @@ forWhom:
   - Huffaz who want to keep their memorisation strong
   - Hifz students who have memorised part of the Qur'an
   - Anyone who feels their memorisation is slipping
+startingPoint: memorised
+# Add real reviews here (with permission), e.g.
+# reviews:
+#   - name: Ayesha
+#     detail: Parent of a student · Kollam
+#     rating: 5
+#     text: "..."
+reviews: []
 faqs:
   - q: Who is the revision programme for?
     a: It is for Hifz students — anyone who has memorised all or part of the Qur'an and wants to strengthen and keep it.

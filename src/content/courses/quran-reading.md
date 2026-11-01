@@ -18,6 +18,14 @@ forWhom:
   - Students who have completed Tajweed and want to read fluently
   - Readers who want regular, guided recitation practice
   - Adults who want to read the Qur'an with confidence
+startingPoint: tajweed
+# Add real reviews here (with permission), e.g.
+# reviews:
+#   - name: Ayesha
+#     detail: Parent of a student · Kollam
+#     rating: 5
+#     text: "..."
+reviews: []
 faqs:
   - q: Who is this course for?
     a: It is designed for students who already know the rules of Tajweed and want to improve their fluency and accuracy through regular guided reading.

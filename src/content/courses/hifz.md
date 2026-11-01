@@ -20,6 +20,14 @@ forWhom:
   - Children beginning their Hifz journey
   - Adults who want to memorise the Qur'an, in full or part
   - Students who can read with Tajweed and are ready to memorise
+startingPoint: tajweed
+# Add real reviews here (with permission), e.g.
+# reviews:
+#   - name: Ayesha
+#     detail: Parent of a student · Kollam
+#     rating: 5
+#     text: "..."
+reviews: []
 faqs:
   - q: Can adults do Hifz?
     a: Yes. The Hifz programme is for children and adults. Each student gets a personalised plan, so the pace fits their age, schedule and ability.

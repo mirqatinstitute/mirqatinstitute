@@ -2,15 +2,24 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
-import CoursesGrid from '../../components/CoursesGrid.astro';
-import Ladder from '../../components/Ladder.astro';
 import Pricing from '../../components/Pricing.astro';
 import HowToEnrol from '../../components/HowToEnrol.astro';
 import Enrol from '../../components/Enrol.astro';
-import { SITE } from '../../data/site';
+import { SITE, PLANS, inr } from '../../data/site';
 
 const courses = (await getCollection('courses')).sort((a, b) => a.data.order - b.data.order);
 const crumbs = [{ name: 'Home', href: '/' }, { name: 'Courses' }];
+const minPrice = Math.min(...Object.values(PLANS).map((p) => p.from));
+
+const STARTS = [
+  { key: 'all', label: 'Show all courses' },
+  { key: 'beginner', label: "I'm a complete beginner" },
+  { key: 'reader', label: 'I can read Arabic letters' },
+  { key: 'tajweed', label: 'I know Tajweed' },
+  { key: 'memorised', label: "I've memorised Qur'an" },
+] as const;
+
+const fee = (plan: keyof typeof PLANS | null) => (plan ? PLANS[plan].from : null);
 
 const jsonLd = [
   {
@@ -34,20 +43,157 @@ const jsonLd = [
 ---
 <BaseLayout
   title="Online Quran Courses for Kids & Adults | Mirqat Institute"
-  description="Explore one-to-one online Quran courses at Mirqat Institute: Noorani Qaida, Tajweed, Quran reading, Hifz and Quran revision. Flexible timings, from ₹1,300/month."
+  description={`Explore one-to-one online Quran courses at Mirqat Institute: Noorani Qaida, Tajweed, Quran reading, Hifz and Quran revision. Flexible timings, from ${inr(minPrice)}/month.`}
   jsonLd={jsonLd}
 >
-  <section class="page-hero page-hero--center">
-    <div class="container">
-      <Breadcrumbs items={crumbs} />
-      <h1 class="page-hero__title">Online Quran courses for every learner.</h1>
-      <p class="page-hero__lede">From your very first Arabic letter to memorising and revising the Qur'an —
-        every course is taught one-to-one, live online, at a time that suits you.</p>
+  <!-- Hero with a clickable staircase of courses -->
+  <section class="page-hero courses-hero">
+    <div class="container courses-hero__grid">
+      <div>
+        <Breadcrumbs items={crumbs} />
+        <h1 class="page-hero__title">Online Quran courses, one step at a time.</h1>
+        <p class="page-hero__lede">From your very first Arabic letter to memorising and revising the Qur'an —
+          every course is taught one-to-one, live online, at a time that suits you.</p>
+        <dl class="hero-stats">
+          <div><dt>{courses.length}</dt><dd>courses</dd></div>
+          <div><dt>1-on-1</dt><dd>live online</dd></div>
+          <div><dt>{inr(minPrice)}</dt><dd>from / month</dd></div>
+          <div><dt>Flexible</dt><dd>IST timings</dd></div>
+        </dl>
+      </div>
+
+      <nav class="stairnav" aria-label="Jump to a course">
+        <ol>
+          {courses.map((c, i) => (
+            <li style={`--i:${i}`}>
+              <a href={`#course-${c.id}`}>
+                <span class="stairnav__num">{String(i + 1).padStart(2, '0')}</span>
+                <span class="stairnav__name">{c.data.title}</span>
+              </a>
+            </li>
+          ))}
+        </ol>
+      </nav>
     </div>
   </section>
-  <CoursesGrid heading="Choose your course." tint={false} />
-  <Ladder />
-  <Pricing />
-  <HowToEnrol />
-  <Enrol edge="tint" />
+
+  <!-- Find your step + the course path -->
+  <section class="section section--tint" id="find">
+    <div class="container">
+      <header class="section-head">
+        <p class="kicker">Find your step</p>
+        <h2>Where are you starting from?</h2>
+        <p>Pick the one that fits the student, and we'll highlight the right courses.</p>
+      </header>
+
+      <div class="finder" role="group" aria-label="Filter courses by starting point">
+        {STARTS.map((s) => (
+          <button type="button" class="finder__chip" data-start={s.key} aria-pressed={s.key === 'all' ? 'true' : 'false'}>
+            {s.label}
+          </button>
+        ))}
+      </div>
+      <p class="finder__status sr-only" aria-live="polite" id="finderStatus"></p>
+
+      <ol class="path" id="coursePath">
+        {courses.map((c, i) => {
+          const price = fee(c.data.plan);
+          return (
+            <li class="path-step reveal" id={`course-${c.id}`} data-start={c.data.startingPoint} style={`--i:${i}`}>
+              <span class="path-step__num" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+              <article class="path-card">
+                <div class="path-card__main">
+                  <div class="path-card__head">
+                    <span class="course__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d={c.data.icon} /></svg></span>
+                    <h3><a href={`/courses/${c.id}`}>{c.data.title}</a></h3>
+                  </div>
+                  <p class="path-card__summary">{c.data.summary}</p>
+                  <ul class="course__meta">
+                    <li>{c.data.level}</li><li>{c.data.schedule}</li><li>{c.data.format}</li>
+                  </ul>
+                  <ul class="checklist path-card__learn">
+                    {c.data.learn.slice(0, 3).map((l) => <li>{l}</li>)}
+                  </ul>
+                </div>
+                <div class="path-card__side">
+                  <p class="path-card__price">
+                    {price
+                      ? <><span>from</span><strong>{inr(price)}</strong><span>/month</span></>
+                      : <><span>Fees</span><strong class="path-card__ask">On request</strong><span>ask on WhatsApp</span></>}
+                  </p>
+                  <a href={`/courses/${c.id}`} class="btn btn--primary btn--block">View course</a>
+                  <a href={`/courses/${c.id}#enrol`} class="btn btn--ghost btn--block">Enrol</a>
+                </div>
+              </article>
+            </li>
+          );
+        })}
+      </ol>
+    </div>
+  </section>
+
+  <!-- Comparison table -->
+  <section class="section" id="compare">
+    <div class="container">
+      <header class="section-head">
+        <p class="kicker">Compare</p>
+        <h2>Courses side by side.</h2>
+      </header>
+      <div class="compare reveal">
+        <table>
+          <caption class="sr-only">Comparison of Mirqat Institute courses</caption>
+          <thead>
+            <tr><th scope="col">Course</th><th scope="col">Best for</th><th scope="col">Level</th><th scope="col">Schedule</th><th scope="col">Fees from</th></tr>
+          </thead>
+          <tbody>
+            {courses.map((c) => {
+              const price = fee(c.data.plan);
+              return (
+                <tr>
+                  <th scope="row"><a href={`/courses/${c.id}`}>{c.data.title}</a></th>
+                  <td data-label="Best for">{c.data.forWhom[0]}</td>
+                  <td data-label="Level">{c.data.level}</td>
+                  <td data-label="Schedule">{c.data.schedule}</td>
+                  <td data-label="Fees from">{price ? `${inr(price)}/month` : 'On request'}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <Pricing tint />
+  <HowToEnrol tint={false} />
+  <Enrol />
 </BaseLayout>
+
+<script>
+  // "Find your step": highlight courses that match the chosen starting point.
+  const chips = document.querySelectorAll<HTMLButtonElement>('.finder__chip');
+  const steps = document.querySelectorAll<HTMLElement>('.path-step');
+  const status = document.getElementById('finderStatus');
+
+  chips.forEach((chip) => {
+    chip.addEventListener('click', () => {
+      const key = chip.dataset.start;
+      chips.forEach((c) => c.setAttribute('aria-pressed', String(c === chip)));
+      let matches = 0;
+      let first: HTMLElement | null = null;
+      steps.forEach((step) => {
+        const match = key === 'all' || step.dataset.start === key;
+        step.classList.toggle('is-match', match && key !== 'all');
+        step.classList.toggle('is-dim', !match);
+        if (match) {
+          matches++;
+          first ??= step;
+        }
+      });
+      if (status) status.textContent = key === 'all' ? 'Showing all courses.' : `${matches} course${matches === 1 ? '' : 's'} recommended.`;
+      if (first && key !== 'all' && window.innerWidth < 860) {
+        (first as HTMLElement).scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    });
+  });
+</script>
