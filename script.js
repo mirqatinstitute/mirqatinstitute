@@ -2,14 +2,13 @@
    Mirqat Institute — landing page behaviour
    ========================================================= */
 
-/* ---- configuration: fill these in before launch ---- */
 const CONFIG = {
-  // Form endpoint (e.g. https://formspree.io/f/xxxxxxx). Leave empty to fall back to email.
+  // WhatsApp number, digits only with country code.
+  whatsappNumber: "919400738280",
+  contactEmail: "mirqatinstitute313@gmail.com",
+  // Optional form endpoint (e.g. https://formspree.io/f/xxxxxxx). When set, the form posts here
+  // instead of opening WhatsApp.
   formEndpoint: "",
-  // Where trial requests go when there is no endpoint.
-  contactEmail: "hello@mirqatinstitute.com",
-  // WhatsApp number, digits only with country code (e.g. "447700900123"). Empty hides the deep link.
-  whatsappNumber: "",
 };
 
 document.documentElement.classList.add("js");
@@ -75,20 +74,12 @@ if ("IntersectionObserver" in window) {
   ladderSteps.forEach((el) => el.classList.add("is-lit"));
 }
 
-/* ---- WhatsApp button ---- */
-const waBtn = document.getElementById("whatsappBtn");
-if (CONFIG.whatsappNumber) {
-  const text = encodeURIComponent("Assalamu alaikum! I'd like to know more about classes at Mirqat Institute.");
-  waBtn.href = `https://wa.me/${CONFIG.whatsappNumber}?text=${text}`;
-  waBtn.target = "_blank";
-  waBtn.rel = "noopener";
-}
-
-/* ---- trial form ---- */
-const form = document.getElementById("trialForm");
+/* ---- enrolment form ---- */
+const form = document.getElementById("enrolForm");
 const statusEl = document.getElementById("formStatus");
 const tzInput = document.getElementById("timezone");
 const tzLabel = document.getElementById("tzLabel");
+const courseSelect = document.getElementById("course");
 
 try {
   const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
@@ -97,6 +88,14 @@ try {
 } catch (err) {
   tzLabel.textContent = "not detected";
 }
+
+// "Choose this plan" buttons pre-select the matching course.
+document.querySelectorAll("[data-course]").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    courseSelect.value = btn.dataset.course;
+    courseSelect.closest(".field").classList.remove("is-invalid");
+  });
+});
 
 function setStatus(msg, isError) {
   statusEl.textContent = msg;
@@ -107,7 +106,8 @@ function validate() {
   let firstInvalid = null;
   const checks = [
     ["name", (v) => v.trim().length > 1],
-    ["email", (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim())],
+    ["phone", (v) => v.replace(/\D/g, "").length >= 7],
+    ["email", (v) => v.trim() === "" || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim())],
     ["course", (v) => v !== ""],
   ];
   checks.forEach(([id, ok]) => {
@@ -124,15 +124,15 @@ form.addEventListener("submit", async (e) => {
   e.preventDefault();
   const invalid = validate();
   if (invalid) {
-    setStatus("Please fill in your name, a valid email and a course.", true);
+    setStatus("Please add your name, a WhatsApp number and a course.", true);
     invalid.focus();
     return;
   }
 
   const data = Object.fromEntries(new FormData(form).entries());
-  const button = form.querySelector("button[type=submit]");
 
   if (CONFIG.formEndpoint) {
+    const button = form.querySelector("button[type=submit]");
     button.disabled = true;
     setStatus("Sending…");
     try {
@@ -144,26 +144,34 @@ form.addEventListener("submit", async (e) => {
       if (!res.ok) throw new Error(res.statusText);
       form.reset();
       tzInput.value = data.timezone || "";
-      setStatus("JazakAllahu khayran! We'll contact you within 24 hours to arrange your trial.");
+      setStatus("JazakAllahu khayran! We'll contact you on WhatsApp soon.");
     } catch (err) {
-      setStatus(`Something went wrong. Please email us at ${CONFIG.contactEmail}.`, true);
+      setStatus(`Something went wrong. Please message us on WhatsApp or email ${CONFIG.contactEmail}.`, true);
     } finally {
       button.disabled = false;
     }
     return;
   }
 
-  // No endpoint configured yet: open a pre-filled email so requests still reach the institute.
-  const body = [
+  // Default: open WhatsApp with the enquiry pre-filled.
+  const message = [
+    "Assalamu alaikum! I'd like to enrol at Mirqat Institute.",
+    "",
     `Name: ${data.name}`,
-    `Email: ${data.email}`,
-    `WhatsApp: ${data.phone || "-"}`,
+    `WhatsApp: ${data.phone}`,
+    data.email ? `Email: ${data.email}` : null,
     `Course: ${data.course}`,
     `Student: ${data.student}`,
-    `Teacher preference: ${data.teacher}`,
-    `Time zone: ${data.timezone || "-"}`,
-  ].join("\n");
-  const subject = `Free trial request — ${data.course}`;
-  window.location.href = `mailto:${CONFIG.contactEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-  setStatus("Your email app should open with your details — just press send.");
+    `Class length: ${data.length}`,
+    data.timezone ? `Time zone: ${data.timezone}` : null,
+  ]
+    .filter((line) => line !== null)
+    .join("\n");
+
+  const url = `https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(message)}`;
+  // (window.open with "noopener" always returns null, so detach the opener manually instead.)
+  const win = window.open(url, "_blank");
+  if (win) win.opener = null;
+  else window.location.href = url;
+  setStatus("WhatsApp should open with your details — just press send.");
 });

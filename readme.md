@@ -12,12 +12,16 @@ Static landing page (`index.html`, `style.css`, `script.js`) — no build step. 
 | `--cream` | `#FEF1BC` | Warm accent, text on deep green |
 | `--green-900` | `#1E3329` | Body text, footer |
 
-## Before launch — replace placeholder content
+## Content
 
-- **Teachers** (`#teachers`): names, roles, bios; swap initials for photos if desired.
-- **Testimonials** (`#testimonials`): use real quotes, with permission.
-- **Pricing** (`#pricing`): real plans and prices.
-- **Contact**: email in `index.html` footer/FAQ and `CONFIG.contactEmail` in `script.js`; social links in the footer.
-- **WhatsApp**: set `CONFIG.whatsappNumber` in `script.js` (digits with country code).
-- **Trial form**: set `CONFIG.formEndpoint` (e.g. Formspree) in `script.js`. Until then, submissions open a pre-filled email to `contactEmail`.
-- **Social preview**: add a 1200×630 `og-image.png` and uncomment the `og:image` tag.
+Courses, about, teacher, pricing and contact/enrolment details come from the academy's content form.
+
+- **Enrolment form**: opens WhatsApp (+91 94007 38280) with the enquiry pre-filled. To collect submissions elsewhere instead, set `CONFIG.formEndpoint` (e.g. Formspree) in `script.js`.
+- **Contact**: WhatsApp/phone and email are in `index.html` (enrol section, FAQ, footer) and `CONFIG` in `script.js`.
+
+## Still to add
+
+- Teacher photo (the card currently shows initials).
+- Social media links (Instagram / Facebook / YouTube) once available — add them to the footer.
+- Testimonials (section removed until real ones with permission are available).
+- Social preview: add a 1200×630 `og-image.png` and uncomment the `og:image` tag.
