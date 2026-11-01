@@ -62,12 +62,11 @@ if (reduce) {
     });
   });
 
-  // 5. Hero: the class window drifts down as you scroll away, while the floating
-  // cards keep their own gentle CSS float — a simple sense of depth.
+  // 5. Hero: the stairway drifts gently as you scroll away.
   const hero = document.querySelector('.hero');
-  const classWindow = document.querySelector('.class-window');
-  if (hero && classWindow) {
-    scroll(animate(classWindow, { y: [0, 60] }, { ease: 'linear' }), {
+  const stairs = document.querySelector('.stairway__svg');
+  if (hero && stairs) {
+    scroll(animate(stairs, { y: [0, 50] }, { ease: 'linear' }), {
       target: hero,
       offset: ['start start', 'end start'],
     });
