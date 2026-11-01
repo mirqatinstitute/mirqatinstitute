@@ -1,0 +1,55 @@
+---
+import { getCollection } from 'astro:content';
+
+interface Props {
+  heading?: string;
+  intro?: string;
+  exclude?: string;
+  headingLevel?: 'h1' | 'h2';
+  tint?: boolean;
+}
+const {
+  heading = 'Programmes for every learner.',
+  intro = 'Every course is taught one-to-one and online, at a pace that suits each student.',
+  exclude,
+  headingLevel = 'h2',
+  tint = true,
+} = Astro.props;
+const H = headingLevel;
+const courses = (await getCollection('courses'))
+  .filter((c) => c.id !== exclude)
+  .sort((a, b) => a.data.order - b.data.order);
+---
+<section class:list={['section', { 'section--tint': tint }]} id="courses">
+  <div class="container">
+    <header class="section-head">
+      <p class="kicker">Courses &amp; programmes</p>
+      <H>{heading}</H>
+      <p>{intro}</p>
+    </header>
+
+    <div class="courses">
+      {courses.map((c) => (
+        <article class="course reveal">
+          <div class="course__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d={c.data.icon} /></svg>
+          </div>
+          <h3><a class="course__link" href={`/courses/${c.id}`}>{c.data.title}</a></h3>
+          <p>{c.data.summary}</p>
+          <ul class="course__meta">
+            <li>{c.data.level}</li><li>{c.data.schedule}</li><li>{c.data.format}</li>
+          </ul>
+          <span class="course__more" aria-hidden="true">Learn more →</span>
+        </article>
+      ))}
+
+      {!exclude && (
+        <a href="#enrol" class="course course--cta reveal">
+          <h3>Not sure where to start?</h3>
+          <p>Tell us about the student and we'll suggest the right course and schedule.</p>
+          <span class="course--cta__link">Ask us on WhatsApp →</span>
+        </a>
+      )}
+    </div>
+  </div>
+</section>

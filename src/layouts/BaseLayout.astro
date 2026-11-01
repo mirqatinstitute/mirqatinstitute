@@ -1,0 +1,57 @@
+---
+import '@fontsource-variable/outfit';
+import '@fontsource/amiri/400.css';
+import '@fontsource/amiri/700.css';
+import '@fontsource/amiri/400-italic.css';
+import '@fontsource/noto-naskh-arabic/arabic-700.css';
+import '../styles/global.css';
+import Seo from '../components/Seo.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import WhatsAppButton from '../components/WhatsAppButton.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  noindex?: boolean;
+  jsonLd?: Record<string, unknown>[];
+}
+
+const props = Astro.props;
+---
+<!doctype html>
+<html lang="en-IN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#436E5B" />
+  <!-- Mark JS as available before paint, so reveal animations never flash. -->
+  <script is:inline>
+    document.documentElement.classList.add('js');
+    // Safety net: if the animation script fails to load, show everything.
+    setTimeout(function () { if (!window.__motionReady) document.documentElement.classList.add('motion-off'); }, 3000);
+  </script>
+  <Seo {...props} />
+  <link rel="icon" href="/favicon.ico" sizes="48x48" />
+  <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <link rel="sitemap" href="/sitemap-index.xml" />
+</head>
+<body>
+  <div class="scroll-progress" aria-hidden="true"></div>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <Header />
+  <main id="main">
+    <slot />
+  </main>
+  <Footer />
+  <WhatsAppButton />
+
+  <script>
+    import '../scripts/nav';
+    import '../scripts/motion';
+  </script>
+</body>
+</html>

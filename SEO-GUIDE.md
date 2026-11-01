@@ -15,7 +15,9 @@ Work through Part 2 in order; the first three steps matter most.
 | **Structured data (JSON-LD)** | Machine-readable facts for Google: organisation, address, phone, courses with INR prices, Instagram/Facebook links, and all FAQ questions. These can unlock richer search results. |
 | **Social previews** | `assets/og-image.png` appears when the link is shared on WhatsApp, Facebook, Instagram DMs, LinkedIn or X. |
 | **Icons** | `favicon.ico`, SVG favicon, Apple touch icon, Android icons and `site.webmanifest`. |
-| **robots.txt and sitemap.xml** | Tell Google it may crawl everything and where the page list is. |
+| **robots.txt and sitemap** | `sitemap-index.xml` is generated automatically on every build and lists every page. |
+| **A page per course** | `/courses/noorani-qaida`, `/courses/tajweed`, `/courses/quran-reading`, `/courses/hifz`, `/courses/quran-revision`, plus `/courses`. Each has its own title, description, article, FAQ and Course/Breadcrumb/FAQ structured data, so each can rank for its own searches. |
+| **Speed** | Built with Astro: plain HTML, self-hosted fonts, auto-compressed images, very little JavaScript. |
 | **Mobile and speed** | Responsive layout, no heavy frameworks, fonts load with `display=swap`. |
 | **Accessibility** | Proper heading order, labels and alt text. Google rewards accessible pages. |
 
@@ -28,7 +30,7 @@ This is Google's free dashboard for your site.
 
 1. Go to <https://search.google.com/search-console> and sign in with the academy's Google account.
 2. Add a **Domain** property for `mirqatinstitute.com` and verify it by adding the TXT record it gives you at your domain registrar (GoDaddy, Hostinger, Namecheap, etc.).
-3. Open **Sitemaps** and submit `https://www.mirqatinstitute.com/sitemap.xml`.
+3. Open **Sitemaps** and submit `https://www.mirqatinstitute.com/sitemap-index.xml`. It's regenerated automatically on every deploy, so you only submit it once.
 4. Open **URL Inspection**, paste the homepage address and click **Request indexing**.
 5. Check back weekly. **Performance → Search results** shows which searches bring people to you.
 
@@ -64,11 +66,7 @@ Create free listings, always with the same name, phone and website (consistency 
 ### 6. Grow the content (the long-term engine)
 One page can only rank for a few searches. Each new page is a new door into the site.
 
-**a) One page per course** (I can build these for you):
-- `/noorani-qaida`: who it's for, what's covered week by week, FAQ, price, enrol button
-- `/tajweed-course`: rules covered (Makharij, Sifaat, Madd, Ghunnah, Noon & Meem, Waqf), level, price
-- `/online-hifz-classes`: how sabak, sabqi and muraja'ah work, daily routine, progress tracking
-- `/quran-reading` and `/quran-revision`
+**a) Course pages: done.** Each course has its own page under `/courses/`. To improve one, edit its file in `src/content/courses/`. Adding real details (teacher notes, a typical lesson, student results) makes each page stronger. To add a new course, add a new `.md` file there.
 
 **b) Helpful articles**, one or two per month, answering real questions parents ask:
 - "How long does it take to complete Hifz?"
@@ -114,7 +112,7 @@ Stock images don't help. Upload real photos of the teacher, classes and certific
 - [ ] Ask 2–3 families for Google reviews
 - [ ] Publish one article or course-page improvement
 - [ ] Post 4–8 times on Instagram/Facebook, each linking back to the site or WhatsApp
-- [ ] Update prices, teacher info or courses on the site if anything changed. **Also update the structured data** in `index.html` (search for `application/ld+json`) and the `<lastmod>` date in `sitemap.xml`.
+- [ ] Update prices, contact details or plans in `src/data/site.ts` and course pages in `src/content/courses/` if anything changed. The structured data and sitemap update themselves.
 
 ## What to expect
 SEO is slow. A new site usually takes **2–4 months** before it shows up for competitive searches. Your Google Business Profile and branded searches ("Mirqat Institute") will work much sooner, often within days. Consistency (reviews, articles, links) beats any one-off trick.

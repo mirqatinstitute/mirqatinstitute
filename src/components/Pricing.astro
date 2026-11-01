@@ -1,0 +1,43 @@
+---
+import { PLANS, inr, type PlanKey } from '../data/site';
+
+interface Props {
+  only?: PlanKey;
+  tint?: boolean;
+}
+const { only, tint = false } = Astro.props;
+const keys: PlanKey[] = only ? [only] : ['basic', 'tajweed', 'hifz'];
+---
+<section class:list={['section', { 'section--tint': tint }]} id="pricing">
+  <div class="container">
+    <header class="section-head">
+      <p class="kicker">Pricing &amp; plans</p>
+      <h2>{only ? 'Plan & pricing.' : 'Simple monthly plans.'}</h2>
+      <p>All classes are one-to-one and online. Prices in Indian Rupees, billed monthly.</p>
+    </header>
+
+    <div class:list={['plans', { 'plans--single': only }]}>
+      {keys.map((key) => {
+        const p = PLANS[key];
+        const featured = key === 'tajweed' || Boolean(only);
+        return (
+          <article class:list={['plan', 'reveal', { 'plan--featured': featured }]}>
+            <h3>{p.name}</h3>
+            <p class="plan__freq">{p.freq}</p>
+            <p class="plan__price"><span class="plan__from">from</span>{inr(p.from)}<span class="plan__per">/month</span></p>
+            <table class="plan__options">
+              <caption class="sr-only">{p.name} {p.optionsLabel}</caption>
+              <tbody>
+                {p.options.map(([label, price]) => (
+                  <tr><th scope="row">{label}</th><td>{inr(price)}</td></tr>
+                ))}
+              </tbody>
+            </table>
+            <ul>{p.includes.map((i) => <li>{i}</li>)}</ul>
+            <a href="#enrol" class:list={['btn', 'btn--block', featured ? 'btn--cream' : 'btn--ghost']} data-course={p.course}>Choose this plan</a>
+          </article>
+        );
+      })}
+    </div>
+  </div>
+</section>

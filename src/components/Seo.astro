@@ -1,0 +1,82 @@
+---
+import { SITE } from '../data/site';
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  imageAlt?: string;
+  type?: 'website' | 'article';
+  noindex?: boolean;
+  jsonLd?: Record<string, unknown>[];
+}
+
+const { title, description, image = SITE.ogImage, imageAlt = `${SITE.name} — Online Quran classes, one step at a time`, type = 'website', noindex = false, jsonLd = [] } = Astro.props;
+
+// Canonical URL: always the www domain, no trailing slash (except the homepage).
+const path =
+  Astro.url.pathname
+    .replace(/\.html$/, '')
+    .replace(/\/index$/, '')
+    .replace(/\/$/, '') || '/';
+const canonical = new URL(path, SITE.url).href;
+const imageUrl = new URL(image, SITE.url).href;
+
+const orgId = `${SITE.url}/#organization`;
+const graph = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': ['EducationalOrganization', 'LocalBusiness'],
+      '@id': orgId,
+      name: SITE.name,
+      alternateName: 'مرقاة',
+      url: `${SITE.url}/`,
+      logo: `${SITE.url}/assets/icons/icon-512.png`,
+      image: `${SITE.url}${SITE.ogImage}`,
+      description: SITE.description,
+      email: SITE.email,
+      telephone: SITE.phoneE164,
+      priceRange: '₹1,000 – ₹2,100 per month',
+      address: { '@type': 'PostalAddress', addressLocality: SITE.address.locality, addressRegion: SITE.address.region, addressCountry: SITE.address.country },
+      areaServed: ['Kerala', 'India', 'Worldwide'],
+      sameAs: Object.values(SITE.social),
+      contactPoint: { '@type': 'ContactPoint', telephone: SITE.phoneE164, contactType: 'admissions', availableLanguage: ['English', 'Malayalam', 'Arabic'] },
+    },
+    {
+      '@type': 'WebSite',
+      '@id': `${SITE.url}/#website`,
+      url: `${SITE.url}/`,
+      name: SITE.name,
+      inLanguage: SITE.lang,
+      publisher: { '@id': orgId },
+    },
+    ...jsonLd,
+  ],
+};
+---
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+<meta name="robots" content={noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large, max-snippet:-1'} />
+<meta name="author" content={SITE.name} />
+<meta name="geo.region" content={SITE.address.regionCode} />
+<meta name="geo.placename" content={`${SITE.address.locality}, ${SITE.address.region}`} />
+
+<meta property="og:type" content={type} />
+<meta property="og:site_name" content={SITE.name} />
+<meta property="og:locale" content={SITE.locale} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={imageUrl} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content={imageAlt} />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={imageUrl} />
+
+<script type="application/ld+json" is:inline set:html={JSON.stringify(graph)} />
