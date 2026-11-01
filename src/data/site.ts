@@ -7,7 +7,7 @@ export const SITE = {
   url: 'https://www.mirqatinstitute.com',
   tagline: 'Step by step, toward the Qur\'an',
   description:
-    'One-to-one online Quran classes from Kollam, Kerala: Noorani Qaida, Tajweed, Hifz, Quran reading and revision for kids and adults. Flexible timings, from ₹1,000/month.',
+    'One-to-one online Quran classes from Kollam, Kerala: Noorani Qaida, Tajweed, Hifz, Quran reading and revision for kids and adults. Flexible timings, from ₹1,300/month.',
   ogImage: '/assets/og-image.png',
   locale: 'en_IN',
   lang: 'en-IN',
@@ -58,10 +58,10 @@ export const PLANS: Record<PlanKey, {
   },
   hifz: {
     name: 'Hifz Plan',
-    freq: '12, 20 or 30 classes / month',
-    from: 1000,
+    freq: '20, 25 or 30 classes / month',
+    from: 1600,
     optionsLabel: 'prices by classes per month',
-    options: [['12 classes / month', 1000], ['20 classes / month', 1349], ['30 classes / month', 1749]],
+    options: [['20 classes / month', 1600], ['25 classes / month', 2000], ['30 classes / month', 2400]],
     includes: ['Personalised Hifz plan', 'New lesson (Sabak)', "Daily Muraja'ah", 'Tajweed & pronunciation correction', 'Progress tracking', 'Individual guidance'],
     course: 'Hifz (Memorisation)',
   },
@@ -77,6 +77,20 @@ export const HOME_FAQ: { q: string; a: string }[] = [
   { q: "Do I need any prior Qur'an knowledge?", a: 'No. Complete beginners start with Noorani Qaida and basic Qur\'an reading.' },
   { q: 'Do you offer Hifz?', a: "Yes. Our Hifz plan includes a personalised plan, new lessons (sabak), daily muraja'ah and progress tracking, plus a separate Qur'an revision programme for Hifz students." },
   { q: 'What are the class timings?', a: "Timings are flexible. Classes are scheduled in IST (GMT+5:30), with slots arranged around the student's availability." },
-  { q: 'How much do classes cost?', a: "Plans start from ₹1,000 per month for Hifz and ₹1,300 per month for the Basic Qur'an and Tajweed plans." },
+  { q: 'How much do classes cost?', a: "Plans start from ₹1,300 per month for the Basic Qur'an and Tajweed plans, and ₹1,600 per month for Hifz." },
   { q: 'How do I enrol?', a: 'Contact us on WhatsApp or through the enrolment form, choose a course and class timing, complete your registration, and begin classes.' },
+];
+
+// Teachers shown as small cards under the featured teacher (Muhammed Saahil,
+// in src/components/Teachers.astro). photo: 'male' | 'female' profile illustration.
+export const TEACHERS: { name: string; role: string; photo: 'male' | 'female'; sample?: boolean }[] = [
+  { name: 'Hafiz Abdul Majid', role: 'Hifz, Tajweed & Qaida Nooraniya specialist', photo: 'male' },
+  { name: 'Fathima MV', role: 'Qaida Nooraniya specialist', photo: 'female' },
+  { name: 'Salva Shareef', role: 'Tajweed tutor', photo: 'female' },
+  { name: 'Fathima Mustabshira', role: 'Qaida Nooraniya & Tajweed specialist', photo: 'female' },
+  { name: 'Hafilath Muhsina Hadiya', role: "Qur'an tutor", photo: 'female' },
+  { name: 'Hafilath Ashiqa Mueena', role: "Qur'an tutor", photo: 'female' },
+  { name: 'Hafilath Sayyidath Haleema Hadiya', role: "Qur'an tutor", photo: 'female' },
+  // SAMPLE: Nihala Jamal's role is placeholder text — replace with her real role.
+  { name: 'Nihala Jamal', role: "Qur'an tutor · Sisters & children", photo: 'female', sample: true },
 ];

@@ -1,22 +1,26 @@
 ---
 import { Image } from 'astro:assets';
 import saahil from '../assets/teachers/muhammed-saahil.webp';
-import nihala from '../assets/teachers/nihala-jamal.webp';
+import male from '../assets/teachers/male-profile.webp';
+import female from '../assets/teachers/female-profile.webp';
+import { TEACHERS } from '../data/site';
 
 interface Props { tint?: boolean }
 const { tint = true } = Astro.props;
+const photos = { male, female };
 ---
 <section class:list={['section', { 'section--tint': tint }]} id="teachers">
   <div class="container">
     <header class="section-head">
       <p class="kicker">Our teachers</p>
       <h2>Meet your Qur'an tutors.</h2>
+      <p>A team of male and female tutors — huffaz, hafilaths and Tajweed specialists — teaching one-to-one.</p>
     </header>
 
-    <div class="tutors">
-      <article class="tutor reveal">
-        <Image class="tutor__photo" src={saahil} widths={[168, 336]} sizes="168px"
-               alt="Muhammed Saahil, Qur'an tutor at Mirqat Institute" />
+    <article class="tutor tutor--featured reveal">
+      <Image class="tutor__photo" src={saahil} widths={[200, 400]} sizes="200px"
+             alt="Muhammed Saahil, Qur'an tutor at Mirqat Institute" />
+      <div class="tutor__body">
         <h3>Muhammed Saahil</h3>
         <p class="tutor__role">Qur'an Tutor</p>
         <p class="tutor__bio">
@@ -29,25 +33,18 @@ const { tint = true } = Astro.props;
           <li>Hafs &amp; Shu'bah Riwayah certified</li>
           <li>3+ years teaching</li>
         </ul>
-      </article>
+      </div>
+    </article>
 
-      <!-- SAMPLE CONTENT: Nihala Jamal's role, bio and qualifications are placeholders.
-           Replace with her real details (and photo, if she wishes) before relying on them. -->
-      <article class="tutor reveal" data-placeholder="true">
-        <Image class="tutor__photo tutor__photo--icon" src={nihala} widths={[168, 336]} sizes="168px"
-               alt="Profile illustration for Nihala Jamal, Qur'an tutor at Mirqat Institute" />
-        <h3>Nihala Jamal</h3>
-        <p class="tutor__role">Qur'an Tutor · Sisters &amp; Children</p>
-        <p class="tutor__bio">
-          Teaches Noorani Qaida, Tajweed and Qur'an reading to women and young girls,
-          with a patient, encouraging approach that helps beginners grow in confidence.
-        </p>
-        <ul class="tutor__creds" aria-label="Qualifications">
-          <li>B.A. Arabic</li>
-          <li>Tajweed certified</li>
-          <li>2+ years teaching</li>
-        </ul>
-      </article>
-    </div>
+    <ul class="tutor-grid" aria-label="More Mirqat teachers">
+      {TEACHERS.map((t) => (
+        <li class="tutor-mini reveal" data-placeholder={t.sample ? 'true' : undefined}>
+          <Image class="tutor-mini__photo" src={photos[t.photo]} widths={[80, 160]} sizes="80px"
+                 alt={`Profile illustration for ${t.name}`} />
+          <h3>{t.name}</h3>
+          <p>{t.role}</p>
+        </li>
+      ))}
+    </ul>
   </div>
 </section>

@@ -10,7 +10,7 @@ Work through Part 2 in order; the first three steps matter most.
 | Area | What was added |
 |---|---|
 | **Title tag** | `Online Quran Classes – Tajweed, Hifz & Noorani Qaida \| Mirqat Institute`. This is the blue link people see on Google, and it starts with what people actually search for. |
-| **Meta description** | The two-line summary under the link: courses, Kollam/Kerala, kids and adults, price from ₹1,000. |
+| **Meta description** | The two-line summary under the link: courses, Kollam/Kerala, kids and adults, price from ₹1,300. |
 | **Canonical URL** | Tells Google the one true address is `https://www.mirqatinstitute.com/`. |
 | **Structured data (JSON-LD)** | Machine-readable facts for Google: organisation, address, phone, courses with INR prices, Instagram/Facebook links, and all FAQ questions. These can unlock richer search results. |
 | **Social previews** | `assets/og-image.png` appears when the link is shared on WhatsApp, Facebook, Instagram DMs, LinkedIn or X. |
