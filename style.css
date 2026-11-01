@@ -1019,38 +1019,40 @@ p {
   opacity: 1;
 }
 
-/* ---------- teacher ---------- */
-.tutor {
-  max-width: 860px;
+/* ---------- teachers ---------- */
+.tutors {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  max-width: 980px;
   margin: 0 auto;
+}
+
+.tutor {
   background: var(--paper);
   border: 1px solid var(--line);
   border-radius: 24px;
-  padding: clamp(28px, 4vw, 48px);
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: clamp(24px, 4vw, 48px);
+  padding: clamp(28px, 4vw, 44px) clamp(24px, 3vw, 36px);
+  display: flex;
+  flex-direction: column;
   align-items: center;
+  text-align: center;
   box-shadow: var(--shadow);
 }
 
-.tutor__avatar {
+.tutor__photo {
   width: 168px;
   height: 168px;
   border-radius: 50%;
-  display: grid;
-  place-items: center;
-  font-family: var(--font-serif);
-  font-size: 56px;
-  font-weight: 700;
-  color: var(--cream);
-  background: var(--green-700);
+  object-fit: cover;
+  background: var(--tint);
   box-shadow: 0 0 0 8px var(--cream), 0 0 0 9px rgba(67, 110, 91, 0.25);
+  margin-bottom: 28px;
 }
 
 .tutor h3 {
   font-family: var(--font-serif);
-  font-size: 32px;
+  font-size: 30px;
   font-weight: 700;
 }
 
@@ -1063,6 +1065,7 @@ p {
 .tutor__bio {
   color: var(--muted);
   margin-bottom: 20px;
+  flex: 1;
 }
 
 .tutor__creds {
@@ -1071,6 +1074,7 @@ p {
   margin: 0;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 8px;
 }
 
@@ -1964,20 +1968,13 @@ p {
     grid-template-columns: 1fr;
   }
 
-  .tutor {
+  .tutors {
     grid-template-columns: 1fr;
-    text-align: center;
   }
 
-  .tutor__avatar {
-    width: 120px;
-    height: 120px;
-    font-size: 40px;
-    margin: 0 auto;
-  }
-
-  .tutor__creds {
-    justify-content: center;
+  .tutor__photo {
+    width: 136px;
+    height: 136px;
   }
 
   .about__facts {

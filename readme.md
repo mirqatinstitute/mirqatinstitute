@@ -21,13 +21,14 @@ Courses, about, teacher, pricing and contact/enrolment details come from the aca
 
 ## Still to add
 
-- Teacher photo (the card currently shows initials).
+- **Nihala Jamal**: her role, bio and qualifications are SAMPLE content, and her picture is a generic profile illustration. Replace with real details.
 - **Testimonials**: the three quotes in `#testimonials` are SAMPLE content — replace with real ones (with permission) before going live.
 
 ## Files
 
 | Path | What it is |
 |---|---|
+| `assets/teachers/` | Teacher photos (480×480 WebP) |
 | `brand/` | Logo files: stairway mark (SVG + 1024px PNG) and horizontal logo (dark and light text) |
 | `assets/icons/` | Favicons and app icons |
 | `assets/og-image.png` | 1200×630 preview shown when the link is shared |
