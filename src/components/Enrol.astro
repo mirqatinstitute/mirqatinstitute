@@ -1,5 +1,7 @@
 ---
-import { COURSE_OPTIONS, SITE, whatsappLink } from '../data/site';
+import { COURSE_OPTIONS, SITE } from '../data/site';
+import { WA, waLink } from '../data/whatsapp';
+import WhatsAppIcon from './WhatsAppIcon.astro';
 
 interface Props {
   course?: string;
@@ -8,6 +10,20 @@ interface Props {
   edge?: 'paper' | 'tint';
 }
 const { course, heading = 'Take your first step today.', edge = 'paper' } = Astro.props;
+
+const STUDENTS = [
+  { value: 'Child', emoji: '🧒' },
+  { value: 'Youth', emoji: '🧑' },
+  { value: 'Adult', emoji: '🧑‍🦱' },
+];
+const TIMES = [
+  { value: 'Morning', emoji: '🌅' },
+  { value: 'Afternoon', emoji: '☀️' },
+  { value: 'Evening', emoji: '🌙' },
+  { value: 'Any time', emoji: '🕐' },
+];
+// Initial preview (before JS fills it in live).
+const initialPreview = WA.enrol({ course });
 ---
 <section class="cta" id="enrol">
   <div class:list={['stepped-edge', 'stepped-edge--top', { 'stepped-edge--tint': edge === 'tint' }]} aria-hidden="true"></div>
@@ -16,12 +32,14 @@ const { course, heading = 'Take your first step today.', edge = 'paper' } = Astr
       <p class="cta__verse" lang="ar" dir="rtl">وَقُل رَّبِّ زِدْنِي عِلْمًا</p>
       <p class="cta__verse-en">“And say: My Lord, increase me in knowledge.” <span>— Qur'an 20:114</span></p>
       <h2>{heading}</h2>
-      <p>Send us your details and we'll help you choose the right course and a class time that suits you.</p>
+      <p>Tap a few options and send — your enquiry opens in WhatsApp, ready to go. We'll help you choose the right course and a class time that suits you.</p>
 
       <ul class="contact-list">
         <li>
           <span class="contact-list__label">WhatsApp &amp; phone</span>
-          <a href={whatsappLink()} target="_blank" rel="noopener">{SITE.phoneDisplay}</a>
+          <a href={waLink(WA.general())} target="_blank" rel="noopener" class="contact-list__wa">
+            <WhatsAppIcon size={20} /> {SITE.phoneDisplay}
+          </a>
         </li>
         <li>
           <span class="contact-list__label">Email</span>
@@ -29,67 +47,86 @@ const { course, heading = 'Take your first step today.', edge = 'paper' } = Astr
         </li>
         <li>
           <span class="contact-list__label">Class timings</span>
-          <span>Flexible · IST (GMT+5:30)</span>
+          <span>{SITE.timings}</span>
         </li>
         <li>
           <span class="contact-list__label">Location</span>
-          <span>Kollam, Kerala, India · Online worldwide</span>
+          <span>{SITE.address.display} · Online worldwide</span>
         </li>
       </ul>
     </div>
 
-    <form class="trial-form" id="enrolForm" novalidate>
-      <h3>Enrolment enquiry</h3>
+    <form class="wa-form" id="enrolForm" novalidate>
+      <div class="wa-form__head">
+        <span class="wa-form__badge" aria-hidden="true"><WhatsAppIcon size={24} /></span>
+        <div>
+          <h3>Enquire on WhatsApp</h3>
+          <p>Takes about 20 seconds</p>
+        </div>
+      </div>
 
       <div class="field">
         <label for="name">Your name</label>
-        <input id="name" name="name" type="text" autocomplete="name" required />
+        <input id="name" name="name" type="text" autocomplete="name" placeholder="e.g. Aisha" required />
       </div>
 
-      <div class="field-row">
-        <div class="field">
-          <label for="phone">WhatsApp number</label>
-          <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="+91 …" required />
+      <fieldset class="chips" id="courseChips">
+        <legend>Course</legend>
+        <div class="chips__list">
+          {COURSE_OPTIONS.map((c) => (
+            <label class="chip">
+              <input type="radio" name="course" value={c.value} checked={c.value === course} required />
+              <span><span aria-hidden="true">{c.emoji}</span> {c.label}</span>
+            </label>
+          ))}
         </div>
-        <div class="field">
-          <label for="email">Email <span class="opt">(optional)</span></label>
-          <input id="email" name="email" type="email" autocomplete="email" />
-        </div>
-      </div>
+      </fieldset>
 
-      <div class="field-row">
-        <div class="field">
-          <label for="course">Course</label>
-          <select id="course" name="course" required>
-            <option value="" selected={!course}>Choose a course</option>
-            {COURSE_OPTIONS.map((c) => <option selected={c === course}>{c}</option>)}
-            <option>Not sure — please advise</option>
-          </select>
+      <fieldset class="chips">
+        <legend>Who is learning? <span class="opt">(optional)</span></legend>
+        <div class="chips__list">
+          {STUDENTS.map((s) => (
+            <label class="chip">
+              <input type="radio" name="student" value={s.value} />
+              <span><span aria-hidden="true">{s.emoji}</span> {s.value}</span>
+            </label>
+          ))}
         </div>
-        <div class="field">
-          <label for="student">Student</label>
-          <select id="student" name="student">
-            <option>Child</option>
-            <option>Youth</option>
-            <option>Adult</option>
-          </select>
-        </div>
-      </div>
+      </fieldset>
 
-      <div class="field">
-        <label for="length">Preferred class length</label>
-        <select id="length" name="length">
-          <option>Not sure yet</option>
-          <option>30 minutes</option>
-          <option>45 minutes</option>
-          <option>60 minutes</option>
-        </select>
-      </div>
+      <fieldset class="chips">
+        <legend>Preferred time <span class="opt">(optional · IST)</span></legend>
+        <div class="chips__list">
+          {TIMES.map((t) => (
+            <label class="chip">
+              <input type="radio" name="time" value={t.value} />
+              <span><span aria-hidden="true">{t.emoji}</span> {t.value}</span>
+            </label>
+          ))}
+        </div>
+      </fieldset>
 
       <input type="hidden" name="timezone" id="timezone" />
-      <p class="trial-form__tz">Your time zone: <strong id="tzLabel">—</strong> · Classes are scheduled in IST</p>
 
-      <button type="submit" class="btn btn--primary btn--block btn--lg">Send on WhatsApp</button>
+      <!-- Live preview of the message that will open in WhatsApp -->
+      <div class="wa-preview" aria-label="Message preview">
+        <div class="wa-preview__bar">
+          <span class="wa-preview__avatar" aria-hidden="true">M</span>
+          <span class="wa-preview__who"><strong>Mirqat Institute</strong><span>Message preview</span></span>
+        </div>
+        <div class="wa-preview__chat">
+          <div class="wa-bubble">
+            <div class="wa-bubble__text" id="waPreview" set:text={initialPreview}></div>
+            <span class="wa-bubble__meta" aria-hidden="true">now
+              <svg viewBox="0 0 18 12" width="16" height="11"><path d="M1 6.5l3 3L10.5 2.5M7 9.5l1 1 6.5-8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn--wa btn--block btn--lg">
+        <WhatsAppIcon size={22} /> Send on WhatsApp
+      </button>
       <p class="trial-form__status" id="formStatus" role="status" aria-live="polite"></p>
     </form>
   </div>

@@ -24,9 +24,6 @@ export const SITE = {
   studentsTaught: '800+',
 } as const;
 
-export const whatsappLink = (text?: string) =>
-  `https://wa.me/${SITE.whatsappNumber}${text ? `?text=${encodeURIComponent(text)}` : ''}`;
-
 export type PlanKey = 'basic' | 'tajweed' | 'hifz';
 
 export const PLANS: Record<PlanKey, {
@@ -69,8 +66,16 @@ export const PLANS: Record<PlanKey, {
 
 export const inr = (n: number) => `₹${n.toLocaleString('en-IN')}`;
 
-// Options for the enrolment form's course dropdown.
-export const COURSE_OPTIONS = ['Noorani Qaida', 'Tajweed', "Qur'an Reading", 'Hifz (Memorisation)', "Qur'an Revision"];
+// Course chips in the WhatsApp enquiry form. `value` is what appears in the message
+// (and matches each course file's formCourse / each plan's course).
+export const COURSE_OPTIONS = [
+  { value: 'Noorani Qaida', label: 'Noorani Qaida', emoji: '🔤' },
+  { value: 'Tajweed', label: 'Tajweed', emoji: '🎙️' },
+  { value: "Qur'an Reading", label: "Qur'an Reading", emoji: '📖' },
+  { value: 'Hifz (Memorisation)', label: 'Hifz', emoji: '⭐' },
+  { value: "Qur'an Revision", label: 'Revision', emoji: '🔁' },
+  { value: 'Not sure — please advise', label: 'Not sure', emoji: '🤔' },
+];
 
 export const HOME_FAQ: { q: string; a: string }[] = [
   { q: 'Who can join?', a: 'Children, youth and adults of all learning levels. Every class is one-to-one, so lessons are matched to each student.' },

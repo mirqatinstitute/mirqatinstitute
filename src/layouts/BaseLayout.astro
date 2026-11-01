@@ -16,9 +16,11 @@ interface Props {
   image?: string;
   noindex?: boolean;
   jsonLd?: Record<string, unknown>[];
+  /** Pre-filled message for the floating WhatsApp button on this page. */
+  waMessage?: string;
 }
 
-const props = Astro.props;
+const { waMessage, ...props } = Astro.props;
 ---
 <!doctype html>
 <html lang="en-IN">
@@ -52,11 +54,12 @@ const props = Astro.props;
     <slot />
   </main>
   <Footer />
-  <WhatsAppButton />
+  <WhatsAppButton message={waMessage} />
 
   <script>
     import '../scripts/nav';
     import '../scripts/motion';
+    import '../scripts/wa-float';
   </script>
 </body>
 </html>
