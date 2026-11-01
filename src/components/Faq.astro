@@ -1,5 +1,6 @@
 ---
-import { SITE, whatsappLink } from '../data/site';
+import { SITE } from '../data/site';
+import { WA, waLink } from '../data/whatsapp';
 
 interface Props {
   items: { q: string; a: string }[];
@@ -13,7 +14,7 @@ const { items, heading = 'Questions, answered.', tint = false } = Astro.props;
     <header class="section-head section-head--left">
       <p class="kicker">FAQ</p>
       <h2>{heading}</h2>
-      <p>Still have a question? <a href={whatsappLink()} target="_blank" rel="noopener">Message us on WhatsApp</a>
+      <p>Still have a question? <a href={waLink(WA.question())} target="_blank" rel="noopener">Message us on WhatsApp</a>
         or <a href={`mailto:${SITE.email}`}>email us</a>.</p>
     </header>
 

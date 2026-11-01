@@ -6,7 +6,9 @@ import Pricing from '../../components/Pricing.astro';
 import Faq from '../../components/Faq.astro';
 import CourseReviews from '../../components/CourseReviews.astro';
 import Enrol from '../../components/Enrol.astro';
-import { SITE, PLANS, inr, whatsappLink } from '../../data/site';
+import { SITE, PLANS, inr } from '../../data/site';
+import { WA, waLink } from '../../data/whatsapp';
+import WhatsAppIcon from '../../components/WhatsAppIcon.astro';
 
 export async function getStaticPaths() {
   const courses = await getCollection('courses');
@@ -62,7 +64,7 @@ const jsonLd = [
   },
 ];
 ---
-<BaseLayout title={`${d.seoTitle} | ${SITE.name}`} description={d.description} jsonLd={jsonLd}>
+<BaseLayout title={`${d.seoTitle} | ${SITE.name}`} description={d.description} jsonLd={jsonLd} waMessage={WA.course(d.title)}>
   <section class="page-hero">
     <div class="container page-hero__grid">
       <div>
@@ -77,7 +79,7 @@ const jsonLd = [
         </ul>
         <div class="hero__actions">
           <a href="#enrol" class="btn btn--primary btn--lg">Enrol in {d.title}</a>
-          <a href={whatsappLink(`Assalamu alaikum! I have a question about the ${d.title} course.`)} class="btn btn--ghost btn--lg" target="_blank" rel="noopener">Ask on WhatsApp</a>
+          <a href={waLink(WA.course(d.title))} class="btn btn--wa-ghost btn--lg" target="_blank" rel="noopener"><WhatsAppIcon size={20} /> Ask on WhatsApp</a>
         </div>
       </div>
 
@@ -88,7 +90,7 @@ const jsonLd = [
           <div><dt>Schedule</dt><dd>{d.schedule}</dd></div>
           <div><dt>Format</dt><dd>One-to-one, live online</dd></div>
           <div><dt>Timings</dt><dd>{SITE.timings}</dd></div>
-          <div><dt>Fees</dt><dd>{plan ? <>from <strong>{inr(plan.from)}</strong>/month</> : 'Ask us for a plan'}</dd></div>
+          <div><dt>Fees</dt><dd>{plan ? <>from <strong>{inr(plan.from)}</strong>/month</> : <a class="glance__wa" href={waLink(WA.fees(d.title))} target="_blank" rel="noopener">Ask on WhatsApp</a>}</dd></div>
         </dl>
         <a href="#enrol" class="btn btn--cream btn--block">Book your place</a>
       </aside>

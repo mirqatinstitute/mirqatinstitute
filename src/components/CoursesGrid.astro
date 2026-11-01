@@ -1,5 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
+import { WA, waLink } from '../data/whatsapp';
+import WhatsAppIcon from './WhatsAppIcon.astro';
 
 interface Props {
   heading?: string;
@@ -44,10 +46,10 @@ const courses = (await getCollection('courses'))
       ))}
 
       {!exclude && (
-        <a href="#enrol" class="course course--cta reveal">
+        <a href={waLink(WA.notSure())} target="_blank" rel="noopener" class="course course--cta reveal">
           <h3>Not sure where to start?</h3>
           <p>Tell us about the student and we'll suggest the right course and schedule.</p>
-          <span class="course--cta__link">Ask us on WhatsApp →</span>
+          <span class="course--cta__link"><WhatsAppIcon size={20} /> Ask us on WhatsApp →</span>
         </a>
       )}
     </div>

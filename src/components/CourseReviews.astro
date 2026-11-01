@@ -1,5 +1,6 @@
 ---
-import { whatsappLink } from '../data/site';
+import { WA, waLink } from '../data/whatsapp';
+import WhatsAppIcon from './WhatsAppIcon.astro';
 
 interface Props {
   course: string;
@@ -7,7 +8,7 @@ interface Props {
   tint?: boolean;
 }
 const { course, reviews, tint = false } = Astro.props;
-const shareLink = whatsappLink(`Assalamu alaikum! I'd like to share a review of the ${course} course at Mirqat Institute:\n\n`);
+const shareLink = waLink(WA.review(course));
 ---
 {reviews.length > 0 ? (
   <section class:list={['section', { 'section--tint': tint }]} id="reviews">
@@ -44,7 +45,7 @@ const shareLink = whatsappLink(`Assalamu alaikum! I'd like to share a review of 
           <h2>Studied {course} with Mirqat?</h2>
           <p>We'd love to hear about your experience. Send us a few lines on WhatsApp and, with your permission, we'll share it here to help other families.</p>
         </div>
-        <a href={shareLink} class="btn btn--primary" target="_blank" rel="noopener">Share your review</a>
+        <a href={shareLink} class="btn btn--wa" target="_blank" rel="noopener"><WhatsAppIcon size={20} /> Share your review</a>
       </div>
     </div>
   </section>

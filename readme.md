@@ -22,7 +22,8 @@ Vercel builds automatically on every push (settings are in `vercel.json`): pushe
 | `src/pages/` | Routes: `index.astro` (homepage), `courses/index.astro` (all courses), `courses/[slug].astro` (course page template), `404.astro`. |
 | `src/components/` | Page sections (Hero, Ladder, About, Teachers, Pricing, Faq, Enrol, …) and `Seo.astro` (meta tags and structured data). |
 | `src/layouts/BaseLayout.astro` | Shared page shell: head, header, footer, fonts, scripts. |
-| `src/scripts/` | `motion.ts` (animations), `enrol.ts` (enrolment form → WhatsApp), `nav.ts` (mobile menu). |
+| `src/data/whatsapp.ts` | **Every pre-filled WhatsApp message** (general, question, course, fees, not-sure, review, enquiry form) and the `waLink()` helper. Edit the wording here. |
+| `src/scripts/` | `motion.ts` (animations), `enrol.ts` (WhatsApp enquiry form with live preview), `wa-float.ts` (floating button greeting), `nav.ts` (mobile menu). |
 | `src/styles/global.css` | All styles. Colour tokens are at the top. |
 | `src/assets/teachers/` | Teacher photos. Astro resizes and compresses them at build time. |
 | `public/` | Files served as-is: favicons, `og-image.png`, `robots.txt`, `site.webmanifest`, `brand/` logo files, and the Google Search Console verification file (keep it). |

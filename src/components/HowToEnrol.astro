@@ -1,4 +1,5 @@
 ---
+import { WA, waLink } from '../data/whatsapp';
 interface Props { tint?: boolean }
 const { tint = true } = Astro.props;
 ---
@@ -13,7 +14,7 @@ const { tint = true } = Astro.props;
       <li class="how__step reveal">
         <span class="how__num">1</span>
         <h3>Contact us</h3>
-        <p>Message us on WhatsApp or send the enrolment form.</p>
+        <p><a href={waLink(WA.general())} target="_blank" rel="noopener">Message us on WhatsApp</a> or send the quick enquiry form.</p>
       </li>
       <li class="how__step reveal">
         <span class="how__num">2</span>

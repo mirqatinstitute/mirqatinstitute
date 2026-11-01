@@ -6,6 +6,7 @@ import Pricing from '../../components/Pricing.astro';
 import HowToEnrol from '../../components/HowToEnrol.astro';
 import Enrol from '../../components/Enrol.astro';
 import { SITE, PLANS, inr } from '../../data/site';
+import { WA, waLink } from '../../data/whatsapp';
 
 const courses = (await getCollection('courses')).sort((a, b) => a.data.order - b.data.order);
 const crumbs = [{ name: 'Home', href: '/' }, { name: 'Courses' }];
@@ -119,7 +120,7 @@ const jsonLd = [
                   <p class="path-card__price">
                     {price
                       ? <><span>from</span><strong>{inr(price)}</strong><span>/month</span></>
-                      : <><span>Fees</span><strong class="path-card__ask">On request</strong><span>ask on WhatsApp</span></>}
+                      : <><span>Fees</span><strong class="path-card__ask">On request</strong><a class="path-card__wa" href={waLink(WA.fees(c.data.title))} target="_blank" rel="noopener">Ask on WhatsApp →</a></>}
                   </p>
                   <a href={`/courses/${c.id}`} class="btn btn--primary btn--block">View course</a>
                   <a href={`/courses/${c.id}#enrol`} class="btn btn--ghost btn--block">Enrol</a>
@@ -154,7 +155,7 @@ const jsonLd = [
                   <td data-label="Best for">{c.data.forWhom[0]}</td>
                   <td data-label="Level">{c.data.level}</td>
                   <td data-label="Schedule">{c.data.schedule}</td>
-                  <td data-label="Fees from">{price ? `${inr(price)}/month` : 'On request'}</td>
+                  <td data-label="Fees from">{price ? `${inr(price)}/month` : <a href={waLink(WA.fees(c.data.title))} target="_blank" rel="noopener">Ask on WhatsApp</a>}</td>
                 </tr>
               );
             })}
