@@ -33,8 +33,13 @@ const props = Astro.props;
     setTimeout(function () { if (!window.__motionReady) document.documentElement.classList.add('motion-off'); }, 3000);
   </script>
   <Seo {...props} />
+  <!-- Favicons. Google Search uses square icons in multiples of 48px. -->
   <link rel="icon" href="/favicon.ico" sizes="48x48" />
-  <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" type="image/png" sizes="48x48" href="/assets/icons/favicon-48.png" />
+  <link rel="icon" type="image/png" sizes="96x96" href="/assets/icons/favicon-96.png" />
+  <link rel="icon" type="image/png" sizes="144x144" href="/assets/icons/favicon-144.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/assets/icons/icon-192.png" />
+  <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg" />
   <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png" />
   <link rel="manifest" href="/site.webmanifest" />
   <link rel="sitemap" href="/sitemap-index.xml" />
