@@ -19,6 +19,19 @@ const courses = defineCollection({
     learn: z.array(z.string()),
     forWhom: z.array(z.string()),
     faqs: z.array(z.object({ q: z.string(), a: z.string() })),
+    /** Where a student should be before starting — drives the "find your step" picker on /courses. */
+    startingPoint: z.enum(['beginner', 'reader', 'tajweed', 'memorised']),
+    /** Real reviews only, shared with the student's permission. */
+    reviews: z
+      .array(
+        z.object({
+          name: z.string(),
+          detail: z.string().optional(), // e.g. "Parent of a Hifz student · Kollam"
+          text: z.string(),
+          rating: z.number().int().min(1).max(5).optional(),
+        }),
+      )
+      .default([]),
   }),
 });
 

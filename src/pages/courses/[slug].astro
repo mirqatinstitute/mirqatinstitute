@@ -5,6 +5,7 @@ import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import Pricing from '../../components/Pricing.astro';
 import Teachers from '../../components/Teachers.astro';
 import Faq from '../../components/Faq.astro';
+import CourseReviews from '../../components/CourseReviews.astro';
 import CoursesGrid from '../../components/CoursesGrid.astro';
 import Enrol from '../../components/Enrol.astro';
 import { SITE, PLANS, inr, whatsappLink } from '../../data/site';
@@ -118,7 +119,8 @@ const jsonLd = [
   {/* Sections alternate paper / tint backgrounds whether or not the course has a plan. */}
   {plan && d.plan && <Pricing only={d.plan} tint />}
   <Teachers tint={!plan} />
-  <Faq items={d.faqs} heading={`${d.title}: your questions.`} tint={Boolean(plan)} />
-  <CoursesGrid heading="Explore other courses." intro="Every learner has a next step — see where yours could lead." exclude={course.id} tint={!plan} />
-  <Enrol course={d.formCourse} heading={`Start ${d.title} today.`} edge={plan ? 'paper' : 'tint'} />
+  <CourseReviews course={d.title} reviews={d.reviews} tint={Boolean(plan)} />
+  <Faq items={d.faqs} heading={`${d.title}: your questions.`} tint={!plan} />
+  <CoursesGrid heading="Explore other courses." intro="Every learner has a next step — see where yours could lead." exclude={course.id} tint={Boolean(plan)} />
+  <Enrol course={d.formCourse} heading={`Start ${d.title} today.`} edge={plan ? 'tint' : 'paper'} />
 </BaseLayout>

@@ -21,6 +21,14 @@ forWhom:
   - Students who can read the Qur'an and want to recite it correctly
   - Adults who want to fix long-standing pronunciation mistakes
   - Hifz students who want their memorisation to be accurate
+startingPoint: reader
+# Add real reviews here (with permission), e.g.
+# reviews:
+#   - name: Ayesha
+#     detail: Parent of a student · Kollam
+#     rating: 5
+#     text: "..."
+reviews: []
 faqs:
   - q: Do I need to know how to read the Qur'an first?
     a: You should be able to read Arabic letters. If you are a complete beginner, start with Noorani Qaida, which prepares you for Tajweed.

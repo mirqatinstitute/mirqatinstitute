@@ -1,0 +1,51 @@
+---
+import { whatsappLink } from '../data/site';
+
+interface Props {
+  course: string;
+  reviews: { name: string; detail?: string; text: string; rating?: number }[];
+  tint?: boolean;
+}
+const { course, reviews, tint = false } = Astro.props;
+const shareLink = whatsappLink(`Assalamu alaikum! I'd like to share a review of the ${course} course at Mirqat Institute:\n\n`);
+---
+{reviews.length > 0 ? (
+  <section class:list={['section', { 'section--tint': tint }]} id="reviews">
+    <div class="container">
+      <header class="section-head">
+        <p class="kicker">Student reviews</p>
+        <h2>What {course} students say.</h2>
+      </header>
+      <div class="reviews">
+        {reviews.map((r) => (
+          <figure class="review reveal">
+            {r.rating && (
+              <p class="review__stars" aria-label={`${r.rating} out of 5 stars`}>
+                {'★'.repeat(r.rating)}<span aria-hidden="true">{'★'.repeat(5 - r.rating)}</span>
+              </p>
+            )}
+            <blockquote>“{r.text}”</blockquote>
+            <figcaption>
+              <span class="review__avatar" aria-hidden="true">{r.name.charAt(0)}</span>
+              <span><strong>{r.name}</strong>{r.detail && <span>{r.detail}</span>}</span>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+      <p class="reviews__share">Studied {course} with us? <a href={shareLink} target="_blank" rel="noopener">Share your review on WhatsApp →</a></p>
+    </div>
+  </section>
+) : (
+  <section class:list={['section', 'section--slim', { 'section--tint': tint }]} id="reviews">
+    <div class="container">
+      <div class="review-invite reveal">
+        <div class="review-invite__stars" aria-hidden="true">★★★★★</div>
+        <div>
+          <h2>Studied {course} with Mirqat?</h2>
+          <p>We'd love to hear about your experience. Send us a few lines on WhatsApp and, with your permission, we'll share it here to help other families.</p>
+        </div>
+        <a href={shareLink} class="btn btn--primary" target="_blank" rel="noopener">Share your review</a>
+      </div>
+    </div>
+  </section>
+)}

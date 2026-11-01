@@ -1,4 +1,8 @@
-<section class="section section--tint" id="how">
+---
+interface Props { tint?: boolean }
+const { tint = true } = Astro.props;
+---
+<section class:list={['section', { 'section--tint': tint }]} id="how">
   <div class="container">
     <header class="section-head">
       <p class="kicker">How to enrol</p>

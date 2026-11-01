@@ -20,6 +20,14 @@ forWhom:
   - Children starting their Qur'an journey
   - Adults and reverts who have never learned to read Arabic
   - Anyone who can read but wants to fix their foundations
+startingPoint: beginner
+# Add real reviews here (with permission), e.g.
+# reviews:
+#   - name: Ayesha
+#     detail: Parent of a student · Kollam
+#     rating: 5
+#     text: "..."
+reviews: []
 faqs:
   - q: Is Noorani Qaida suitable for adults?
     a: Yes. The course is for beginners of all ages. Because classes are one-to-one, adults learn at their own pace without feeling rushed.
