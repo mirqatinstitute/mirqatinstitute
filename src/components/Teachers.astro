@@ -3,11 +3,14 @@ import { Image } from 'astro:assets';
 import saahil from '../assets/teachers/muhammed-saahil.webp';
 import male from '../assets/teachers/male-profile.webp';
 import female from '../assets/teachers/female-profile.webp';
+import abdulMajid from '../assets/teachers/abdul-majid.webp';
 import { TEACHERS } from '../data/site';
 
 interface Props { tint?: boolean }
 const { tint = true } = Astro.props;
-const photos = { male, female };
+// Real photos are keyed by name; 'male' / 'female' are profile illustrations.
+const photos = { male, female, 'abdul-majid': abdulMajid };
+const isReal = (key: string) => key !== 'male' && key !== 'female';
 ---
 <section class:list={['section', { 'section--tint': tint }]} id="teachers">
   <div class="container">
@@ -40,7 +43,7 @@ const photos = { male, female };
       {TEACHERS.map((t) => (
         <li class="tutor-mini reveal" data-placeholder={t.sample ? 'true' : undefined}>
           <Image class="tutor-mini__photo" src={photos[t.photo]} widths={[80, 160]} sizes="80px"
-                 alt={`Profile illustration for ${t.name}`} />
+                 alt={isReal(t.photo) ? `${t.name}, Qur'an tutor at Mirqat Institute` : `Profile illustration for ${t.name}`} />
           <h3>{t.name}</h3>
           <p>{t.role}</p>
         </li>
