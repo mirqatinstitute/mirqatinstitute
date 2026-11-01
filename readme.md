@@ -22,6 +22,15 @@ Courses, about, teacher, pricing and contact/enrolment details come from the aca
 ## Still to add
 
 - Teacher photo (the card currently shows initials).
-- Social media links (Instagram / Facebook / YouTube) once available — add them to the footer.
-- Testimonials (section removed until real ones with permission are available).
-- Social preview: add a 1200×630 `og-image.png` and uncomment the `og:image` tag.
+- **Testimonials**: the three quotes in `#testimonials` are SAMPLE content — replace with real ones (with permission) before going live.
+
+## Files
+
+| Path | What it is |
+|---|---|
+| `brand/` | Logo files: stairway mark (SVG + 1024px PNG) and horizontal logo (dark and light text) |
+| `assets/icons/` | Favicons and app icons |
+| `assets/og-image.png` | 1200×630 preview shown when the link is shared |
+| `favicon.ico`, `site.webmanifest` | Browser icon and app manifest |
+| `robots.txt`, `sitemap.xml` | Search engine crawling; update `<lastmod>` when content changes |
+| `SEO-GUIDE.md` | Step-by-step guide to improving search rankings |
