@@ -82,9 +82,10 @@ export const HOME_FAQ: { q: string; a: string }[] = [
 ];
 
 // Teachers shown as small cards under the featured teacher (Muhammed Saahil,
-// in src/components/Teachers.astro). photo: 'male' | 'female' profile illustration.
-export const TEACHERS: { name: string; role: string; photo: 'male' | 'female'; sample?: boolean }[] = [
-  { name: 'Hafiz Abdul Majid', role: 'Hifz, Tajweed & Qaida Nooraniya specialist', photo: 'male' },
+// in src/components/Teachers.astro). photo: a real photo key (see Teachers.astro),
+// or 'male' | 'female' for the profile illustration.
+export const TEACHERS: { name: string; role: string; photo: 'abdul-majid' | 'male' | 'female'; sample?: boolean }[] = [
+  { name: 'Hafiz Abdul Majid', role: 'Hifz, Tajweed & Qaida Nooraniya specialist', photo: 'abdul-majid' },
   { name: 'Fathima MV', role: 'Qaida Nooraniya specialist', photo: 'female' },
   { name: 'Salva Shareef', role: 'Tajweed tutor', photo: 'female' },
   { name: 'Fathima Mustabshira', role: 'Qaida Nooraniya & Tajweed specialist', photo: 'female' },
