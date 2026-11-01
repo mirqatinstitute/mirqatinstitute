@@ -134,7 +134,7 @@
     <nav class="nav" id="nav" aria-label="Main">
       <a href="#about">About</a>
       <a href="#courses">Courses</a>
-      <a href="#teacher">Teacher</a>
+      <a href="#teachers">Teachers</a>
       <a href="#pricing">Pricing</a>
       <a href="#faq">FAQ</a>
       <a href="#enrol" class="btn btn--primary btn--sm nav__cta">Enrol now</a>
@@ -414,17 +414,18 @@
   </div>
 </section>
 
-<!-- ============ TEACHER ============ -->
-<section class="section section--tint" id="teacher">
+<!-- ============ TEACHERS ============ -->
+<section class="section section--tint" id="teachers">
   <div class="container">
     <header class="section-head">
-      <p class="kicker">Our teacher</p>
-      <h2>Meet your Qur'an tutor.</h2>
+      <p class="kicker">Our teachers</p>
+      <h2>Meet your Qur'an tutors.</h2>
     </header>
 
-    <article class="tutor reveal">
-      <div class="tutor__avatar" aria-hidden="true">MS</div>
-      <div class="tutor__body">
+    <div class="tutors">
+      <article class="tutor reveal">
+        <img class="tutor__photo" src="assets/teachers/muhammed-saahil.webp" width="480" height="480"
+             alt="Muhammed Saahil, Qur'an tutor at Mirqat Institute" loading="lazy" decoding="async" />
         <h3>Muhammed Saahil</h3>
         <p class="tutor__role">Qur'an Tutor</p>
         <p class="tutor__bio">
@@ -437,8 +438,26 @@
           <li>Hafs &amp; Shu'bah Riwayah certified</li>
           <li>3+ years teaching</li>
         </ul>
-      </div>
-    </article>
+      </article>
+
+      <!-- SAMPLE CONTENT: Nihala Jamal's role, bio and qualifications are placeholders.
+           Replace with her real details (and photo, if she wishes) before relying on them. -->
+      <article class="tutor reveal" data-placeholder="true">
+        <img class="tutor__photo tutor__photo--icon" src="assets/teachers/nihala-jamal.webp" width="480" height="480"
+             alt="Profile illustration for Nihala Jamal, Qur'an tutor at Mirqat Institute" loading="lazy" decoding="async" />
+        <h3>Nihala Jamal</h3>
+        <p class="tutor__role">Qur'an Tutor · Sisters &amp; Children</p>
+        <p class="tutor__bio">
+          Teaches Noorani Qaida, Tajweed and Qur'an reading to women and young girls,
+          with a patient, encouraging approach that helps beginners grow in confidence.
+        </p>
+        <ul class="tutor__creds" aria-label="Qualifications">
+          <li>B.A. Arabic</li>
+          <li>Tajweed certified</li>
+          <li>2+ years teaching</li>
+        </ul>
+      </article>
+    </div>
   </div>
 </section>
 
@@ -764,7 +783,7 @@
     <div class="footer__col">
       <h4>Institute</h4>
       <a href="#about">About</a>
-      <a href="#teacher">Teacher</a>
+      <a href="#teachers">Teachers</a>
       <a href="#pricing">Pricing</a>
       <a href="#how">How to enrol</a>
       <a href="#faq">FAQ</a>
