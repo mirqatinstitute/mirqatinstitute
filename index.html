@@ -3,89 +3,631 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Mirqat Institute — Coming Soon</title>
-<meta name="description" content="Mirqat Institute — an online Qur'an and Islamic studies academy. Launching soon." />
+<title>Mirqat Institute — Learn the Qur'an Step by Step, Online</title>
+<meta name="description" content="Mirqat Institute is an online Qur'an academy offering live 1-on-1 classes in Noorani Qaida, Tajweed, Hifz, Arabic and Islamic Studies for children and adults, with qualified male and female teachers. Book a free trial class." />
+<meta name="theme-color" content="#436E5B" />
+
+<!-- Open Graph / social preview -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Mirqat Institute — Learn the Qur'an Step by Step" />
+<meta property="og:description" content="Live 1-on-1 online Qur'an, Tajweed, Hifz and Arabic classes with qualified teachers. Book a free trial class." />
+<meta property="og:url" content="https://www.mirqatinstitute.com/" />
+<!-- TODO: add a 1200×630 preview image -->
+<!-- <meta property="og:image" content="https://www.mirqatinstitute.com/og-image.png" /> -->
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23436E5B'/%3E%3Crect x='5' y='21' width='22' height='6' rx='1.5' fill='%236A9C77'/%3E%3Crect x='11' y='14' width='16' height='6' rx='1.5' fill='%237DC384'/%3E%3Crect x='17' y='7' width='10' height='6' rx='1.5' fill='%23FEF1BC'/%3E%3C/svg%3E" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Outfit:wght@400;500;600;700&family=Noto+Naskh+Arabic:wght@500;700&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="style.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "EducationalOrganization",
+  "name": "Mirqat Institute",
+  "alternateName": "مرقاة",
+  "url": "https://www.mirqatinstitute.com/",
+  "description": "Online Qur'an academy offering live classes in Noorani Qaida, Tajweed, Hifz, Arabic and Islamic Studies.",
+  "email": "hello@mirqatinstitute.com"
+}
+</script>
 </head>
 <body>
 
-<div class="glow" aria-hidden="true"></div>
+<a class="skip-link" href="#main">Skip to content</a>
 
-<header class="topbar">
-  <div class="brandmark">
-    <span class="brandmark__ar" lang="ar" dir="rtl">مِرْقاة</span>
-    <span class="brandmark__en">MIRQAT&nbsp;INSTITUTE</span>
+<!-- ============ HEADER ============ -->
+<header class="site-header" id="top">
+  <div class="container site-header__inner">
+    <a href="#top" class="logo" aria-label="Mirqat Institute — home">
+      <svg class="logo__mark" viewBox="0 0 32 32" aria-hidden="true">
+        <rect width="32" height="32" rx="7" fill="#436E5B"/>
+        <rect x="5" y="21" width="22" height="6" rx="1.5" fill="#6A9C77"/>
+        <rect x="11" y="14" width="16" height="6" rx="1.5" fill="#7DC384"/>
+        <rect x="17" y="7" width="10" height="6" rx="1.5" fill="#FEF1BC"/>
+      </svg>
+      <span class="logo__text">
+        <span class="logo__en">Mirqat Institute</span>
+        <span class="logo__ar" lang="ar" dir="rtl">مِرْقاة</span>
+      </span>
+    </a>
+
+    <nav class="nav" id="nav" aria-label="Main">
+      <a href="#courses">Courses</a>
+      <a href="#how">How it works</a>
+      <a href="#teachers">Teachers</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+      <a href="#trial" class="btn btn--primary btn--sm nav__cta">Free trial class</a>
+    </nav>
+
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="nav" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
-  <span class="eyebrow">Coming&nbsp;Soon</span>
 </header>
 
-<main class="hero">
+<main id="main">
 
-  <div class="star" aria-hidden="true">
-    <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
-      <g class="star__spin">
-        <polygon class="star__ring star__ring--outer" points="200,20 231,120 200,180 169,120" />
-        <polygon class="star__ring star__ring--outer" points="380,200 280,231 220,200 280,169" />
-        <polygon class="star__ring star__ring--outer" points="200,380 169,280 200,220 231,280" />
-        <polygon class="star__ring star__ring--outer" points="20,200 120,169 180,200 120,231" />
-        <polygon class="star__ring star__ring--inner" points="200,80 250,150 200,200 150,150" />
-        <polygon class="star__ring star__ring--inner" points="320,200 250,250 200,200 250,150" />
-        <polygon class="star__ring star__ring--inner" points="200,320 150,250 200,200 250,250" />
-        <polygon class="star__ring star__ring--inner" points="80,200 150,150 200,200 150,250" />
-      </g>
-      <circle class="star__core" cx="200" cy="200" r="26" />
-    </svg>
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="container hero__grid">
+    <div class="hero__copy">
+      <p class="eyebrow">
+        <span lang="ar" dir="rtl" class="eyebrow__ar">مِرْقاة</span>
+        <span>the ascending stairway</span>
+      </p>
+      <h1 class="hero__title">
+        Climb closer to the Qur'an, <em>one step at a time.</em>
+      </h1>
+      <p class="hero__lede">
+        Live, one-to-one online classes in Qur'an reading, Tajweed, Hifz and Arabic —
+        with qualified, caring teachers and a pace that fits your family's life.
+      </p>
+      <div class="hero__actions">
+        <a href="#trial" class="btn btn--primary btn--lg">Book a free trial class</a>
+        <a href="#courses" class="btn btn--ghost btn--lg">Explore courses</a>
+      </div>
+      <ul class="hero__trust" aria-label="Highlights">
+        <li><svg aria-hidden="true" viewBox="0 0 20 20"><path d="M4 10.5l4 4 8-9"/></svg>1-on-1 live classes</li>
+        <li><svg aria-hidden="true" viewBox="0 0 20 20"><path d="M4 10.5l4 4 8-9"/></svg>Male &amp; female teachers</li>
+        <li><svg aria-hidden="true" viewBox="0 0 20 20"><path d="M4 10.5l4 4 8-9"/></svg>Every time zone</li>
+      </ul>
+    </div>
+
+    <div class="hero__visual" aria-hidden="true">
+      <svg viewBox="0 0 440 440" class="stairs">
+        <defs>
+          <pattern id="geo" width="44" height="44" patternUnits="userSpaceOnUse">
+            <path d="M22 4 L27 17 L40 22 L27 27 L22 40 L17 27 L4 22 L17 17 Z" fill="none" stroke="#FEF1BC" stroke-opacity=".08" stroke-width="1"/>
+          </pattern>
+        </defs>
+        <rect width="440" height="440" rx="36" fill="#436E5B"/>
+        <rect width="440" height="440" rx="36" fill="url(#geo)"/>
+
+        <g class="stairs__star">
+          <g transform="translate(345 92)">
+            <g class="stairs__spin">
+              <polygon points="0,-46 11,-11 46,0 11,11 0,46 -11,11 -46,0 -11,-11" fill="none" stroke="#FEF1BC" stroke-width="1.6"/>
+              <polygon points="0,-46 11,-11 46,0 11,11 0,46 -11,11 -46,0 -11,-11" transform="rotate(45)" fill="none" stroke="#FEF1BC" stroke-opacity=".55" stroke-width="1.6"/>
+            </g>
+            <circle r="9" fill="#FEF1BC"/>
+          </g>
+        </g>
+
+        <rect class="step step--1" x="36"  y="336" width="368" height="68" rx="12" fill="#2F5444"/>
+        <rect class="step step--2" x="112" y="262" width="292" height="66" rx="12" fill="#6A9C77"/>
+        <rect class="step step--3" x="188" y="188" width="216" height="66" rx="12" fill="#7DC384"/>
+        <rect class="step step--4" x="264" y="150" width="140" height="30" rx="10" fill="#FEF1BC"/>
+
+        <text x="60"  y="378" class="step__label">Qaida</text>
+        <text x="136" y="302" class="step__label">Tajweed</text>
+        <text x="212" y="228" class="step__label step__label--dark">Hifz</text>
+        <text x="282" y="171" class="step__label step__label--dark step__label--sm">Ijazah</text>
+      </svg>
+
+      <div class="hero__badge">
+        <span class="hero__badge-num">20 min</span>
+        <span class="hero__badge-txt">free assessment<br>&amp; trial lesson</span>
+      </div>
+    </div>
   </div>
+</section>
 
-  <p class="eyebrow eyebrow--mobile">Launching&nbsp;Soon</p>
+<!-- ============ VALUE STRIP ============ -->
+<section class="strip" aria-label="Why families choose us">
+  <div class="container strip__grid">
+    <div class="strip__item"><strong>Ages 5 to 75</strong><span>children, teens &amp; adults</span></div>
+    <div class="strip__item"><strong>Ijazah-certified</strong><span>teachers with sanad</span></div>
+    <div class="strip__item"><strong>Monthly reports</strong><span>clear progress for parents</span></div>
+    <div class="strip__item"><strong>Flexible timing</strong><span>reschedule with 12h notice</span></div>
+  </div>
+</section>
 
-  <h1 class="headline">
-    <span class="headline__line headline__line--light">A&nbsp;NEW&nbsp;PATH</span>
-    <span class="headline__line headline__line--gold">TO&nbsp;THE&nbsp;QUR'AN</span>
-  </h1>
+<!-- ============ THE LADDER ============ -->
+<section class="ladder" id="ladder">
+  <div class="stepped-edge stepped-edge--top" aria-hidden="true"></div>
+  <div class="container">
+    <header class="section-head section-head--light">
+      <p class="kicker">The Mirqat path</p>
+      <h2>Every student has a next step.</h2>
+      <p>Wherever you are starting from, we assess your level and place you on the right rung —
+        then climb with you, steadily, until the Qur'an lives in your heart and on your tongue.</p>
+    </header>
 
-  <p class="kicker">
-    <span lang="ar" dir="rtl" class="kicker__ar">مِرْقاة</span>
-    <span class="kicker__divider">—</span>
-    <span>an ascending stairway, one lesson at a time</span>
-  </p>
+    <ol class="ladder__steps" id="ladderSteps">
+      <li class="ladder__step">
+        <span class="ladder__num">01</span>
+        <h3>Noorani Qaida</h3>
+        <p>Arabic letters, sounds and joining — the foundation for reading correctly.</p>
+      </li>
+      <li class="ladder__step">
+        <span class="ladder__num">02</span>
+        <h3>Nazirah</h3>
+        <p>Fluent reading of the Mushaf from sight, building confidence page by page.</p>
+      </li>
+      <li class="ladder__step">
+        <span class="ladder__num">03</span>
+        <h3>Tajweed</h3>
+        <p>The rules of beautiful recitation — makharij, sifaat, madd and more.</p>
+      </li>
+      <li class="ladder__step">
+        <span class="ladder__num">04</span>
+        <h3>Hifz</h3>
+        <p>Structured memorisation with daily sabaq, sabqi and manzil revision.</p>
+      </li>
+      <li class="ladder__step">
+        <span class="ladder__num">05</span>
+        <h3>Ijazah</h3>
+        <p>Complete recitation to a certified sheikh and join an unbroken chain to the Prophet ﷺ.</p>
+      </li>
+    </ol>
+  </div>
+  <div class="stepped-edge stepped-edge--bottom" aria-hidden="true"></div>
+</section>
 
-  <p class="lede">
-    Mirqat Institute is an online academy for Qur'an recitation&nbsp;(Tajweed),
-    memorisation&nbsp;(Hifz), and Islamic studies — guiding students step by
-    step, with qualified teachers and a pace built around real life.
-    We're putting the final touches on our classrooms.
-  </p>
+<!-- ============ COURSES ============ -->
+<section class="section" id="courses">
+  <div class="container">
+    <header class="section-head">
+      <p class="kicker">Courses</p>
+      <h2>Programs for every learner.</h2>
+      <p>All courses are taught live, one-to-one, by qualified teachers. Small group options available for siblings.</p>
+    </header>
 
-  <p class="meta">Live online classes · Enrollment opens soon</p>
+    <div class="courses">
+      <article class="course reveal">
+        <div class="course__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M4 5h7v14H4zM13 5h7v14h-7z"/></svg>
+        </div>
+        <h3>Noorani Qaida</h3>
+        <p>For complete beginners. Learn every letter, vowel and rule needed to start reading the Qur'an.</p>
+        <ul class="course__meta">
+          <li>Ages 5+</li><li>Beginner</li><li>3–6 months</li>
+        </ul>
+      </article>
 
-  <form class="notify" id="notifyForm" novalidate>
-    <label for="email" class="sr-only">Email address</label>
-    <input
-      type="email"
-      id="email"
-      name="email"
-      placeholder="Enter your email"
-      autocomplete="email"
-      required
-    />
-    <button type="submit">
-      <span class="btn-text">Notify&nbsp;Me</span>
-    </button>
-  </form>
-  <p class="notify__status" id="notifyStatus" role="status" aria-live="polite"></p>
+      <article class="course reveal">
+        <div class="course__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M12 6c-2-1.5-5-2-8-1.5v13c3-.5 6 0 8 1.5 2-1.5 5-2 8-1.5v-13c-3-.5-6 0-8 1.5zM12 6v13"/></svg>
+        </div>
+        <h3>Qur'an Reading (Nazirah)</h3>
+        <p>Read the Mushaf fluently and correctly, with steady guidance on pace and pronunciation.</p>
+        <ul class="course__meta">
+          <li>Ages 6+</li><li>Beginner–Intermediate</li><li>Ongoing</li>
+        </ul>
+      </article>
+
+      <article class="course course--featured reveal">
+        <span class="course__tag">Most popular</span>
+        <div class="course__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M3 12c3-6 6-6 9 0s6 6 9 0"/><path d="M3 17c3-6 6-6 9 0s6 6 9 0" opacity=".5"/></svg>
+        </div>
+        <h3>Tajweed</h3>
+        <p>Master the rules of recitation, from makharij to waqf, and recite as the Qur'an was revealed.</p>
+        <ul class="course__meta">
+          <li>Ages 8+</li><li>All levels</li><li>6–12 months</li>
+        </ul>
+      </article>
+
+      <article class="course reveal">
+        <div class="course__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M12 3l2.5 5.5L20 9l-4 4 1 6-5-3-5 3 1-6-4-4 5.5-.5z"/></svg>
+        </div>
+        <h3>Hifz Program</h3>
+        <p>Memorise the Qur'an, in full or by juz', with a personal plan and a proven revision system.</p>
+        <ul class="course__meta">
+          <li>Ages 7+</li><li>After Nazirah</li><li>Personal plan</li>
+        </ul>
+      </article>
+
+      <article class="course reveal">
+        <div class="course__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h10M4 18h13"/></svg>
+        </div>
+        <h3>Qur'anic Arabic</h3>
+        <p>Understand what you recite. Vocabulary, grammar and reading practice drawn from the Qur'an itself.</p>
+        <ul class="course__meta">
+          <li>Teens &amp; adults</li><li>Beginner+</li><li>6 months</li>
+        </ul>
+      </article>
+
+      <article class="course reveal">
+        <div class="course__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 6.5 15.2A7 7 0 0 1 12 3z"/></svg>
+        </div>
+        <h3>Islamic Studies</h3>
+        <p>Aqeedah, fiqh of worship, seerah, duas and adab — taught in an age-appropriate, engaging way.</p>
+        <ul class="course__meta">
+          <li>Ages 6+</li><li>All levels</li><li>Ongoing</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HOW IT WORKS ============ -->
+<section class="section section--tint" id="how">
+  <div class="container">
+    <header class="section-head">
+      <p class="kicker">How it works</p>
+      <h2>Starting is simple.</h2>
+    </header>
+
+    <ol class="how">
+      <li class="how__step reveal">
+        <span class="how__num">1</span>
+        <h3>Book a free trial</h3>
+        <p>Pick a course and a time that suits you. It takes less than a minute.</p>
+      </li>
+      <li class="how__step reveal">
+        <span class="how__num">2</span>
+        <h3>Meet your teacher</h3>
+        <p>A 20-minute live session to assess your level and understand your goals.</p>
+      </li>
+      <li class="how__step reveal">
+        <span class="how__num">3</span>
+        <h3>Start climbing</h3>
+        <p>Get a personal plan, a fixed weekly schedule and monthly progress reports.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ WHY MIRQAT ============ -->
+<section class="section" id="why">
+  <div class="container why">
+    <div class="why__intro">
+      <p class="kicker">Why Mirqat</p>
+      <h2>Taught with care. Built around you.</h2>
+      <p>We believe learning the Qur'an should feel like a gentle ascent — never rushed, never
+        overwhelming, and always with a teacher who genuinely cares about your progress.</p>
+      <a href="#trial" class="btn btn--primary">Book a free trial</a>
+    </div>
+    <ul class="why__list">
+      <li class="reveal">
+        <h3>Qualified teachers</h3>
+        <p>Graduates of recognised institutes, many holding ijazah with sanad.</p>
+      </li>
+      <li class="reveal">
+        <h3>Sisters teach sisters</h3>
+        <p>Female teachers available for women and young girls.</p>
+      </li>
+      <li class="reveal">
+        <h3>Progress you can see</h3>
+        <p>Monthly reports and parent check-ins, so you always know where your child stands.</p>
+      </li>
+      <li class="reveal">
+        <h3>Safe for children</h3>
+        <p>Vetted teachers and parents welcome to sit in on any class.</p>
+      </li>
+      <li class="reveal">
+        <h3>Your time zone</h3>
+        <p>Classes from early morning to late evening, wherever you live.</p>
+      </li>
+      <li class="reveal">
+        <h3>Just a device &amp; internet</h3>
+        <p>Learn from home on a laptop, tablet or phone — no travel, no commute.</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ TEACHERS ============ -->
+<!-- PLACEHOLDER: replace names, qualifications and initials with your real teachers before launch. -->
+<section class="section section--tint" id="teachers">
+  <div class="container">
+    <header class="section-head">
+      <p class="kicker">Our teachers</p>
+      <h2>Learn from people who live the Qur'an.</h2>
+    </header>
+
+    <div class="teachers">
+      <article class="teacher reveal">
+        <div class="teacher__avatar" aria-hidden="true">AR</div>
+        <h3>Ustadh Abdur-Rahman</h3>
+        <p class="teacher__role">Head of Hifz</p>
+        <p class="teacher__bio">Hafiz with ijazah in Hafs ʿan ʿĀṣim. 10+ years teaching children and adults.</p>
+      </article>
+      <article class="teacher reveal">
+        <div class="teacher__avatar teacher__avatar--alt" aria-hidden="true">MA</div>
+        <h3>Ustadha Maryam</h3>
+        <p class="teacher__role">Tajweed Teacher (Sisters)</p>
+        <p class="teacher__bio">Alimah graduate with ijazah in Tajweed. Specialises in teaching women and girls.</p>
+      </article>
+      <article class="teacher reveal">
+        <div class="teacher__avatar" aria-hidden="true">YU</div>
+        <h3>Ustadh Yusuf</h3>
+        <p class="teacher__role">Qaida &amp; Nazirah</p>
+        <p class="teacher__bio">Patient and playful with young beginners. 6+ years teaching online.</p>
+      </article>
+      <article class="teacher reveal">
+        <div class="teacher__avatar teacher__avatar--alt" aria-hidden="true">KH</div>
+        <h3>Ustadha Khadijah</h3>
+        <p class="teacher__role">Arabic &amp; Islamic Studies</p>
+        <p class="teacher__bio">Degree in Arabic language. Makes grammar clear and Islamic studies come alive.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TESTIMONIALS ============ -->
+<!-- PLACEHOLDER: replace with real testimonials (with permission) before launch. -->
+<section class="section" id="testimonials">
+  <div class="container">
+    <header class="section-head">
+      <p class="kicker">Families</p>
+      <h2>Small steps, big change.</h2>
+    </header>
+
+    <div class="quotes">
+      <figure class="quote reveal">
+        <blockquote>“My son used to dread Qur'an class. Now he reminds <em>me</em> when it's time. His teacher is patient and makes every lesson feel like a win.”</blockquote>
+        <figcaption><strong>Parent of a Qaida student</strong><span>United Kingdom</span></figcaption>
+      </figure>
+      <figure class="quote reveal">
+        <blockquote>“As a revert, I was nervous to start at 34. My teacher never once made me feel behind. I finished the Qaida and I'm now reading from the Mushaf.”</blockquote>
+        <figcaption><strong>Adult Nazirah student</strong><span>Canada</span></figcaption>
+      </figure>
+      <figure class="quote reveal">
+        <blockquote>“The monthly reports are brilliant. I can see exactly what my daughter has memorised and what needs revision.”</blockquote>
+        <figcaption><strong>Parent of a Hifz student</strong><span>United Arab Emirates</span></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRICING ============ -->
+<!-- PLACEHOLDER prices — update to your real plans. -->
+<section class="section section--tint" id="pricing">
+  <div class="container">
+    <header class="section-head">
+      <p class="kicker">Pricing</p>
+      <h2>Simple monthly plans.</h2>
+      <p>30-minute one-to-one classes. Same price for every course. Sibling discounts available.</p>
+    </header>
+
+    <div class="plans">
+      <article class="plan reveal">
+        <h3>Steady</h3>
+        <p class="plan__freq">2 classes / week</p>
+        <p class="plan__price"><span class="plan__cur">$</span>35<span class="plan__per">/month</span></p>
+        <ul>
+          <li>8 live classes a month</li>
+          <li>Monthly progress report</li>
+          <li>Free rescheduling (12h notice)</li>
+        </ul>
+        <a href="#trial" class="btn btn--ghost btn--block">Start free trial</a>
+      </article>
+
+      <article class="plan plan--featured reveal">
+        <span class="plan__tag">Recommended</span>
+        <h3>Consistent</h3>
+        <p class="plan__freq">3 classes / week</p>
+        <p class="plan__price"><span class="plan__cur">$</span>50<span class="plan__per">/month</span></p>
+        <ul>
+          <li>12 live classes a month</li>
+          <li>Monthly progress report</li>
+          <li>Parent check-in call</li>
+          <li>Free rescheduling (12h notice)</li>
+        </ul>
+        <a href="#trial" class="btn btn--cream btn--block">Start free trial</a>
+      </article>
+
+      <article class="plan reveal">
+        <h3>Intensive</h3>
+        <p class="plan__freq">5 classes / week</p>
+        <p class="plan__price"><span class="plan__cur">$</span>80<span class="plan__per">/month</span></p>
+        <ul>
+          <li>20 live classes a month</li>
+          <li>Ideal for Hifz students</li>
+          <li>Weekly revision plan</li>
+          <li>Free rescheduling (12h notice)</li>
+        </ul>
+        <a href="#trial" class="btn btn--ghost btn--block">Start free trial</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="section" id="faq">
+  <div class="container faq">
+    <header class="section-head section-head--left">
+      <p class="kicker">FAQ</p>
+      <h2>Questions, answered.</h2>
+      <p>Can't find what you need? <a href="mailto:hello@mirqatinstitute.com">Email us</a> and we'll reply within a day.</p>
+    </header>
+
+    <div class="faq__list">
+      <details>
+        <summary>Is the trial class really free?</summary>
+        <p>Yes. The first session is completely free with no obligation. Your teacher will assess your level and recommend the right course and plan.</p>
+      </details>
+      <details>
+        <summary>What do I need to join a class?</summary>
+        <p>A laptop, tablet or phone with a stable internet connection and a headset if possible. We'll send you a link before each class.</p>
+      </details>
+      <details>
+        <summary>What age can my child start?</summary>
+        <p>Most children are ready from age 5. For younger learners, sessions are shorter and more playful to keep them engaged.</p>
+      </details>
+      <details>
+        <summary>Do you have female teachers?</summary>
+        <p>Yes. Sisters and young girls can request a female teacher for any course.</p>
+      </details>
+      <details>
+        <summary>What happens if we miss a class?</summary>
+        <p>Let us know at least 12 hours in advance and we'll reschedule at no extra cost.</p>
+      </details>
+      <details>
+        <summary>Can I cancel anytime?</summary>
+        <p>Yes. Plans are month to month. Just let us know before your next billing date.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TRIAL / CTA ============ -->
+<section class="cta" id="trial">
+  <div class="stepped-edge stepped-edge--top" aria-hidden="true"></div>
+  <div class="container cta__grid">
+    <div class="cta__copy">
+      <p class="cta__verse" lang="ar" dir="rtl">وَقُل رَّبِّ زِدْنِي عِلْمًا</p>
+      <p class="cta__verse-en">“And say: My Lord, increase me in knowledge.” <span>— Qur'an 20:114</span></p>
+      <h2>Take your first step today.</h2>
+      <p>Book a free 20-minute trial class. We'll match you with the right teacher and a time that works for you.</p>
+      <ul class="cta__points">
+        <li>No payment details needed</li>
+        <li>Reply within 24 hours</li>
+        <li>Choose a male or female teacher</li>
+      </ul>
+    </div>
+
+    <form class="trial-form" id="trialForm" novalidate>
+      <h3>Book your free trial</h3>
+
+      <div class="field">
+        <label for="name">Your name</label>
+        <input id="name" name="name" type="text" autocomplete="name" required />
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" autocomplete="email" required />
+        </div>
+        <div class="field">
+          <label for="phone">WhatsApp <span class="opt">(optional)</span></label>
+          <input id="phone" name="phone" type="tel" autocomplete="tel" />
+        </div>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="course">Course</label>
+          <select id="course" name="course" required>
+            <option value="">Choose a course</option>
+            <option>Noorani Qaida</option>
+            <option>Qur'an Reading (Nazirah)</option>
+            <option>Tajweed</option>
+            <option>Hifz Program</option>
+            <option>Qur'anic Arabic</option>
+            <option>Islamic Studies</option>
+            <option>Not sure — please advise</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="student">Student</label>
+          <select id="student" name="student">
+            <option>Child (5–12)</option>
+            <option>Teen (13–17)</option>
+            <option>Adult (18+)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="teacher">Teacher preference</label>
+        <select id="teacher" name="teacher">
+          <option>No preference</option>
+          <option>Male teacher</option>
+          <option>Female teacher</option>
+        </select>
+      </div>
+
+      <input type="hidden" name="timezone" id="timezone" />
+      <p class="trial-form__tz">Your time zone: <strong id="tzLabel">—</strong></p>
+
+      <button type="submit" class="btn btn--primary btn--block btn--lg">Book free trial</button>
+      <p class="trial-form__status" id="formStatus" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
 
 </main>
 
+<!-- ============ FOOTER ============ -->
 <footer class="footer">
-  <span>© <span id="year">2026</span> Mirqat Institute</span>
-  <span class="footer__tag">Step by step, toward the Qur'an</span>
+  <div class="container footer__grid">
+    <div class="footer__brand">
+      <a href="#top" class="logo logo--light" aria-label="Mirqat Institute — back to top">
+        <svg class="logo__mark" viewBox="0 0 32 32" aria-hidden="true">
+          <rect width="32" height="32" rx="7" fill="#FEF1BC"/>
+          <rect x="5" y="21" width="22" height="6" rx="1.5" fill="#436E5B"/>
+          <rect x="11" y="14" width="16" height="6" rx="1.5" fill="#6A9C77"/>
+          <rect x="17" y="7" width="10" height="6" rx="1.5" fill="#7DC384"/>
+        </svg>
+        <span class="logo__text">
+          <span class="logo__en">Mirqat Institute</span>
+          <span class="logo__ar" lang="ar" dir="rtl">مِرْقاة</span>
+        </span>
+      </a>
+      <p>An online Qur'an academy helping children and adults climb closer to the Book of Allah — one step at a time.</p>
+    </div>
+
+    <div class="footer__col">
+      <h4>Courses</h4>
+      <a href="#courses">Noorani Qaida</a>
+      <a href="#courses">Tajweed</a>
+      <a href="#courses">Hifz Program</a>
+      <a href="#courses">Qur'anic Arabic</a>
+    </div>
+
+    <div class="footer__col">
+      <h4>Institute</h4>
+      <a href="#how">How it works</a>
+      <a href="#teachers">Teachers</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+    </div>
+
+    <div class="footer__col">
+      <h4>Contact</h4>
+      <!-- PLACEHOLDER contact details -->
+      <a href="mailto:hello@mirqatinstitute.com">hello@mirqatinstitute.com</a>
+      <a href="#trial">WhatsApp us</a>
+      <div class="social" aria-label="Social media">
+        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></svg></a>
+        <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24"><rect x="2.5" y="5.5" width="19" height="13" rx="4"/><path d="M10 9.5v5l4.5-2.5z" fill="currentColor"/></svg></a>
+        <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v2H7v4h3v6h4v-6h3l1-4h-4V8z"/></svg></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="container footer__bottom">
+    <span>© <span id="year">2026</span> Mirqat Institute. All rights reserved.</span>
+    <span class="footer__tag">Step by step, toward the Qur'an</span>
+  </div>
 </footer>
+
+<!-- Floating WhatsApp button — set data-number on the link (digits only, with country code) -->
+<a class="whatsapp" id="whatsappBtn" href="#trial" data-number="" aria-label="Chat with us on WhatsApp">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.6-1.2A9 9 0 1 0 12 3z"/><path d="M8.8 8.2c.2-.4.4-.4.7-.4h.5c.2 0 .4 0 .5.4l.7 1.6c.1.2 0 .4-.1.6l-.5.6c-.1.1-.2.3 0 .5.4.7 1.6 2 3.1 2.6.2.1.4 0 .5-.1l.6-.7c.2-.2.4-.2.6-.1l1.6.8c.2.1.3.2.3.4 0 .6-.3 1.4-1.2 1.7-.8.3-1.8.3-3.8-.7-2.3-1.2-3.8-3.6-3.9-3.8-.1-.2-.9-1.2-.9-2.3 0-.9.4-1.4.6-1.6z" fill="currentColor" stroke="none"/></svg>
+</a>
 
 <script src="script.js"></script>
 </body>
