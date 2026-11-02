@@ -35,10 +35,36 @@ const range = (key: PlanKey) => {
 
     {!only && (
       <div class="price-tabs" role="tablist" aria-label="View pricing">
-        <button type="button" role="tab" id="tab-course" aria-controls="panel-course" aria-selected="true">By course</button>
-        <button type="button" role="tab" id="tab-plan" aria-controls="panel-plan" aria-selected="false">By plan</button>
+        <button type="button" role="tab" id="tab-plan" aria-controls="panel-plan" aria-selected="true">By plan</button>
+        <button type="button" role="tab" id="tab-course" aria-controls="panel-course" aria-selected="false">By course</button>
       </div>
     )}
+
+    <div class="price-panel" id="panel-plan" role={only ? undefined : 'tabpanel'} aria-labelledby={only ? undefined : 'tab-plan'}>
+      <div class:list={['plans', { 'plans--single': only }]}>
+        {planKeys.map((key) => {
+          const p = PLANS[key];
+          const featured = key === 'tajweed' || Boolean(only);
+          return (
+            <article class:list={['plan', { reveal: only, 'plan--featured': featured }]}>
+              <h3>{p.name}</h3>
+              <p class="plan__freq">{p.freq}</p>
+              <p class="plan__price"><span class="plan__from">from</span>{inr(p.from)}<span class="plan__per">/month</span></p>
+              <table class="plan__options">
+                <caption class="sr-only">{p.name} {p.optionsLabel}</caption>
+                <tbody>
+                  {p.options.map(([label, price]) => (
+                    <tr><th scope="row">{label}</th><td>{inr(price)}</td></tr>
+                  ))}
+                </tbody>
+              </table>
+              <ul>{p.includes.map((i) => <li>{i}</li>)}</ul>
+              <a href="#enrol" class:list={['btn', 'btn--block', featured ? 'btn--cream' : 'btn--ghost']} data-course={course?.formCourse ?? p.course}>Choose this plan</a>
+            </article>
+          );
+        })}
+      </div>
+    </div>
 
     {!only && (
       <div class="price-panel" id="panel-course" role="tabpanel" aria-labelledby="tab-course">
@@ -80,38 +106,12 @@ const range = (key: PlanKey) => {
         </ol>
       </div>
     )}
-
-    <div class="price-panel" id="panel-plan" role={only ? undefined : 'tabpanel'} aria-labelledby={only ? undefined : 'tab-plan'}>
-      <div class:list={['plans', { 'plans--single': only }]}>
-        {planKeys.map((key) => {
-          const p = PLANS[key];
-          const featured = key === 'tajweed' || Boolean(only);
-          return (
-            <article class:list={['plan', { reveal: only, 'plan--featured': featured }]}>
-              <h3>{p.name}</h3>
-              <p class="plan__freq">{p.freq}</p>
-              <p class="plan__price"><span class="plan__from">from</span>{inr(p.from)}<span class="plan__per">/month</span></p>
-              <table class="plan__options">
-                <caption class="sr-only">{p.name} {p.optionsLabel}</caption>
-                <tbody>
-                  {p.options.map(([label, price]) => (
-                    <tr><th scope="row">{label}</th><td>{inr(price)}</td></tr>
-                  ))}
-                </tbody>
-              </table>
-              <ul>{p.includes.map((i) => <li>{i}</li>)}</ul>
-              <a href="#enrol" class:list={['btn', 'btn--block', featured ? 'btn--cream' : 'btn--ghost']} data-course={course?.formCourse ?? p.course}>Choose this plan</a>
-            </article>
-          );
-        })}
-      </div>
-    </div>
   </div>
 </section>
 
 {!only && (
   <script>
-    // "By course" / "By plan" tabs. Without JavaScript both views simply show, one after the other.
+    // "By plan" / "By course" tabs ("By plan" is the default). Without JavaScript both views simply show, one after the other.
     const tabs = Array.from(document.querySelectorAll<HTMLButtonElement>('.price-tabs [role="tab"]'));
     const select = (tab: HTMLButtonElement, focus = false) => {
       tabs.forEach((t) => {

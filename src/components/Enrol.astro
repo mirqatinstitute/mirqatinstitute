@@ -30,66 +30,53 @@ const initialPreview = WA.enrol({ course });
   <div class="container cta__grid">
     <div class="cta__copy">
       <p class="cta__verse" lang="ar" dir="rtl">وَقُل رَّبِّ زِدْنِي عِلْمًا</p>
-      <p class="cta__verse-en">“And say: My Lord, increase me in knowledge.” <span>— Qur'an 20:114</span></p>
+      <p class="cta__verse-en">“My Lord, increase me in knowledge.” <span>— 20:114</span></p>
       <h2>{heading}</h2>
-      <p>Tap a few options and send — your enquiry opens in WhatsApp, ready to go. We'll help you choose the right course and a class time that suits you.</p>
-
-      <ul class="contact-list">
-        <li>
-          <span class="contact-list__label">WhatsApp &amp; phone</span>
-          <a href={waLink(WA.general())} target="_blank" rel="noopener" class="contact-list__wa">
-            <WhatsAppIcon size={20} /> {SITE.phoneDisplay}
-          </a>
-        </li>
-        <li>
-          <span class="contact-list__label">Email</span>
-          <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
-        </li>
-        <li>
-          <span class="contact-list__label">Class timings</span>
-          <span>{SITE.timings}</span>
-        </li>
-        <li>
-          <span class="contact-list__label">Location</span>
-          <span>{SITE.address.display} · Online worldwide</span>
-        </li>
-      </ul>
+      <p class="cta__lede">Send your details on WhatsApp — we'll suggest the right course and time.</p>
+      <div class="cta__contacts">
+        <a href={waLink(WA.general())} target="_blank" rel="noopener" class="contact-chip contact-chip--wa">
+          <WhatsAppIcon size={18} /> {SITE.phoneDisplay}
+        </a>
+        <a href={`mailto:${SITE.email}`} class="contact-chip">
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M3 6h18v12H3zM3 7l9 6 9-6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+          Email us
+        </a>
+      </div>
     </div>
 
     <form class="wa-form" id="enrolForm" novalidate>
       <div class="wa-form__head">
         <span class="wa-form__badge" aria-hidden="true"><WhatsAppIcon size={24} /></span>
-        <div>
-          <h3>Enquire on WhatsApp</h3>
-          <p>Takes about 20 seconds</p>
-        </div>
-      </div>
-
-      <div class="field">
-        <label for="name">Your name</label>
-        <input id="name" name="name" type="text" autocomplete="name" placeholder="e.g. Aisha" required />
-      </div>
-
-      <div class="field">
-        <label for="course">Course</label>
-        <select id="course" name="course" required>
-          <option value="" selected={!course} disabled>Choose a course</option>
-          {COURSE_OPTIONS.map((c) => (
-            <option value={c.value} selected={c.value === course}>{c.emoji}  {c.value}</option>
-          ))}
-        </select>
+        <h3>Enquire on WhatsApp</h3>
       </div>
 
       <div class="field-row">
         <div class="field">
-          <label for="student">Who is learning? <span class="opt">(optional)</span></label>
+          <label for="name">Your name</label>
+          <input id="name" name="name" type="text" autocomplete="name" placeholder="e.g. Aisha" required />
+        </div>
+
+        <div class="field">
+          <label for="course">Course</label>
+          <select id="course" name="course" required>
+            <option value="" selected={!course} disabled>Choose a course</option>
+            {COURSE_OPTIONS.map((c) => (
+              <option value={c.value} selected={c.value === course}>{c.emoji}  {c.value}</option>
+            ))}
+          </select>
+        </div>
+      </div>
+
+      <div class="field-row field-row--pair">
+        <div class="field">
+          <label for="student">Student <span class="opt">(optional)</span></label>
           <select id="student" name="student">
             <option value="">Select</option>
             {STUDENTS.map((o) => <option value={o.value}>{o.emoji}  {o.value}</option>)}
           </select>
         </div>
         <div class="field">
-          <label for="time">Preferred time <span class="opt">(IST)</span></label>
+          <label for="time">Time <span class="opt">(IST)</span></label>
           <select id="time" name="time">
             <option value="">Select</option>
             {TIMES.map((o) => <option value={o.value}>{o.emoji}  {o.value}</option>)}
@@ -100,6 +87,8 @@ const initialPreview = WA.enrol({ course });
       <input type="hidden" name="timezone" id="timezone" />
 
       <!-- Live preview of the message that will open in WhatsApp -->
+      <details class="wa-preview-toggle">
+        <summary>Preview your message</summary>
       <div class="wa-preview" aria-label="Message preview">
         <div class="wa-preview__bar">
           <span class="wa-preview__avatar" aria-hidden="true">M</span>
@@ -114,6 +103,7 @@ const initialPreview = WA.enrol({ course });
           </div>
         </div>
       </div>
+      </details>
 
       <button type="submit" class="btn btn--wa btn--block btn--lg">
         <WhatsAppIcon size={22} /> Send on WhatsApp

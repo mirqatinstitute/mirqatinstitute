@@ -21,8 +21,16 @@ export const SITE = {
     instagram: 'https://www.instagram.com/mirqatinstitue/',
     facebook: 'https://www.facebook.com/mirqatinstitue',
   },
-  studentsTaught: '800+',
+  studentsTaught: '1,000+',
 } as const;
+
+// Headline numbers (metrics section, About page).
+export const METRICS: { value: number; suffix: string; label: string; icon: 'learners' | 'countries' | 'teachers' | 'courses' }[] = [
+  { value: 1000, suffix: '+', label: 'Learners', icon: 'learners' },
+  { value: 5, suffix: '', label: 'Countries', icon: 'countries' },
+  { value: 10, suffix: '+', label: 'Teachers', icon: 'teachers' },
+  { value: 5, suffix: '', label: 'Courses', icon: 'courses' },
+];
 
 export type PlanKey = 'basic' | 'tajweed' | 'hifz';
 

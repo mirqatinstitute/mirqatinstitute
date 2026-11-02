@@ -17,9 +17,9 @@ Vercel builds automatically on every push (settings are in `vercel.json`): pushe
 
 | Path | What it is |
 |---|---|
-| `src/data/site.ts` | **Academy facts in one place**: contact details, social links, plans and prices, homepage FAQ, teacher list. Update facts here and every page and the SEO data follow. |
+| `src/data/site.ts` | **Academy facts in one place**: contact details, social links, headline numbers (`METRICS`), plans and prices, homepage FAQ, teacher list. Update facts here and every page and the SEO data follow. |
 | `src/content/courses/*.md` | **One file per course page** (`/courses/<file-name>`). The frontmatter holds the title, SEO title and description, level, plan, starting point (for the "find your step" picker), "what you'll learn", "who it's for", FAQs and **reviews**; the text below it is the page's article. Add a new `.md` file to add a course page. |
-| `src/pages/` | Routes: `index.astro` (homepage), `courses/index.astro` (all courses), `courses/[slug].astro` (course page template), `404.astro`. |
+| `src/pages/` | Routes: `index.astro` (homepage), `about.astro` (About page), `courses/index.astro` (all courses), `courses/[slug].astro` (course page template), `404.astro`. |
 | `src/components/` | Page sections (Hero, Ladder, About, Teachers, Pricing, Faq, Enrol, …) and `Seo.astro` (meta tags and structured data). |
 | `src/layouts/BaseLayout.astro` | Shared page shell: head, header, footer, fonts, scripts. |
 | `src/data/whatsapp.ts` | **Every pre-filled WhatsApp message** (general, question, course, fees, not-sure, review, enquiry form) and the `waLink()` helper. Edit the wording here. |
