@@ -4175,6 +4175,278 @@ a.contact-card:hover {
   font-weight: 600;
 }
 
+/* ---------- Learn (articles) ---------- */
+.article-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  max-width: 980px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.article-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 26px;
+  border-radius: 20px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  color: var(--green-900);
+  text-decoration: none;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+
+.article-card:hover {
+  border-color: rgba(67, 110, 91, 0.35);
+  box-shadow: var(--shadow);
+  transform: translateY(-2px);
+}
+
+.article-card h2 {
+  font-size: 21px;
+  line-height: 1.3;
+}
+
+.article-card p {
+  color: var(--muted);
+  font-size: 15px;
+  flex: 1;
+}
+
+.article-card__more {
+  font-weight: 600;
+  color: var(--green-700);
+  font-size: 15px;
+}
+
+.article-head {
+  max-width: 860px;
+}
+
+.article-meta {
+  color: var(--muted);
+  font-size: 15px;
+}
+
+.article-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 280px;
+  gap: clamp(32px, 5vw, 64px);
+  align-items: start;
+  max-width: 1120px;
+}
+
+.answer-box {
+  margin: 0 0 32px;
+  padding: 22px 24px;
+  border-radius: 18px;
+  background: var(--cream);
+  border-left: 5px solid var(--green-500);
+}
+
+.answer-box__label {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--green-700);
+  margin-bottom: 6px;
+}
+
+.prose .answer-box p {
+  color: var(--green-900);
+  font-size: 18px;
+  margin: 0;
+}
+
+.article-body h3 {
+  font-size: 20px;
+  margin: 28px 0 10px;
+}
+
+.article-body ul,
+.article-body ol {
+  padding-left: 22px;
+  color: var(--muted);
+  display: grid;
+  gap: 8px;
+  margin: 0 0 18px;
+}
+
+.article-body table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 8px 0 18px;
+  font-size: 15px;
+}
+
+.article-body th,
+.article-body td {
+  text-align: left;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--line);
+}
+
+.article-body thead th {
+  background: var(--tint);
+  color: var(--green-900);
+}
+
+.article-body td {
+  color: var(--muted);
+}
+
+.article-side {
+  position: sticky;
+  top: 100px;
+  display: grid;
+  gap: 16px;
+}
+
+.side-card {
+  padding: 22px;
+  border-radius: 18px;
+  background: var(--green-700);
+  color: var(--cream);
+}
+
+.side-card h2 {
+  font-size: 18px;
+  color: inherit;
+  margin-bottom: 10px;
+}
+
+.side-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 16px;
+  display: grid;
+  gap: 8px;
+}
+
+.side-card a:not(.btn) {
+  color: inherit;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.side-card a:not(.btn):hover {
+  text-decoration: underline;
+}
+
+.side-card .btn--primary {
+  background: var(--cream);
+  color: var(--green-900);
+}
+
+.side-card--plain {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  color: var(--green-900);
+}
+
+.side-card--plain a:not(.btn) {
+  color: var(--green-700);
+  font-weight: 500;
+}
+
+.side-card--plain ul {
+  margin: 0;
+}
+
+@media (max-width: 960px) {
+  .article-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .article-side {
+    position: static;
+  }
+}
+
+@media (max-width: 700px) {
+  .article-list {
+    grid-template-columns: 1fr;
+  }
+
+  .article-body table {
+    font-size: 13px;
+  }
+
+  .article-body th,
+  .article-body td {
+    padding: 8px 6px;
+  }
+}
+
+/* ---------- Malayalam page ---------- */
+/* Somar Sans has no Malayalam letters, so Malayalam falls back to Noto Sans Malayalam. */
+html:lang(ml-IN) {
+  --font-sans: "Somar Sans", "Noto Sans Malayalam", "Outfit Variable", system-ui, sans-serif;
+  --font-serif: "Somar Sans", "Noto Sans Malayalam", "Outfit Variable", system-ui, sans-serif;
+}
+
+html:lang(ml-IN) h1,
+html:lang(ml-IN) h2 {
+  line-height: 1.3;
+  letter-spacing: 0;
+}
+
+.ml-hero .page-hero__title em {
+  font-style: normal;
+  color: var(--green-700);
+}
+
+.ml-switch {
+  margin-top: 18px;
+  font-size: 15px;
+}
+
+.ml-switch a {
+  color: var(--green-700);
+  font-weight: 600;
+}
+
+.stepper__digit {
+  font-family: var(--font-serif);
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.plan__covers {
+  font-size: 15px;
+  color: var(--muted);
+}
+
+.plan--featured .plan__covers {
+  color: rgba(254, 241, 188, 0.85);
+}
+
+.ml-cta {
+  text-align: center;
+  padding-top: clamp(40px, 6vw, 72px);
+  padding-bottom: clamp(48px, 7vw, 80px);
+  max-width: 760px;
+}
+
+.ml-cta h2 {
+  color: var(--cream);
+  margin-bottom: 12px;
+}
+
+.ml-cta .cta__verse {
+  text-align: center;
+}
+
+.ml-cta__buttons {
+  justify-content: center;
+}
+
 /* ---------- responsive ---------- */
 @media (max-width: 1024px) {
   .tutor-grid {

@@ -9,9 +9,12 @@ interface Props {
   type?: 'website' | 'article';
   noindex?: boolean;
   jsonLd?: Record<string, unknown>[];
+  /** Language versions of this page, e.g. [{ hreflang: 'ml-IN', href: '/ml' }]. */
+  alternates?: { hreflang: string; href: string }[];
+  ogLocale?: string;
 }
 
-const { title, description, image = SITE.ogImage, imageAlt = `${SITE.name} — Online Quran classes, one step at a time`, type = 'website', noindex = false, jsonLd = [] } = Astro.props;
+const { title, description, image = SITE.ogImage, imageAlt = `${SITE.name} — Online Quran classes, one step at a time`, type = 'website', noindex = false, jsonLd = [], alternates = [], ogLocale = SITE.locale } = Astro.props;
 
 // Canonical URL: always the www domain, no trailing slash (except the homepage).
 const path =
@@ -66,7 +69,8 @@ const graph = {
 
 <meta property="og:type" content={type} />
 <meta property="og:site_name" content={SITE.name} />
-<meta property="og:locale" content={SITE.locale} />
+<meta property="og:locale" content={ogLocale} />
+{alternates.map((a) => <link rel="alternate" hreflang={a.hreflang} href={new URL(a.href, SITE.url).href} />)}
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
 <meta property="og:url" content={canonical} />

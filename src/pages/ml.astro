@@ -1,0 +1,193 @@
+---
+// Malayalam landing page. Prices and links come from the same data as the English site.
+import '@fontsource/noto-sans-malayalam/malayalam-400.css';
+import '@fontsource/noto-sans-malayalam/malayalam-600.css';
+import '@fontsource/noto-sans-malayalam/malayalam-700.css';
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import WhatsAppIcon from '../components/WhatsAppIcon.astro';
+import Faq from '../components/Faq.astro';
+import { SITE, PLANS, METRICS, inr, type PlanKey } from '../data/site';
+import { WA, waLink } from '../data/whatsapp';
+
+const courses = (await getCollection('courses')).sort((a, b) => a.data.order - b.data.order);
+const ML: Record<string, { name: string; text: string }> = {
+  'noorani-qaida': { name: 'നൂറാനി ഖാഇദ', text: 'അറബി അക്ഷരങ്ങൾ, ശരിയായ ഉച്ചാരണം, ഖുർആൻ വായനയുടെ അടിസ്ഥാനം — തുടക്കക്കാർക്ക്.' },
+  tajweed: { name: 'തജ്‌വീദ്', text: 'പാരായണ നിയമങ്ങൾ പഠിച്ച്, അധ്യാപകന്റെ തിരുത്തലോടെ ശരിയായി ഓതാൻ.' },
+  'quran-reading': { name: 'ഖുർആൻ പാരായണം', text: 'തജ്‌വീദ് അറിയുന്നവർക്ക് — ഒഴുക്കോടെയും കൃത്യതയോടെയും മുസ്ഹഫ് ഓതാൻ.' },
+  hifz: { name: 'ഹിഫ്‌ള് (മനഃപാഠം)', text: 'വ്യക്തിഗത പ്ലാൻ, ദിവസേനയുള്ള സബഖ്, മുറാജഅ എന്നിവയോടെ ഖുർആൻ മനഃപാഠമാക്കാൻ.' },
+  'quran-revision': { name: 'ഖുർആൻ റിവിഷൻ', text: 'ഹിഫ്‌ള് ചെയ്തവർക്ക് — മനഃപാഠം ഉറപ്പിച്ചു നിർത്താൻ ചിട്ടയായ ആവർത്തനം.' },
+};
+const PLAN_ML: Record<PlanKey, { name: string; covers: string }> = {
+  basic: { name: 'ബേസിക് ഖുർആൻ പ്ലാൻ', covers: 'നൂറാനി ഖാഇദ' },
+  tajweed: { name: 'തജ്‌വീദ് പ്ലാൻ', covers: 'തജ്‌വീദ്, ഖുർആൻ പാരായണം' },
+  hifz: { name: 'ഹിഫ്‌ള് പ്ലാൻ', covers: 'ഹിഫ്‌ള്, ഖുർആൻ റിവിഷൻ' },
+};
+// "30 min classes" → "30 മിനിറ്റ് ക്ലാസ്", "20 classes / month" → "മാസം 20 ക്ലാസുകൾ"
+const optionMl = (label: string) => {
+  const n = label.match(/\d+/)?.[0] ?? '';
+  return /min/.test(label) ? `${n} മിനിറ്റ് ക്ലാസ്` : `മാസം ${n} ക്ലാസുകൾ`;
+};
+const freqMl = (key: PlanKey) => (key === 'hifz' ? 'മാസം 20, 25 അല്ലെങ്കിൽ 30 ക്ലാസുകൾ' : 'മാസം 20 ക്ലാസുകൾ');
+const METRIC_ML: Record<string, string> = { learners: 'പഠിതാക്കൾ', countries: 'രാജ്യങ്ങൾ', teachers: 'അധ്യാപകർ', courses: 'കോഴ്സുകൾ' };
+const STEPS = [
+  { title: 'ഞങ്ങളെ ബന്ധപ്പെടുക', text: 'വാട്സ്ആപ്പ് വഴിയോ ഫോൺ വഴിയോ' },
+  { title: 'കോഴ്സ് തിരഞ്ഞെടുക്കുക', text: 'നിലവാരം അനുസരിച്ച് ഞങ്ങൾ സഹായിക്കും' },
+  { title: 'സമയം തീരുമാനിക്കുക', text: 'നിങ്ങൾക്ക് സൗകര്യമുള്ള സമയം (IST)' },
+  { title: 'രജിസ്റ്റർ ചെയ്യുക', text: 'മാസ പ്ലാൻ തിരഞ്ഞെടുക്കുക' },
+  { title: 'ക്ലാസുകൾ ആരംഭിക്കുക', text: 'ലൈവ്, വൺ-ടു-വൺ ക്ലാസുകൾ' },
+];
+const FAQ_ML = [
+  { q: 'ആർക്കൊക്കെ ചേരാം?', a: 'കുട്ടികൾക്കും യുവാക്കൾക്കും മുതിർന്നവർക്കും — ഏത് നിലവാരത്തിലുള്ളവർക്കും ചേരാം. എല്ലാ ക്ലാസുകളും വൺ-ടു-വൺ ആയതിനാൽ ഓരോ വിദ്യാർത്ഥിക്കും അനുയോജ്യമായ രീതിയിൽ പഠിപ്പിക്കുന്നു.' },
+  { q: 'ഖുർആൻ മുൻപരിചയം ആവശ്യമുണ്ടോ?', a: 'ഇല്ല. തുടക്കക്കാർ നൂറാനി ഖാഇദയിൽ നിന്നാണ് ആരംഭിക്കുന്നത്.' },
+  { q: 'ക്ലാസ് സമയം എപ്പോഴാണ്?', a: 'സമയം ഫ്ലെക്സിബിൾ ആണ്. ഇന്ത്യൻ സമയം (IST) അനുസരിച്ച്, വിദ്യാർത്ഥിയുടെ സൗകര്യം നോക്കി ക്ലാസ് സമയം ക്രമീകരിക്കുന്നു.' },
+  { q: 'ഫീസ് എത്രയാണ്?', a: `ഹിഫ്‌ള്, ഖുർആൻ റിവിഷൻ: മാസം ${inr(PLANS.hifz.from)} മുതൽ. നൂറാനി ഖാഇദ, തജ്‌വീദ്, ഖുർആൻ പാരായണം: മാസം ${inr(PLANS.basic.from)} മുതൽ.` },
+  { q: 'ഫീസ് എങ്ങനെ അടയ്ക്കാം?', a: 'UPI അല്ലെങ്കിൽ ബാങ്ക് ട്രാൻസ്ഫർ വഴി അടയ്ക്കാം.' },
+  { q: 'വനിതാ അധ്യാപകരുണ്ടോ?', a: 'ഉണ്ട്. ഹാഫിളുമാരും ഹാഫിളത്തുമാരും തജ്‌വീദ് വിദഗ്ധരും ഉൾപ്പെടെ, ഞങ്ങളുടെ അധ്യാപകരിൽ പുരുഷന്മാരും സ്ത്രീകളുമുണ്ട്.' },
+  { q: 'എങ്ങനെ ചേരാം?', a: 'വാട്സ്ആപ്പിൽ ഞങ്ങളെ ബന്ധപ്പെടുക, കോഴ്സും ക്ലാസ് സമയവും തിരഞ്ഞെടുക്കുക, രജിസ്ട്രേഷൻ പൂർത്തിയാക്കി ക്ലാസുകൾ ആരംഭിക്കുക.' },
+];
+const minFee = Math.min(...Object.values(PLANS).map((p) => p.from));
+const jsonLd = [
+  {
+    '@type': 'WebPage',
+    '@id': `${SITE.url}/ml#page`,
+    url: `${SITE.url}/ml`,
+    name: 'മിർഖാത്ത് ഇൻസ്റ്റിറ്റ്യൂട്ട് — ഓൺലൈൻ ഖുർആൻ ക്ലാസുകൾ',
+    inLanguage: 'ml-IN',
+    isPartOf: { '@id': `${SITE.url}/#website` },
+    about: { '@id': `${SITE.url}/#organization` },
+  },
+  {
+    '@type': 'FAQPage',
+    inLanguage: 'ml-IN',
+    mainEntity: FAQ_ML.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+  },
+];
+---
+<BaseLayout
+  lang="ml-IN"
+  ogLocale="ml_IN"
+  title="ഓൺലൈൻ ഖുർആൻ ക്ലാസുകൾ — തജ്‌വീദ്, ഹിഫ്‌ള്, നൂറാനി ഖാഇദ | Mirqat Institute"
+  description={`കൊല്ലം, കേരളത്തിൽ നിന്ന് കുട്ടികൾക്കും മുതിർന്നവർക്കും വൺ-ടു-വൺ ഓൺലൈൻ ഖുർആൻ ക്ലാസുകൾ: നൂറാനി ഖാഇദ, തജ്‌വീദ്, ഹിഫ്‌ള്. മാസം ${inr(minFee)} മുതൽ.`}
+  jsonLd={jsonLd}
+  waMessage={WA.generalMl()}
+  alternates={[
+    { hreflang: 'en-IN', href: '/' },
+    { hreflang: 'ml-IN', href: '/ml' },
+    { hreflang: 'x-default', href: '/' },
+  ]}
+>
+  <section class="page-hero page-hero--center ml-hero">
+    <div class="container">
+      <p class="eyebrow">
+        <span lang="ar" dir="rtl" class="eyebrow__ar">مِرْقاة</span>
+        <span>ഉയരങ്ങളിലേക്കുള്ള പടവുകൾ</span>
+      </p>
+      <h1 class="page-hero__title">ഖുർആനിലേക്ക് അടുക്കാം, <em>ഓരോ ചുവടായി.</em></h1>
+      <p class="page-hero__lede">കുട്ടികൾക്കും മുതിർന്നവർക്കുമായി വൺ-ടു-വൺ ഓൺലൈൻ ഖുർആൻ ക്ലാസുകൾ — നിങ്ങൾക്ക് സൗകര്യമുള്ള സമയത്ത്.</p>
+      <div class="hero__actions hero__actions--center">
+        <a href="#enrol" class="btn btn--primary btn--lg">ക്ലാസിൽ ചേരാം</a>
+        <a href={waLink(WA.generalMl())} class="btn btn--wa-ghost btn--lg" target="_blank" rel="noopener"><WhatsAppIcon size={20} /> വാട്സ്ആപ്പിൽ സംസാരിക്കാം</a>
+      </div>
+      <p class="ml-switch"><a href="/" lang="en">Read in English →</a></p>
+    </div>
+  </section>
+
+  <section class="section section--slim section--tint">
+    <div class="container">
+      <dl class="metrics__grid">
+        {METRICS.map((m) => (
+          <div class="metric reveal">
+            <dt class="metric__value"><span data-count={m.value} data-suffix={m.suffix}>{m.value.toLocaleString('en-IN')}{m.suffix}</span></dt>
+            <dd class="metric__label">{METRIC_ML[m.icon]}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </section>
+
+  <section class="section" id="courses">
+    <div class="container">
+      <header class="section-head">
+        <p class="kicker">കോഴ്സുകൾ</p>
+        <h2>എല്ലാവർക്കും അനുയോജ്യമായ കോഴ്സുകൾ.</h2>
+        <p>എല്ലാ ക്ലാസുകളും വൺ-ടു-വൺ, ലൈവ് ഓൺലൈൻ.</p>
+      </header>
+      <div class="courses">
+        {courses.map((c) => {
+          const plan = c.data.plan ? PLANS[c.data.plan] : null;
+          return (
+            <article class="course reveal">
+              <div class="course__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d={c.data.icon} /></svg></div>
+              <h3><a class="course__link" href={`/courses/${c.id}`}>{ML[c.id]?.name ?? c.data.title}</a></h3>
+              <p>{ML[c.id]?.text ?? c.data.summary}</p>
+              {plan && <ul class="course__meta"><li>മാസം {inr(plan.from)} മുതൽ</li><li>വൺ-ടു-വൺ · ഓൺലൈൻ</li></ul>}
+              <span class="course__more" aria-hidden="true">വിശദാംശങ്ങൾ (English) →</span>
+            </article>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tint" id="pricing">
+    <div class="container">
+      <header class="section-head">
+        <p class="kicker">ഫീസ്</p>
+        <h2>ലളിതമായ മാസ ഫീസ്.</h2>
+        <p>എല്ലാ ക്ലാസുകളും വൺ-ടു-വൺ. ഫീസ് ഇന്ത്യൻ രൂപയിൽ, മാസം തോറും.</p>
+      </header>
+      <div class="plans">
+        {(['basic', 'tajweed', 'hifz'] as PlanKey[]).map((key) => {
+          const p = PLANS[key];
+          return (
+            <article class:list={['plan', 'reveal', { 'plan--featured': key === 'tajweed' }]}>
+              <h3>{PLAN_ML[key].name}</h3>
+              <p class="plan__freq">{freqMl(key)}</p>
+              <p class="plan__price"><span class="plan__from">മുതൽ</span>{inr(p.from)}<span class="plan__per">/മാസം</span></p>
+              <table class="plan__options">
+                <caption class="sr-only">{PLAN_ML[key].name}</caption>
+                <tbody>{p.options.map(([label, price]) => <tr><th scope="row">{optionMl(label)}</th><td>{inr(price)}</td></tr>)}</tbody>
+              </table>
+              <p class="plan__covers">കോഴ്സുകൾ: {PLAN_ML[key].covers}</p>
+            </article>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--slim" id="how">
+    <div class="container">
+      <header class="section-head">
+        <p class="kicker">ചേരുന്ന വിധം</p>
+        <h2>അഞ്ച് എളുപ്പ ഘട്ടങ്ങൾ.</h2>
+      </header>
+      <ol class="stepper">
+        {STEPS.map((s, i) => (
+          <li class="stepper__item reveal">
+            <span class="stepper__icon" aria-hidden="true"><span class="stepper__digit">{i + 1}</span></span>
+            <strong>{s.title}</strong>
+            <span>{s.text}</span>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <Faq id="faq" kicker="പതിവ് ചോദ്യങ്ങൾ" heading="നിങ്ങളുടെ സംശയങ്ങൾ." items={FAQ_ML} tint compact />
+
+  <section class="cta" id="enrol">
+    <div class="stepped-edge stepped-edge--top stepped-edge--tint" aria-hidden="true"></div>
+    <div class="container ml-cta">
+      <p class="cta__verse" lang="ar" dir="rtl">وَقُل رَّبِّ زِدْنِي عِلْمًا</p>
+      <h2>ഇന്ന് തന്നെ ആദ്യ ചുവട് വെക്കാം.</h2>
+      <p class="cta__lede">വാട്സ്ആപ്പിൽ ഒരു സന്ദേശം അയച്ചാൽ മതി — അനുയോജ്യമായ കോഴ്സും സമയവും ഞങ്ങൾ നിർദ്ദേശിക്കും.</p>
+      <div class="cta__contacts ml-cta__buttons">
+        <a href={waLink(WA.generalMl())} target="_blank" rel="noopener" class="contact-chip contact-chip--wa"><WhatsAppIcon size={18} /> വാട്സ്ആപ്പ്: {SITE.phoneDisplay}</a>
+        <a href={`tel:${SITE.phoneE164}`} class="contact-chip">ഫോൺ: {SITE.phoneDisplay}</a>
+        <a href={`mailto:${SITE.email}`} class="contact-chip">ഇമെയിൽ</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

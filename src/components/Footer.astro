@@ -39,6 +39,7 @@ const courses = (await getCollection('courses')).sort((a, b) => a.data.order - b
       <a href="/faculties">Faculties</a>
       <a href="/pricing">Pricing</a>
       <a href="/faq">FAQ</a>
+      <a href="/learn">Learn</a>
       <a href="/contact">Contact</a>
     </div>
 
@@ -54,6 +55,7 @@ const courses = (await getCollection('courses')).sort((a, b) => a.data.order - b
   <div class="container footer__bottom">
     <span>© {new Date().getFullYear()} Mirqat Institute. All rights reserved.</span>
     <nav class="footer__legal" aria-label="Policies">
+      <a href={Astro.url.pathname.startsWith('/ml') ? '/' : '/ml'} lang={Astro.url.pathname.startsWith('/ml') ? 'en' : 'ml'}>{Astro.url.pathname.startsWith('/ml') ? 'English' : 'മലയാളം'}</a>
       <a href="/refund-policy">Refund &amp; Cancellation Policy</a>
       <a href="/privacy-policy">Privacy Policy</a>
       <a href="/terms">Terms &amp; Conditions</a>

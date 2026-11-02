@@ -35,4 +35,20 @@ const courses = defineCollection({
   }),
 });
 
-export const collections = { courses };
+const articles = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/articles' }),
+  schema: z.object({
+    title: z.string(),
+    seoTitle: z.string(),
+    description: z.string().max(170),
+    /** The short, direct answer shown at the top — what search engines and AI assistants quote. */
+    answer: z.string(),
+    order: z.number(),
+    published: z.coerce.date(),
+    updated: z.coerce.date(),
+    /** Course ids this article leads to (shown as "Start learning" links). */
+    related: z.array(z.string()).default([]),
+  }),
+});
+
+export const collections = { courses, articles };

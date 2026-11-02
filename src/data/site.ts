@@ -44,6 +44,8 @@ export const PLANS: Record<PlanKey, {
   options: [string, number][];
   includes: string[];
   course: string;
+  /** Minimum classes per month and (if fixed) shortest class length — used in Course structured data. */
+  schedule: { classesPerMonth: number; minMinutes?: number };
 }> = {
   basic: {
     name: "Basic Qur'an Plan",
@@ -54,6 +56,7 @@ export const PLANS: Record<PlanKey, {
     options: [['30 min classes', 1600], ['45 min classes', 2000], ['60 min classes', 2400]],
     includes: ['Qaida Nooraniya', 'Arabic alphabet learning', "Basic Qur'an reading"],
     course: 'Noorani Qaida',
+    schedule: { classesPerMonth: 20, minMinutes: 30 },
   },
   tajweed: {
     name: 'Tajweed Plan',
@@ -64,6 +67,7 @@ export const PLANS: Record<PlanKey, {
     options: [['30 min classes', 1600], ['45 min classes', 2000], ['60 min classes', 2400]],
     includes: ['Complete Tajweed rules', 'Makharij & Sifaat', 'Pronunciation correction', 'Madd & Ghunnah', 'Noon & Meem rules', 'Waqf & Ibtida', 'Practical recitation'],
     course: 'Tajweed',
+    schedule: { classesPerMonth: 20, minMinutes: 30 },
   },
   hifz: {
     name: 'Hifz Plan',
@@ -74,6 +78,7 @@ export const PLANS: Record<PlanKey, {
     options: [['20 classes / month', 1300], ['25 classes / month', 1700], ['30 classes / month', 2100]],
     includes: ['Personalised Hifz plan', 'New lesson (Sabak)', "Daily Muraja'ah", "Qur'an Revision", 'Tajweed & pronunciation correction', 'Progress tracking', 'Individual guidance'],
     course: 'Hifz (Memorisation)',
+    schedule: { classesPerMonth: 20 },
   },
 };
 

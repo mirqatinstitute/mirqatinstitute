@@ -1,0 +1,39 @@
+# Tell IndexNow (Bing, Yandex and others — ChatGPT search and Copilot use Bing's index)
+# about every page after each successful production deployment on Vercel.
+name: IndexNow
+
+on:
+  deployment_status:
+
+permissions:
+  contents: read
+
+jobs:
+  submit:
+    # Only after a successful *production* deployment.
+    if: github.event.deployment_status.state == 'success' && github.event.deployment.environment == 'Production'
+    runs-on: ubuntu-latest
+    env:
+      HOST: www.mirqatinstitute.com
+      KEY: 0d09706ce4a72453f4df943ec38e46ae
+    steps:
+      - name: Collect page URLs from the sitemap
+        run: |
+          curl -fsSL "https://$HOST/sitemap-0.xml" | grep -o '<loc>[^<]*' | sed 's/<loc>//' > urls.txt
+          echo "Found $(wc -l < urls.txt) URLs"
+      - name: Submit to IndexNow
+        run: |
+          python3 - <<'PY'
+          import json, os, urllib.request
+          urls = [u.strip() for u in open('urls.txt') if u.strip()]
+          body = json.dumps({
+              "host": os.environ["HOST"],
+              "key": os.environ["KEY"],
+              "keyLocation": f"https://{os.environ['HOST']}/{os.environ['KEY']}.txt",
+              "urlList": urls,
+          }).encode()
+          req = urllib.request.Request("https://api.indexnow.org/indexnow", data=body,
+                                       headers={"Content-Type": "application/json; charset=utf-8"})
+          with urllib.request.urlopen(req) as r:
+              print("IndexNow response:", r.status)
+          PY
