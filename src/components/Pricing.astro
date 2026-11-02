@@ -1,43 +1,137 @@
 ---
+import { getCollection } from 'astro:content';
 import { PLANS, inr, type PlanKey } from '../data/site';
+import { WA, waLink } from '../data/whatsapp';
+import WhatsAppIcon from './WhatsAppIcon.astro';
 
 interface Props {
+  /** Show just this plan (used on course pages). Otherwise: "By course" / "By plan" tabs. */
   only?: PlanKey;
+  /** On a course page: the course whose page this is (pre-selected by the plan button, named in the note). */
+  course?: { title: string; formCourse: string };
   tint?: boolean;
 }
-const { only, tint = false } = Astro.props;
-const keys: PlanKey[] = only ? [only] : ['basic', 'tajweed', 'hifz'];
+const { only, course, tint = false } = Astro.props;
+const planKeys: PlanKey[] = only ? [only] : ['basic', 'tajweed', 'hifz'];
+
+const courses = only ? [] : (await getCollection('courses')).sort((a, b) => a.data.order - b.data.order);
+const range = (key: PlanKey) => {
+  const prices = PLANS[key].options.map(([, p]) => p);
+  return `${inr(Math.min(...prices))} – ${inr(Math.max(...prices))}`;
+};
 ---
 <section class:list={['section', { 'section--tint': tint }]} id="pricing">
   <div class="container">
     <header class="section-head">
       <p class="kicker">Pricing &amp; plans</p>
-      <h2>{only ? 'Plan & pricing.' : 'Simple monthly plans.'}</h2>
-      <p>All classes are one-to-one and online. Prices in Indian Rupees, billed monthly.</p>
+      <h2>{only ? 'Plan & pricing.' : 'Simple monthly fees.'}</h2>
+      <p>
+        {course && only && !PLANS[only].name.startsWith(course.title.split(' ')[0])
+          ? <>{course.title} follows the <strong>{PLANS[only].name}</strong>. </>
+          : null}
+        All classes are one-to-one and online. Prices in Indian Rupees, billed monthly.
+      </p>
     </header>
 
-    <div class:list={['plans', { 'plans--single': only }]}>
-      {keys.map((key) => {
-        const p = PLANS[key];
-        const featured = key === 'tajweed' || Boolean(only);
-        return (
-          <article class:list={['plan', 'reveal', { 'plan--featured': featured }]}>
-            <h3>{p.name}</h3>
-            <p class="plan__freq">{p.freq}</p>
-            <p class="plan__price"><span class="plan__from">from</span>{inr(p.from)}<span class="plan__per">/month</span></p>
-            <table class="plan__options">
-              <caption class="sr-only">{p.name} {p.optionsLabel}</caption>
-              <tbody>
-                {p.options.map(([label, price]) => (
-                  <tr><th scope="row">{label}</th><td>{inr(price)}</td></tr>
-                ))}
-              </tbody>
-            </table>
-            <ul>{p.includes.map((i) => <li>{i}</li>)}</ul>
-            <a href="#enrol" class:list={['btn', 'btn--block', featured ? 'btn--cream' : 'btn--ghost']} data-course={p.course}>Choose this plan</a>
-          </article>
-        );
-      })}
+    {!only && (
+      <div class="price-tabs" role="tablist" aria-label="View pricing">
+        <button type="button" role="tab" id="tab-course" aria-controls="panel-course" aria-selected="true">By course</button>
+        <button type="button" role="tab" id="tab-plan" aria-controls="panel-plan" aria-selected="false">By plan</button>
+      </div>
+    )}
+
+    {!only && (
+      <div class="price-panel" id="panel-course" role="tabpanel" aria-labelledby="tab-course">
+        <ol class="course-prices">
+          {courses.map((c, i) => {
+            const key = c.data.plan;
+            return (
+              <li class="course-price">
+                <span class="course-price__num" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+                <div class="course-price__info">
+                  <h3><a href={`/courses/${c.id}`}>{c.data.title}</a></h3>
+                  <p>{c.data.level} · {key ? `${PLANS[key].name}` : 'Fees on request'}</p>
+                </div>
+                <div class="course-price__fee">
+                  {key ? (
+                    <>
+                      <span class="course-price__from">from</span>
+                      <strong>{inr(PLANS[key].from)}<span>/month</span></strong>
+                      <span class="course-price__range">{range(key)} · {PLANS[key].optionsShort}</span>
+                    </>
+                  ) : (
+                    <>
+                      <span class="course-price__from">Fees</span>
+                      <strong class="course-price__ask">On request</strong>
+                      <span class="course-price__range">Ask us for a plan that suits you</span>
+                    </>
+                  )}
+                </div>
+                <div class="course-price__cta">
+                  {key ? (
+                    <a href="#enrol" class="btn btn--primary btn--sm" data-course={c.data.formCourse}>Choose</a>
+                  ) : (
+                    <a href={waLink(WA.fees(c.data.title))} class="btn btn--wa-ghost btn--sm" target="_blank" rel="noopener"><WhatsAppIcon size={16} /> Ask fees</a>
+                  )}
+                </div>
+              </li>
+            );
+          })}
+        </ol>
+      </div>
+    )}
+
+    <div class="price-panel" id="panel-plan" role={only ? undefined : 'tabpanel'} aria-labelledby={only ? undefined : 'tab-plan'}>
+      <div class:list={['plans', { 'plans--single': only }]}>
+        {planKeys.map((key) => {
+          const p = PLANS[key];
+          const featured = key === 'tajweed' || Boolean(only);
+          return (
+            <article class:list={['plan', { reveal: only, 'plan--featured': featured }]}>
+              <h3>{p.name}</h3>
+              <p class="plan__freq">{p.freq}</p>
+              <p class="plan__price"><span class="plan__from">from</span>{inr(p.from)}<span class="plan__per">/month</span></p>
+              <table class="plan__options">
+                <caption class="sr-only">{p.name} {p.optionsLabel}</caption>
+                <tbody>
+                  {p.options.map(([label, price]) => (
+                    <tr><th scope="row">{label}</th><td>{inr(price)}</td></tr>
+                  ))}
+                </tbody>
+              </table>
+              <ul>{p.includes.map((i) => <li>{i}</li>)}</ul>
+              <a href="#enrol" class:list={['btn', 'btn--block', featured ? 'btn--cream' : 'btn--ghost']} data-course={course?.formCourse ?? p.course}>Choose this plan</a>
+            </article>
+          );
+        })}
+      </div>
     </div>
   </div>
 </section>
+
+{!only && (
+  <script>
+    // "By course" / "By plan" tabs. Without JavaScript both views simply show, one after the other.
+    const tabs = Array.from(document.querySelectorAll<HTMLButtonElement>('.price-tabs [role="tab"]'));
+    const select = (tab: HTMLButtonElement, focus = false) => {
+      tabs.forEach((t) => {
+        const on = t === tab;
+        t.setAttribute('aria-selected', String(on));
+        t.tabIndex = on ? 0 : -1;
+        const panel = document.getElementById(t.getAttribute('aria-controls')!);
+        if (panel) panel.hidden = !on;
+      });
+      if (focus) tab.focus();
+    };
+    tabs.forEach((tab, i) => {
+      tab.addEventListener('click', () => select(tab));
+      tab.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+          e.preventDefault();
+          select(tabs[(i + (e.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length], true);
+        }
+      });
+    });
+    if (tabs[0]) select(tabs[0]);
+  </script>
+)}

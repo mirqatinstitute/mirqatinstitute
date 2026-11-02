@@ -1,7 +1,7 @@
 ---
 title: Noorani Qaida
 seoTitle: Online Noorani Qaida Classes for Kids & Adults
-description: Learn to read the Quran from the very first letter. One-to-one online Noorani Qaida classes for beginners of all ages, from ₹1,300/month.
+description: Learn to read the Quran from the very first letter. One-to-one online Noorani Qaida classes for beginners of all ages, from ₹1,600/month.
 summary: Learn Arabic letters, pronunciation and the basics of Qur'an reading — the foundation every reader starts with.
 order: 1
 icon: "M4 5h7v14H4zM13 5h7v14h-7z"
@@ -36,7 +36,7 @@ faqs:
   - q: What comes after Noorani Qaida?
     a: Students move on to Tajweed and reading from the Qur'an, building on the pronunciation they learned in the Qaida.
   - q: How much does it cost?
-    a: The Basic Qur'an Plan is 20 one-to-one classes a month — ₹1,300 for 30-minute classes, ₹1,700 for 45 minutes or ₹2,100 for 60 minutes.
+    a: The Basic Qur'an Plan is 20 one-to-one classes a month — ₹1,600 for 30-minute classes, ₹2,000 for 45 minutes or ₹2,400 for 60 minutes.
 ---
 
 ## What is Noorani Qaida?

@@ -117,7 +117,7 @@ const jsonLd = [
   </section>
 
   {/* Only this course's details. Sections alternate paper / tint whether or not the course has a plan. */}
-  {plan && d.plan && <Pricing only={d.plan} tint />}
+  {plan && d.plan && <Pricing only={d.plan} course={{ title: d.title, formCourse: d.formCourse }} tint />}
   <CourseReviews course={d.title} reviews={d.reviews} tint={!plan} />
   <Faq items={d.faqs} heading={`${d.title}: your questions.`} tint={Boolean(plan)} />
   <Enrol course={d.formCourse} heading={`Start ${d.title} today.`} edge={plan ? 'tint' : 'paper'} />

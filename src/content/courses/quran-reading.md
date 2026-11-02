@@ -7,7 +7,7 @@ order: 3
 icon: "M12 6c-2-1.5-5-2-8-1.5v13c3-.5 6 0 8 1.5 2-1.5 5-2 8-1.5v-13c-3-.5-6 0-8 1.5zM12 6v13"
 level: Advanced in Tajweed
 schedule: Regular classes
-plan: null
+plan: tajweed
 formCourse: "Qur'an Reading"
 learn:
   - Reading fluently and steadily from the Mushaf
@@ -32,7 +32,7 @@ faqs:
   - q: What if I haven't studied Tajweed yet?
     a: Start with our Tajweed course, or Noorani Qaida if you are a beginner. We will help you choose the right starting point.
   - q: How much does it cost?
-    a: Contact us on WhatsApp and we will recommend a plan and class schedule that suits you.
+    a: Qur'an Reading follows the Tajweed Plan — 20 one-to-one classes a month, ₹1,600 for 30-minute classes, ₹2,000 for 45 minutes or ₹2,400 for 60 minutes.
 ---
 
 ## About Qur'an Reading
