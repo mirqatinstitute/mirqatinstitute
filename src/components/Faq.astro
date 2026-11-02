@@ -6,16 +6,23 @@ interface Props {
   items: { q: string; a: string }[];
   heading?: string;
   tint?: boolean;
+  /** Section id (unique per page) and the small label above the heading. */
+  id?: string;
+  kicker?: string;
+  /** Hide the "Still have a question?" line (e.g. on the FAQ page after the first group). */
+  compact?: boolean;
 }
-const { items, heading = 'Questions, answered.', tint = false } = Astro.props;
+const { items, heading = 'Questions, answered.', tint = false, id = 'faq', kicker = 'FAQ', compact = false } = Astro.props;
 ---
-<section class:list={['section', { 'section--tint': tint }]} id="faq">
+<section class:list={['section', { 'section--tint': tint, 'section--slim': compact }]} id={id}>
   <div class="container faq">
     <header class="section-head section-head--left">
-      <p class="kicker">FAQ</p>
+      <p class="kicker">{kicker}</p>
       <h2>{heading}</h2>
-      <p>Still have a question? <a href={waLink(WA.question())} target="_blank" rel="noopener">Message us on WhatsApp</a>
+      {!compact && (
+        <p>Still have a question? <a href={waLink(WA.question())} target="_blank" rel="noopener">Message us on WhatsApp</a>
         or <a href={`mailto:${SITE.email}`}>email us</a>.</p>
+      )}
     </header>
 
     <div class="faq__list">

@@ -18,9 +18,11 @@ interface Props {
   jsonLd?: Record<string, unknown>[];
   /** Pre-filled message for the floating WhatsApp button on this page. */
   waMessage?: string;
+  /** False for pages without the enquiry form (e.g. policies). */
+  hasEnrol?: boolean;
 }
 
-const { waMessage, ...props } = Astro.props;
+const { waMessage, hasEnrol = true, ...props } = Astro.props;
 ---
 <!doctype html>
 <html lang="en-IN">
@@ -51,7 +53,7 @@ const { waMessage, ...props } = Astro.props;
 <body>
   <div class="scroll-progress" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
-  <Header />
+  <Header hasEnrol={hasEnrol} />
   <main id="main">
     <slot />
   </main>
