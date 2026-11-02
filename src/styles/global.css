@@ -3741,6 +3741,58 @@ p {
   }
 }
 
+/* Phones: keep the step line very compact so the cards get the width
+   (homepage "Mirqat path" and the /courses course list). */
+@media (max-width: 600px) {
+  .path-map {
+    grid-template-columns: 24px minmax(0, 1fr);
+    column-gap: 10px;
+    row-gap: 12px;
+  }
+
+  .path-map::before {
+    left: 11px;
+    top: 18px;
+    bottom: 18px;
+  }
+
+  .path-node {
+    width: 24px;
+    height: 24px;
+    margin-top: 18px;
+    font-size: 11px;
+    box-shadow: 0 0 0 3px rgba(254, 241, 188, 0.15);
+  }
+
+  .path-stop {
+    padding: 14px 14px 12px;
+  }
+
+  .path::before {
+    left: 11px;
+    top: 20px;
+    bottom: 20px;
+  }
+
+  .path-step {
+    grid-template-columns: 24px minmax(0, 1fr);
+    gap: 10px;
+  }
+
+  .path-step__num {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    font-size: 11px;
+    margin-top: 20px;
+    box-shadow: 0 0 0 3px var(--tint);
+  }
+
+  .path-card {
+    padding: 18px 14px;
+  }
+}
+
 /* ---------- how to enrol: stepper ---------- */
 .stepper {
   list-style: none;
