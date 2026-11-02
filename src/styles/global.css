@@ -1639,6 +1639,168 @@ p {
   color: rgba(254, 241, 188, 0.75);
 }
 
+/* ---------- pricing: "By course" / "By plan" ---------- */
+.price-tabs {
+  display: flex;
+  width: max-content;
+  margin: -12px auto clamp(28px, 4vw, 44px);
+  padding: 5px;
+  border-radius: 999px;
+  background: var(--tint);
+  border: 1px solid var(--line);
+}
+
+.price-tabs [role="tab"] {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 600;
+  padding: 10px 22px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--green-800);
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+
+.price-tabs [role="tab"][aria-selected="true"] {
+  background: var(--green-700);
+  color: var(--cream);
+  box-shadow: 0 6px 16px -8px rgba(30, 51, 41, 0.6);
+}
+
+.price-panel:not([hidden]) {
+  animation: card-swap 0.35s ease;
+}
+
+.price-panel + .price-panel:not([hidden]) {
+  margin-top: 0;
+}
+
+.course-prices {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  max-width: 980px;
+  display: grid;
+  gap: 12px;
+}
+
+.course-price {
+  display: grid;
+  grid-template-columns: 52px minmax(0, 1fr) minmax(0, 1.1fr) auto;
+  align-items: center;
+  gap: 20px;
+  padding: 18px 22px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+
+.course-price:hover {
+  border-color: rgba(67, 110, 91, 0.35);
+  box-shadow: var(--shadow);
+  transform: translateY(-2px);
+}
+
+.course-price__num {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-serif);
+  font-size: 20px;
+  font-weight: 700;
+  background: var(--green-700);
+  color: var(--cream);
+}
+
+.course-price:nth-child(2) .course-price__num { background: var(--green-500); }
+.course-price:nth-child(3) .course-price__num { background: var(--green-300); color: var(--green-900); }
+.course-price:nth-child(4) .course-price__num { background: #b6dfb4; color: var(--green-900); }
+.course-price:nth-child(5) .course-price__num { background: var(--cream); color: var(--green-900); }
+
+.course-price__info h3 {
+  font-size: 19px;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.course-price__info h3 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.course-price__info h3 a:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--green-300);
+}
+
+.course-price__info p {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.course-price__fee {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.course-price__from {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.course-price__fee strong {
+  font-family: var(--font-serif);
+  font-size: 26px;
+  color: var(--green-900);
+}
+
+.course-price__fee strong span {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--muted);
+  margin-left: 3px;
+}
+
+.course-price__fee strong.course-price__ask {
+  font-size: 20px;
+}
+
+.course-price__range {
+  font-size: 13px;
+  color: var(--green-700);
+  margin-top: 2px;
+}
+
+@media (max-width: 760px) {
+  .course-price {
+    grid-template-columns: 44px minmax(0, 1fr);
+    gap: 10px 14px;
+    padding: 16px;
+  }
+
+  .course-price__num {
+    width: 44px;
+    height: 44px;
+    font-size: 17px;
+  }
+
+  .course-price__fee,
+  .course-price__cta {
+    grid-column: 2;
+  }
+
+  .course-price__cta .btn {
+    width: 100%;
+  }
+}
+
 /* ---------- faq ---------- */
 .faq {
   display: grid;
