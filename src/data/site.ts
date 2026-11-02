@@ -18,7 +18,7 @@ export const SITE = {
   address: { locality: 'Kollam', region: 'Kerala', regionCode: 'IN-KL', country: 'IN', display: 'Kollam, Kerala, India' },
   timings: 'Flexible · IST (GMT+5:30)',
   social: {
-    instagram: 'https://www.instagram.com/mirqatinstitue/',
+    instagram: 'https://www.instagram.com/mirqatinstitute/',
     facebook: 'https://www.facebook.com/mirqatinstitue',
   },
   studentsTaught: '1,000+',
