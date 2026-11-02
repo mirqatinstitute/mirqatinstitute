@@ -1,8 +1,8 @@
 ---
 import { METRICS } from '../data/site';
 
-interface Props { floating?: boolean }
-const { floating = true } = Astro.props;
+interface Props { tint?: boolean }
+const { tint = true } = Astro.props;
 
 const ICONS: Record<string, string> = {
   learners: 'M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM2 21c0-3.9 3.1-7 7-7s7 3.1 7 7M17 11a3 3 0 1 0 0-6M22 21c0-3-1.8-5.5-4.5-6.5',
@@ -11,11 +11,15 @@ const ICONS: Record<string, string> = {
   courses: 'M4 5.5C4 4.7 4.7 4 5.5 4H11v16H5.5c-.8 0-1.5-.7-1.5-1.5v-13zM20 5.5c0-.8-.7-1.5-1.5-1.5H13v16h5.5c.8 0 1.5-.7 1.5-1.5v-13z',
 };
 ---
-<section class:list={['metrics', { 'metrics--floating': floating }]} aria-label="Mirqat Institute in numbers">
+<section class:list={['section', 'section--slim', 'metrics', { 'section--tint': tint }]} aria-labelledby="metrics-title">
   <div class="container">
+    <header class="section-head">
+      <p class="kicker">Mirqat in numbers</p>
+      <h2 id="metrics-title">Growing, one step at a time.</h2>
+    </header>
     <dl class="metrics__grid">
       {METRICS.map((m) => (
-        <div class="metric">
+        <div class="metric reveal">
           <span class="metric__icon" aria-hidden="true">
             <svg viewBox="0 0 24 24"><path d={ICONS[m.icon]} /></svg>
           </span>
