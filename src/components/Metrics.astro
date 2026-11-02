@@ -1,0 +1,30 @@
+---
+import { METRICS } from '../data/site';
+
+interface Props { floating?: boolean }
+const { floating = true } = Astro.props;
+
+const ICONS: Record<string, string> = {
+  learners: 'M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM2 21c0-3.9 3.1-7 7-7s7 3.1 7 7M17 11a3 3 0 1 0 0-6M22 21c0-3-1.8-5.5-4.5-6.5',
+  countries: 'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM3 12h18M12 3c2.5 2.8 3.8 5.8 3.8 9s-1.3 6.2-3.8 9c-2.5-2.8-3.8-5.8-3.8-9S9.5 5.8 12 3z',
+  teachers: 'M12 3L2 8l10 5 10-5-10-5zM6 10v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5M22 8v6',
+  courses: 'M4 5.5C4 4.7 4.7 4 5.5 4H11v16H5.5c-.8 0-1.5-.7-1.5-1.5v-13zM20 5.5c0-.8-.7-1.5-1.5-1.5H13v16h5.5c.8 0 1.5-.7 1.5-1.5v-13z',
+};
+---
+<section class:list={['metrics', { 'metrics--floating': floating }]} aria-label="Mirqat Institute in numbers">
+  <div class="container">
+    <dl class="metrics__grid">
+      {METRICS.map((m) => (
+        <div class="metric">
+          <span class="metric__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d={ICONS[m.icon]} /></svg>
+          </span>
+          <dt class="metric__value">
+            <span data-count={m.value} data-suffix={m.suffix}>{m.value.toLocaleString('en-IN')}{m.suffix}</span>
+          </dt>
+          <dd class="metric__label">{m.label}</dd>
+        </div>
+      ))}
+    </dl>
+  </div>
+</section>

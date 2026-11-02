@@ -1,41 +1,41 @@
 ---
 import { WA, waLink } from '../data/whatsapp';
+import WhatsAppIcon from './WhatsAppIcon.astro';
+
 interface Props { tint?: boolean }
 const { tint = true } = Astro.props;
+
+const STEPS = [
+  { title: 'Contact us', text: 'WhatsApp or the quick form', icon: 'M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 20.5l1.6-5.4A8.4 8.4 0 1 1 21 11.5z' },
+  { title: 'Choose a course', text: 'We help you pick the level', icon: 'M4 5.5C4 4.7 4.7 4 5.5 4H11v16H5.5c-.8 0-1.5-.7-1.5-1.5v-13zM20 5.5c0-.8-.7-1.5-1.5-1.5H13v16h5.5c.8 0 1.5-.7 1.5-1.5v-13z' },
+  { title: 'Pick a time', text: 'Flexible slots in IST', icon: 'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM12 7v5l3 2' },
+  { title: 'Register', text: 'Choose your monthly plan', icon: 'M9 4h6v3H9zM7 5.5H5.5v15h13v-15H17M9 13l2 2 4-4' },
+  { title: 'Begin classes', text: 'Your first step, live 1-on-1', icon: 'M5 12l5 5L20 7' },
+];
 ---
-<section class:list={['section', { 'section--tint': tint }]} id="how">
+<section class:list={['section', 'section--slim', { 'section--tint': tint }]} id="how">
   <div class="container">
     <header class="section-head">
       <p class="kicker">How to enrol</p>
-      <h2>Five steps to your first class.</h2>
+      <h2>Five quick steps to your first class.</h2>
     </header>
 
-    <ol class="how">
-      <li class="how__step reveal">
-        <span class="how__num">1</span>
-        <h3>Contact us</h3>
-        <p><a href={waLink(WA.general())} target="_blank" rel="noopener">Message us on WhatsApp</a> or send the quick enquiry form.</p>
-      </li>
-      <li class="how__step reveal">
-        <span class="how__num">2</span>
-        <h3>Choose a course</h3>
-        <p>We'll help you pick the right course for the student's level.</p>
-      </li>
-      <li class="how__step reveal">
-        <span class="how__num">3</span>
-        <h3>Select a timing</h3>
-        <p>Pick a class slot that fits your schedule (IST).</p>
-      </li>
-      <li class="how__step reveal">
-        <span class="how__num">4</span>
-        <h3>Register</h3>
-        <p>Complete your registration and choose your plan.</p>
-      </li>
-      <li class="how__step reveal">
-        <span class="how__num">5</span>
-        <h3>Begin classes</h3>
-        <p>Start your journey with the Qur'an, one step at a time.</p>
-      </li>
+    <ol class="stepper">
+      {STEPS.map((s, i) => (
+        <li class="stepper__item reveal">
+          <span class="stepper__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d={s.icon} /></svg>
+            <span class="stepper__n">{i + 1}</span>
+          </span>
+          <strong>{s.title}</strong>
+          <span>{s.text}</span>
+        </li>
+      ))}
     </ol>
+
+    <div class="stepper__cta">
+      <a href={waLink(WA.general())} class="btn btn--wa" target="_blank" rel="noopener"><WhatsAppIcon size={20} /> Start on WhatsApp</a>
+      <a href="#enrol" class="btn btn--ghost">Use the quick form</a>
+    </div>
   </div>
 </section>

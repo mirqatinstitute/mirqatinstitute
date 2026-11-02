@@ -2,9 +2,8 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
-import Strip from '../components/Strip.astro';
+import Metrics from '../components/Metrics.astro';
 import Ladder from '../components/Ladder.astro';
-import About from '../components/About.astro';
 import CoursesGrid from '../components/CoursesGrid.astro';
 import Why from '../components/Why.astro';
 import Teachers from '../components/Teachers.astro';
@@ -40,9 +39,8 @@ const jsonLd = [
   jsonLd={jsonLd}
 >
   <Hero />
-  <Strip />
+  <Metrics />
   <Ladder />
-  <About />
   <CoursesGrid />
   <Why />
   <Teachers />

@@ -1,0 +1,80 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import Metrics from '../components/Metrics.astro';
+import About from '../components/About.astro';
+import Why from '../components/Why.astro';
+import Teachers from '../components/Teachers.astro';
+import Enrol from '../components/Enrol.astro';
+import { SITE } from '../data/site';
+
+const crumbs = [{ name: 'Home', href: '/' }, { name: 'About' }];
+const jsonLd = [
+  {
+    '@type': 'AboutPage',
+    '@id': `${SITE.url}/about#page`,
+    url: `${SITE.url}/about`,
+    name: 'About Mirqat Institute',
+    about: { '@id': `${SITE.url}/#organization` },
+  },
+  {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE.url}/` },
+      { '@type': 'ListItem', position: 2, name: 'About', item: `${SITE.url}/about` },
+    ],
+  },
+];
+
+const PRINCIPLES = [
+  { title: 'Step by step', text: 'A clear path from the first Arabic letter to Hifz — every student starts on the right step and climbs steadily.' },
+  { title: 'One-to-one', text: 'Every class is personal, so each learner gets a teacher’s full attention, correction and encouragement.' },
+  { title: 'For life', text: 'Learn Qur’an. Live Qur’an. Inspire others. We teach so the Qur’an stays with students long after class.' },
+];
+---
+<BaseLayout
+  title="About Mirqat Institute — Online Quran Academy from Kollam, Kerala"
+  description="Mirqat Institute is an online Qur'an academy from Kollam, Kerala, teaching Noorani Qaida, Tajweed, Hifz and more one-to-one to 1,000+ learners in 5 countries."
+  jsonLd={jsonLd}
+>
+  <section class="page-hero page-hero--center">
+    <div class="container">
+      <Breadcrumbs items={crumbs} />
+      <p class="eyebrow eyebrow--center">
+        <span lang="ar" dir="rtl" class="eyebrow__ar">مِرْقاة</span>
+        <span>the ascending stairway</span>
+      </p>
+      <h1 class="page-hero__title">About Mirqat Institute</h1>
+      <p class="page-hero__lede">An online Qur'an academy from Kollam, Kerala — helping learners of every age climb closer to the Qur'an, one step at a time.</p>
+    </div>
+  </section>
+
+  <Metrics />
+  <About />
+
+  <section class="section meaning">
+    <div class="container meaning__grid">
+      <div class="meaning__word reveal">
+        <span class="meaning__ar" lang="ar" dir="rtl">مِرْقاة</span>
+        <span class="meaning__tr">mirqāh · a ladder, an ascending stairway</span>
+      </div>
+      <div>
+        <p class="kicker">Our name</p>
+        <h2>Why “Mirqat”?</h2>
+        <p class="meaning__lede">A <em>mirqāh</em> is a stairway you climb one step at a time. That is how we teach the Qur'an:</p>
+        <ul class="meaning__list">
+          {PRINCIPLES.map((p, i) => (
+            <li class="reveal">
+              <span class="meaning__num">{String(i + 1).padStart(2, '0')}</span>
+              <div><h3>{p.title}</h3><p>{p.text}</p></div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <Why />
+  <Teachers />
+  <Enrol edge="tint" />
+</BaseLayout>

@@ -18,7 +18,7 @@ if (reduce) {
   showAll();
 } else {
   // 1. Staggered reveals: animate a group's cards together as the group enters view.
-  const groups = ['.courses', '.quotes', '.plans', '.how', '.why__list', '.tutor-grid', '.path', '.reviews', '.about__facts'];
+  const groups = ['.path-map', '.stepper', '.courses', '.quotes', '.plans', '.how', '.why__list', '.tutor-grid', '.path', '.reviews', '.about__facts'];
   const grouped = new Set<Element>();
   groups.forEach((sel) => {
     document.querySelectorAll(sel).forEach((group) => {
@@ -49,7 +49,7 @@ if (reduce) {
     }, { amount: 0.3 });
   }
 
-  // 4. Count-up numbers (e.g. "800+").
+  // 4. Count-up numbers (e.g. "1,000+").
   document.querySelectorAll<HTMLElement>('[data-count]').forEach((el) => {
     const target = Number(el.dataset.count);
     const suffix = el.dataset.suffix ?? '';
@@ -57,7 +57,7 @@ if (reduce) {
       animate(0, target, {
         duration: 1.6,
         ease: EASE,
-        onUpdate: (v) => { el.textContent = `${Math.round(v)}${suffix}`; },
+        onUpdate: (v) => { el.textContent = `${Math.round(v).toLocaleString('en-IN')}${suffix}`; },
       });
     });
   });
