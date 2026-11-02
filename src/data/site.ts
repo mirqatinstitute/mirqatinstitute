@@ -110,6 +110,5 @@ export const TEACHERS: { name: string; role: string; photo: 'abdul-majid' | 'mal
   { name: 'Hafilath Muhsina Hadiya', role: "Qur'an tutor", photo: 'female' },
   { name: 'Hafilath Ashiqa Mueena', role: "Qur'an tutor", photo: 'female' },
   { name: 'Hafilath Sayyidath Haleema Hadiya', role: "Qur'an tutor", photo: 'female' },
-  // SAMPLE: Nihala Jamal's role is placeholder text — replace with her real role.
-  { name: 'Nihala Jamal', role: "Qur'an tutor · Sisters & children", photo: 'female', sample: true },
+  { name: 'Nihala Jamal', role: "Qur'an tutor", photo: 'female' },
 ];

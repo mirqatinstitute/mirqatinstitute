@@ -1,40 +1,72 @@
 ---
 layout: ../layouts/LegalLayout.astro
-title: Cancellation & Refund Policy
-crumb: Cancellation & Refund Policy
-description: How cancellations, missed classes and refunds work for Mirqat Institute's one-to-one online Quran classes.
+title: Refund & Cancellation Policy
+crumb: Refund & Cancellation Policy
+description: Mirqat Institute's Refund & Cancellation Policy — course fees and payments, refund eligibility, processing time, rescheduling, demo classes and course withdrawal.
 updated: 2026-11-02
 ---
 
-This policy explains how cancellations, missed classes and refunds work at **Mirqat Institute**. If anything is unclear, message us on WhatsApp at **+91 94007 38280** or email **mirqatinstitute313@gmail.com**.
+At Mirqat Institute, we are committed to providing quality Quran education through structured online learning. This Refund & Cancellation Policy explains the conditions under which students may request cancellations, rescheduling, and refunds.
 
-## 1. Fees and billing
+## 1. Course Fees and Payments
 
-- All plans are billed **monthly, in advance**. Current fees are listed on our [Pricing](/pricing) page.
-- Your plan (number of classes, class length) is agreed when you register.
+Mirqat Institute offers monthly and course-based payment options. Students must complete the applicable payment before beginning their classes, unless an alternative arrangement has been approved by the Institute.
 
-## 2. Cancelling your plan
+We currently accept payments through UPI and bank transfers. Fees may be collected in INR or an agreed international currency.
 
-- You can **cancel at any time** by letting us know on WhatsApp or by email.
-- To stop the next month's fee, please tell us **before the new month of classes begins**. There is no cancellation charge.
+## 2. Refund Eligibility
 
-## 3. Refunds
+Students may request a refund before the commencement of their enrolled course.
 
-- **Before classes start:** if you cancel before the first class of a month you have paid for, we refund that month's fee in full.
-- **After classes have started:** fees for a month in which classes have already begun are not refundable.
-- **Classes we cannot provide:** if we cancel a class and cannot reschedule it within the same month, we will refund or credit the fee for that class.
-- Approved refunds are processed within **7 working days** to the original payment method.
+Once classes have commenced, fees paid for the course are generally non-refundable, except where a refund is approved by Mirqat Institute or required under applicable law.
 
-## 4. Missed and rescheduled classes
+The following conditions apply:
 
-- If a student cannot attend, please inform us at least **12 hours before** the class. We will reschedule it once, within the same month.
-- Classes missed without notice are counted as taken.
-- If a teacher has to cancel a class, we will always offer a rescheduled class (or a refund/credit as above).
+- **Before classes begin:** Students may request a refund.
+- **After classes begin:** Refunds are generally not available for student-initiated cancellations.
+- **Institute cancellation:** If Mirqat Institute cancels a course or is unable to deliver the paid classes, the student may receive an appropriate refund for the undelivered portion or an alternative arrangement.
+- **Missed classes:** Fees are not refundable for classes missed by students.
 
-## 5. Changing your plan
+## 3. Refund Processing Time
 
-You can move to a different plan or class length from the start of the next month. Just message us before the month begins.
+Approved refunds will be processed within 7 working days from the date of refund approval.
 
-## 6. Contact
+The actual time taken for the amount to appear in the student's account may depend on the bank or payment provider.
 
-For any cancellation or refund request, contact us on WhatsApp at **+91 94007 38280** or email **mirqatinstitute313@gmail.com**. Please include the student's name and course.
+Refunds will normally be made through the original payment method or another mutually agreed method.
+
+## 4. Class Cancellation and Rescheduling
+
+Students may request to reschedule a class by informing their teacher at least 12 hours before the scheduled class.
+
+Rescheduling is subject to teacher availability and mutual agreement.
+
+If a student misses a class without prior notice, the class will be considered completed and will not automatically qualify for a replacement class or refund.
+
+Where a teacher is unavailable or Mirqat Institute needs to cancel a scheduled class, the Institute will coordinate a replacement class or another reasonable arrangement.
+
+## 5. Demo Classes
+
+Mirqat Institute may provide a demo or trial class before enrolment. The availability and conditions of demo classes will be communicated to students.
+
+## 6. Course Withdrawal
+
+Students wishing to discontinue their course must inform Mirqat Institute through the official contact email.
+
+Discontinuing a course does not automatically entitle the student to a refund for previously paid fees.
+
+## 7. Payment Errors
+
+If a student makes a duplicate payment or an incorrect payment, they should contact the Institute with the relevant transaction details.
+
+Verified duplicate or excess payments will be reviewed and refunded where appropriate.
+
+## 8. Contact Information
+
+For refund requests, cancellations, or payment-related questions, please contact:
+
+**Mirqat Institute**<br />
+Email: [mirqatinstitute313@gmail.com](mailto:mirqatinstitute313@gmail.com)<br />
+Website: [https://mirqatinstitute.com](https://mirqatinstitute.com)
+
+Mirqat Institute reserves the right to update this policy when necessary, subject to applicable law.

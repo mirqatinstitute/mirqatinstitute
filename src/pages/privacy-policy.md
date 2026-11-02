@@ -2,66 +2,143 @@
 layout: ../layouts/LegalLayout.astro
 title: Privacy Policy
 crumb: Privacy Policy
-description: How Mirqat Institute collects, uses and protects the personal information of students and parents.
+description: How Mirqat Institute collects, uses, stores and protects the personal information of students, parents, guardians and website visitors.
 updated: 2026-11-02
 ---
 
-**Mirqat Institute** ("we", "us") respects your privacy. This policy explains what personal information we collect, why, and the choices you have. It applies to our website and our online classes.
+Mirqat Institute respects the privacy of its students, parents, guardians, and website visitors. This Privacy Policy explains how we collect, use, store, and protect personal information when you visit our website or use our educational services.
 
-## 1. Information we collect
+By using our website or enrolling in our courses, you acknowledge this Privacy Policy.
 
-**When you contact or enrol with us** (on WhatsApp, by phone or by email), we receive the details you share, such as:
+## 1. Information We Collect
 
-- your name and the student's name;
-- your phone/WhatsApp number and email address;
-- the course you're interested in, who is learning (child, youth or adult), your preferred class time and your time zone.
+We may collect the following information:
 
-**While you study with us**, we keep simple records such as the class schedule, attendance and the student's learning progress, and records of payments made.
+### Student Information
 
-**On our website**, there are no user accounts and no advertising or tracking cookies. The enquiry form does not save your details on our website — it simply opens WhatsApp with your message ready for you to send. Our hosting provider may process standard technical information (such as IP address and browser type) to deliver and secure the website.
+- Full name
+- Age or date of birth, where required
+- Country of residence
+- Email address
+- Phone number and WhatsApp number
 
-## 2. How we use your information
+### Parent or Guardian Information
 
-We use your information only to:
+- Parent or guardian's name
+- Contact details
+- Information necessary to establish parental or guardian consent for minor students
 
-- reply to your enquiry and help you choose a course and timing;
-- arrange and run classes, and share progress with students and parents;
-- manage fees and payments;
-- contact you about your classes, schedule changes or important updates.
+### Payment Information
 
-We do not sell your personal information, and we do not use it for third-party advertising.
+- Payment amount and transaction details
+- Payment date and reference number
+- Relevant bank transfer or UPI confirmation details
 
-## 3. Children
+We do not intend to collect unnecessary financial information, such as banking passwords, UPI PINs, or card security codes.
 
-Many of our students are children. For students under 18, we collect information from, and with the consent of, a parent or guardian. Parents are welcome to sit in on classes. We do not record classes without the consent of the student (or parent/guardian for children).
+## 2. How We Use Your Information
 
-## 4. Sharing your information
+We use collected information for the following purposes:
 
-We share information only where needed to provide our services — for example with **WhatsApp** (for messaging), the **video-calling platform** we use for classes, and **payment providers** — or where required by law.
+- Student registration and enrolment.
+- Arranging Quran classes and assigning teachers.
+- Communicating class schedules and updates.
+- Monitoring educational progress and course completion.
+- Issuing course completion certificates.
+- Processing and verifying payments.
+- Responding to enquiries and providing student support.
+- Maintaining administrative and educational records.
+- Improving our website and educational services.
+- Meeting applicable legal obligations.
 
-## 5. How long we keep it
+## 3. Children's Privacy
 
-We keep your information for as long as you are studying with us, and for a reasonable period afterwards for our records. You can ask us to delete it at any time (see below).
+Mirqat Institute provides educational services to children.
 
-## 6. Your rights
+For students below 18 years of age, we require appropriate consent from a parent or legal guardian before enrolment and the processing of the child's personal information, as required by applicable law.
 
-In line with India's **Digital Personal Data Protection Act, 2023**, you can ask us to:
+Parents and guardians may contact us to request access to, correction of, or deletion of their child's information, subject to applicable legal and record-retention requirements.
 
-- access the personal information we hold about you;
-- correct or update it;
-- delete it, or withdraw your consent.
+We do not knowingly use children's personal information for targeted advertising.
 
-To make a request, contact us using the details below.
+## 4. Third-Party Services
 
-## 7. Security
+To operate our educational services, we may use third-party platforms and service providers, including:
 
-We take reasonable steps to protect your information and limit access to the people who need it to teach and support you.
+- Zoom or Google Meet for online classes.
+- WhatsApp for student and parent communication.
+- Payment service providers where applicable.
+- Google Analytics or similar website analytics services.
+- Website hosting and technical service providers.
 
-## 8. Changes to this policy
+These providers may process certain information according to their own privacy policies and applicable agreements.
 
-We may update this policy from time to time. The latest version will always be on this page, with the date it was last updated.
+We encourage users to review the privacy policies of third-party platforms they use.
 
-## 9. Contact
+## 5. Online Class Recordings
 
-**Mirqat Institute**, Kollam, Kerala, India
-WhatsApp/phone: **+91 94007 38280** · Email: **mirqatinstitute313@gmail.com**
+Mirqat Institute does not routinely record its online teaching sessions.
+
+Students and parents should not independently record, distribute, or publish class sessions without prior written permission from the Institute and the necessary consent of other participants.
+
+## 6. Cookies and Website Analytics
+
+Our website may use cookies and similar technologies to improve website functionality, understand visitor behaviour, and analyse website traffic.
+
+You may manage cookies through your browser settings. Certain website features may not function properly if cookies are disabled.
+
+Where required, we will obtain appropriate consent for non-essential cookies and analytics technologies.
+
+## 7. Sharing of Personal Information
+
+We do not sell or rent students' personal information to third parties.
+
+We may share limited information with trusted service providers when necessary to operate our services, process payments, communicate with students, or maintain our website.
+
+We may also disclose information when required by law or by a lawful government authority.
+
+## 8. Data Security
+
+We take reasonable technical and organisational measures to protect personal information against unauthorised access, disclosure, alteration, loss, or misuse.
+
+However, no internet-based system can be guaranteed to be completely secure.
+
+## 9. Data Retention
+
+We retain personal information only for as long as reasonably necessary to provide educational services, maintain academic and payment records, resolve disputes, and meet applicable legal requirements.
+
+When information is no longer required, we will take reasonable steps to delete or anonymise it, subject to applicable law.
+
+## 10. Your Privacy Rights
+
+Subject to applicable law, students and parents or guardians may:
+
+- Request access to personal information.
+- Request correction of inaccurate information.
+- Request deletion of information where legally permissible.
+- Withdraw consent where processing is based on consent.
+- Raise questions or concerns about the handling of personal information.
+
+Requests may be submitted through our official email address.
+
+## 11. International Students
+
+Mirqat Institute welcomes students from different countries.
+
+Where students access our services from outside India, their information may be processed in India and through third-party service providers operating in other countries, subject to applicable data protection laws.
+
+## 12. Changes to This Privacy Policy
+
+We may update this Privacy Policy from time to time to reflect changes in our services, technology, or applicable legal requirements.
+
+Any revised version will be published on our website with an updated effective date.
+
+## 13. Contact Us
+
+For privacy-related questions, requests, or complaints, please contact:
+
+**Mirqat Institute**<br />
+Email: [mirqatinstitute313@gmail.com](mailto:mirqatinstitute313@gmail.com)<br />
+Website: [https://mirqatinstitute.com](https://mirqatinstitute.com)
+
+We will review and respond to privacy requests within a reasonable period and in accordance with applicable law.
