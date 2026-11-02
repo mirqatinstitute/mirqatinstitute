@@ -4,6 +4,13 @@ import { getCollection } from 'astro:content';
 import { WA, waLink } from '../data/whatsapp';
 import WhatsAppIcon from './WhatsAppIcon.astro';
 
+interface Props {
+  /** Background of the sections above/below, so the stepped edges blend in. */
+  edgeTop?: 'paper' | 'tint';
+  edgeBottom?: 'paper' | 'tint';
+}
+const { edgeTop = 'paper', edgeBottom = 'paper' } = Astro.props;
+
 const courses = (await getCollection('courses')).sort((a, b) => a.data.order - b.data.order);
 const GUIDE: Record<string, { start: string; outcome: string }> = {
   'noorani-qaida': { start: "You're new to Arabic letters", outcome: 'Read Arabic letters and words correctly' },
@@ -30,7 +37,7 @@ const route = steps
   .replace(/,$/, '');
 ---
 <section class="ladder" id="ladder">
-  <div class="stepped-edge stepped-edge--top" aria-hidden="true"></div>
+  <div class:list={['stepped-edge', 'stepped-edge--top', { 'stepped-edge--tint': edgeTop === 'tint' }]} aria-hidden="true"></div>
   <div class="container">
     <header class="section-head section-head--light">
       <p class="kicker">The Mirqat path</p>
@@ -64,5 +71,5 @@ const route = steps
       Not sure where you fit? <a href={waLink(WA.notSure())} target="_blank" rel="noopener"><WhatsAppIcon size={18} /> Ask us on WhatsApp</a>
     </p>
   </div>
-  <div class="stepped-edge stepped-edge--bottom" aria-hidden="true"></div>
+  <div class:list={['stepped-edge', 'stepped-edge--bottom', { 'stepped-edge--tint': edgeBottom === 'tint' }]} aria-hidden="true"></div>
 </section>

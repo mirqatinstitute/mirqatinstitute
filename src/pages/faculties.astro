@@ -2,7 +2,6 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHero from '../components/PageHero.astro';
 import Teachers from '../components/Teachers.astro';
-import Why from '../components/Why.astro';
 import Enrol from '../components/Enrol.astro';
 import { SITE, TEACHERS } from '../data/site';
 
@@ -42,6 +41,5 @@ const jsonLd = [
   <PageHero crumb="Faculties" title="Our faculties"
     lede="Huffaz, hafilaths and Tajweed specialists — male and female tutors teaching one-to-one, live online." />
   <Teachers />
-  <Why />
-  <Enrol />
+  <Enrol edge="tint" />
 </BaseLayout>

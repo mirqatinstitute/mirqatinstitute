@@ -18,7 +18,7 @@ if (reduce) {
   showAll();
 } else {
   // 1. Staggered reveals: animate a group's cards together as the group enters view.
-  const groups = ['.path-map', '.stepper', '.contact-cards', '.courses', '.quotes', '.plans', '.how', '.why__list', '.tutor-grid', '.path', '.reviews', '.about__facts'];
+  const groups = ['.path-map', '.stepper', '.metrics__grid', '.contact-cards', '.courses', '.quotes', '.plans', '.how', '.why__list', '.tutor-grid', '.path', '.reviews', '.about__facts'];
   const grouped = new Set<Element>();
   groups.forEach((sel) => {
     document.querySelectorAll(sel).forEach((group) => {
