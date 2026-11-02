@@ -55,7 +55,7 @@ Every link to your site helps Google trust it.
 - **Facebook page** → the website field in the About section
 - **WhatsApp Business** → the website field in the business profile (use WhatsApp Business, not the personal app)
 - **YouTube** (if you start one) → the channel's About section
-- Check that the Instagram and Facebook username is spelled correctly. The site currently links to **`mirqatinstitue`**. If the real handle is `mirqatinstitute`, tell me and I'll fix the links.
+- Social links are set in `src/data/site.ts` (`SITE.social`). Instagram is **`mirqatinstitute`**; Facebook is still **`mirqatinstitue`** — update it there if that handle changes too.
 
 ### 5. List the academy on directories (backlinks)
 Create free listings, always with the same name, phone and website (consistency matters):
