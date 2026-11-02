@@ -1,11 +1,55 @@
 ---
+import { getImage } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHero from '../components/PageHero.astro';
 import Teachers from '../components/Teachers.astro';
 import Enrol from '../components/Enrol.astro';
 import { SITE, TEACHERS } from '../data/site';
+import saahilPhoto from '../assets/teachers/muhammed-saahil.webp';
+import abdulMajidPhoto from '../assets/teachers/abdul-majid.webp';
 
 const org = { '@id': `${SITE.url}/#organization` };
+const abs = async (img: ImageMetadata) => new URL((await getImage({ src: img, width: 336 })).src, SITE.url).href;
+
+// Topics each teacher teaches, read from their role.
+const TOPICS: [RegExp, string][] = [
+  [/hifz/i, 'Hifz (Quran memorisation)'],
+  [/tajweed/i, 'Tajweed'],
+  [/qaida/i, 'Noorani Qaida'],
+];
+const knowsAbout = (role: string) => {
+  const found = TOPICS.filter(([re]) => re.test(role)).map(([, t]) => t);
+  return found.length ? found : ["Qur'an recitation"];
+};
+const honorific = (name: string) => (name.match(/^(Hafiz|Hafilath)\s/) ?? [])[1];
+
+const people = [
+  {
+    '@type': 'Person',
+    '@id': `${SITE.url}/faculties#muhammed-saahil`,
+    name: 'Muhammed Saahil',
+    jobTitle: "Qur'an Tutor",
+    image: await abs(saahilPhoto),
+    knowsAbout: ["Qur'an recitation", 'Tajweed', 'Hifz (Quran memorisation)', 'Islamic studies'],
+    hasCredential: [
+      { '@type': 'EducationalOccupationalCredential', credentialCategory: 'degree', name: 'M.A. Arabic' },
+      { '@type': 'EducationalOccupationalCredential', credentialCategory: 'certificate', name: "Hafs & Shu'bah Riwayah certification" },
+    ],
+    worksFor: org,
+  },
+  ...(await Promise.all(
+    TEACHERS.filter((t) => !t.sample).map(async (t) => ({
+      '@type': 'Person',
+      name: t.name,
+      ...(honorific(t.name) && { honorificPrefix: honorific(t.name) }),
+      jobTitle: t.role,
+      knowsAbout: knowsAbout(t.role),
+      ...(t.photo === 'abdul-majid' && { image: await abs(abdulMajidPhoto) }),
+      worksFor: org,
+    })),
+  )),
+];
+
 const jsonLd = [
   {
     '@type': 'CollectionPage',
@@ -14,14 +58,7 @@ const jsonLd = [
     name: 'Faculties — Mirqat Institute',
     mainEntity: {
       '@type': 'ItemList',
-      itemListElement: [
-        { name: 'Muhammed Saahil', role: "Qur'an Tutor" },
-        ...TEACHERS.filter((t) => !t.sample).map((t) => ({ name: t.name, role: t.role })),
-      ].map((t, i) => ({
-        '@type': 'ListItem',
-        position: i + 1,
-        item: { '@type': 'Person', name: t.name, jobTitle: t.role, worksFor: org },
-      })),
+      itemListElement: people.map((item, i) => ({ '@type': 'ListItem', position: i + 1, item })),
     },
   },
   {

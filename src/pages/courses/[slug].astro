@@ -38,16 +38,42 @@ const jsonLd = [
     provider: { '@id': `${SITE.url}/#organization` },
     educationalLevel: d.level,
     teaches: d.learn,
+    isAccessibleForFree: false,
+    educationalCredentialAwarded: 'Course completion certificate',
     ...(plan && {
-      offers: {
-        '@type': 'Offer',
-        category: 'Paid',
-        price: plan.from,
-        priceCurrency: 'INR',
-        url: `${url}#pricing`,
-      },
+      offers: [
+        {
+          '@type': 'Offer',
+          category: 'Subscription',
+          price: plan.from,
+          priceCurrency: 'INR',
+          availability: 'https://schema.org/InStock',
+          url: `${url}#pricing`,
+          priceSpecification: {
+            '@type': 'UnitPriceSpecification',
+            price: plan.from,
+            priceCurrency: 'INR',
+            unitText: 'month',
+            referenceQuantity: { '@type': 'QuantitativeValue', value: 1, unitCode: 'MON' },
+          },
+        },
+      ],
     }),
-    hasCourseInstance: { '@type': 'CourseInstance', courseMode: 'online', location: 'Online' },
+    hasCourseInstance: [
+      {
+        '@type': 'CourseInstance',
+        courseMode: 'Online',
+        ...(plan && {
+          // e.g. 20 one-to-one classes a month, each at least 30 minutes
+          courseSchedule: {
+            '@type': 'Schedule',
+            repeatFrequency: 'Monthly',
+            repeatCount: plan.schedule.classesPerMonth,
+            ...(plan.schedule.minMinutes && { duration: `PT${plan.schedule.minMinutes}M` }),
+          },
+        }),
+      },
+    ],
   },
   {
     '@type': 'BreadcrumbList',

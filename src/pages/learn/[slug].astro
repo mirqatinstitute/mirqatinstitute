@@ -1,0 +1,91 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import Enrol from '../../components/Enrol.astro';
+import { SITE } from '../../data/site';
+
+export async function getStaticPaths() {
+  const articles = await getCollection('articles');
+  return articles.map((article) => ({ params: { slug: article.id }, props: { article } }));
+}
+
+const { article } = Astro.props;
+const { Content } = await render(article);
+const d = article.data;
+const url = `${SITE.url}/learn/${article.id}`;
+const courses = await getCollection('courses');
+const related = d.related.map((id) => courses.find((c) => c.id === id)).filter((c) => c !== undefined);
+const others = (await getCollection('articles')).filter((a) => a.id !== article.id).sort((a, b) => a.data.order - b.data.order).slice(0, 3);
+const fmt = (date: Date) => date.toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' });
+const crumbs = [{ name: 'Home', href: '/' }, { name: 'Learn', href: '/learn' }, { name: d.title }];
+
+const jsonLd = [
+  {
+    '@type': 'BlogPosting',
+    '@id': `${url}#article`,
+    headline: d.title,
+    description: d.description,
+    abstract: d.answer,
+    url,
+    mainEntityOfPage: url,
+    image: `${SITE.url}${SITE.ogImage}`,
+    inLanguage: 'en',
+    datePublished: d.published.toISOString().slice(0, 10),
+    dateModified: d.updated.toISOString().slice(0, 10),
+    author: { '@id': `${SITE.url}/#organization` },
+    publisher: { '@id': `${SITE.url}/#organization` },
+    about: related.map((c) => ({ '@type': 'Course', name: c.data.title, url: `${SITE.url}/courses/${c.id}` })),
+  },
+  {
+    '@type': 'BreadcrumbList',
+    itemListElement: crumbs.map((c, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: c.name,
+      item: c.href ? new URL(c.href, SITE.url).href : url,
+    })),
+  },
+];
+---
+<BaseLayout title={`${d.seoTitle} | ${SITE.name}`} description={d.description} jsonLd={jsonLd} type="article">
+  <section class="page-hero">
+    <div class="container article-head">
+      <Breadcrumbs items={crumbs} />
+      <h1 class="page-hero__title">{d.title}</h1>
+      <p class="article-meta">By {SITE.name} · Updated <time datetime={d.updated.toISOString().slice(0, 10)}>{fmt(d.updated)}</time></p>
+    </div>
+  </section>
+
+  <section class="section section--slim">
+    <div class="container article-layout">
+      <article class="prose article-body">
+        <aside class="answer-box" aria-label="Short answer">
+          <span class="answer-box__label">Short answer</span>
+          <p>{d.answer}</p>
+        </aside>
+        <Content />
+      </article>
+
+      <aside class="article-side">
+        {related.length > 0 && (
+          <div class="side-card">
+            <h2>Start learning</h2>
+            <ul>
+              {related.map((c) => <li><a href={`/courses/${c.id}`}>{c.data.title} →</a></li>)}
+            </ul>
+            <a href="#enrol" class="btn btn--primary btn--block btn--sm">Join a class</a>
+          </div>
+        )}
+        <div class="side-card side-card--plain">
+          <h2>More answers</h2>
+          <ul>
+            {others.map((a) => <li><a href={`/learn/${a.id}`}>{a.data.title}</a></li>)}
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <Enrol />
+</BaseLayout>

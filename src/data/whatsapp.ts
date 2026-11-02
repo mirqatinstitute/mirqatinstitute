@@ -8,6 +8,9 @@ export const WA = {
   /** Floating button, footer, contact details. */
   general: () => `${HELLO}\nI'd like to know more about Qur'an classes at *Mirqat Institute*.`,
 
+  /** Malayalam page: general enquiry in Malayalam. */
+  generalMl: () => `${HELLO}\nമിർഖാത്ത് ഇൻസ്റ്റിറ്റ്യൂട്ടിലെ ഖുർആൻ ക്ലാസുകളെക്കുറിച്ച് കൂടുതൽ അറിയാൻ ആഗ്രഹിക്കുന്നു.`,
+
   /** FAQ "still have a question?" */
   question: () => `${HELLO}\nI have a question about Mirqat Institute:\n`,
 

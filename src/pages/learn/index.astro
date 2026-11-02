@@ -1,0 +1,53 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import Enrol from '../../components/Enrol.astro';
+import { SITE } from '../../data/site';
+
+const articles = (await getCollection('articles')).sort((a, b) => a.data.order - b.data.order);
+const jsonLd = [
+  {
+    '@type': 'CollectionPage',
+    '@id': `${SITE.url}/learn#page`,
+    url: `${SITE.url}/learn`,
+    name: 'Learn — Mirqat Institute',
+    mainEntity: {
+      '@type': 'ItemList',
+      itemListElement: articles.map((a, i) => ({ '@type': 'ListItem', position: i + 1, url: `${SITE.url}/learn/${a.id}`, name: a.data.title })),
+    },
+  },
+  {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE.url}/` },
+      { '@type': 'ListItem', position: 2, name: 'Learn', item: `${SITE.url}/learn` },
+    ],
+  },
+];
+---
+<BaseLayout
+  title="Learn — Quran Learning Guides | Mirqat Institute"
+  description="Simple guides for parents and students: what Tajweed is, Noorani Qaida, how long Hifz takes, the best age to start, and how Hifz revision works."
+  jsonLd={jsonLd}
+>
+  <PageHero crumb="Learn" title="Learn" lede="Clear, simple answers to the questions parents and students ask most about learning the Qur'an." />
+
+  <section class="section section--slim section--tint">
+    <div class="container">
+      <ul class="article-list">
+        {articles.map((a) => (
+          <li class="reveal">
+            <a class="article-card" href={`/learn/${a.id}`}>
+              <h2>{a.data.title}</h2>
+              <p>{a.data.description}</p>
+              <span class="article-card__more">Read the answer →</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <Enrol edge="tint" />
+</BaseLayout>

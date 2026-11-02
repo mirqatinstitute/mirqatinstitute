@@ -14,18 +14,23 @@ interface Props {
   title: string;
   description: string;
   image?: string;
+  type?: 'website' | 'article';
   noindex?: boolean;
   jsonLd?: Record<string, unknown>[];
   /** Pre-filled message for the floating WhatsApp button on this page. */
   waMessage?: string;
   /** False for pages without the enquiry form (e.g. policies). */
   hasEnrol?: boolean;
+  /** Page language (default English, India). */
+  lang?: string;
+  alternates?: { hreflang: string; href: string }[];
+  ogLocale?: string;
 }
 
-const { waMessage, hasEnrol = true, ...props } = Astro.props;
+const { waMessage, hasEnrol = true, lang = 'en-IN', ...props } = Astro.props;
 ---
 <!doctype html>
-<html lang="en-IN">
+<html lang={lang}>
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
