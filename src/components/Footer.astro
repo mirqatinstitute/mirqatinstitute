@@ -36,10 +36,10 @@ const courses = (await getCollection('courses')).sort((a, b) => a.data.order - b
     <div class="footer__col">
       <h4>Institute</h4>
       <a href="/about">About</a>
-      <a href="/#teachers">Teachers</a>
-      <a href="/#pricing">Pricing</a>
-      <a href="/#how">How to enrol</a>
-      <a href="/#faq">FAQ</a>
+      <a href="/faculties">Faculties</a>
+      <a href="/pricing">Pricing</a>
+      <a href="/faq">FAQ</a>
+      <a href="/contact">Contact</a>
     </div>
 
     <div class="footer__col">
@@ -53,6 +53,11 @@ const courses = (await getCollection('courses')).sort((a, b) => a.data.order - b
 
   <div class="container footer__bottom">
     <span>© {new Date().getFullYear()} Mirqat Institute. All rights reserved.</span>
+    <nav class="footer__legal" aria-label="Policies">
+      <a href="/refund-policy">Cancellation &amp; Refund Policy</a>
+      <a href="/privacy-policy">Privacy Policy</a>
+      <a href="/terms">Terms &amp; Conditions</a>
+    </nav>
     <span class="footer__tag">Step by step, toward the Qur'an</span>
   </div>
 </footer>

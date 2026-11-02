@@ -1,3 +1,11 @@
+---
+interface Props {
+  /** Pages without the enquiry form send "Enrol now" to the Contact page's form. */
+  hasEnrol?: boolean;
+}
+const { hasEnrol = true } = Astro.props;
+const enrolHref = hasEnrol ? '#enrol' : '/contact#enrol';
+---
 <header class="site-header" id="top">
   <div class="container site-header__inner">
     <a href="/" class="logo" aria-label="Mirqat Institute — home">
@@ -16,10 +24,11 @@
     <nav class="nav" id="nav" aria-label="Main">
       <a href="/about">About</a>
       <a href="/courses">Courses</a>
-      <a href="/#teachers">Teachers</a>
-      <a href="/#pricing">Pricing</a>
-      <a href="/#faq">FAQ</a>
-      <a href="#enrol" class="btn btn--primary btn--sm nav__cta">Enrol now</a>
+      <a href="/faculties">Faculties</a>
+      <a href="/pricing">Pricing</a>
+      <a href="/faq">FAQ</a>
+      <a href="/contact">Contact</a>
+      <a href={enrolHref} class="btn btn--primary btn--sm nav__cta">Enrol now</a>
     </nav>
 
     <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="nav" aria-label="Open menu">

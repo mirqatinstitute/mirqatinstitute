@@ -1,0 +1,38 @@
+---
+// Layout for policy pages written in Markdown (src/pages/*.md).
+import BaseLayout from './BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import { SITE } from '../data/site';
+
+const { frontmatter } = Astro.props;
+const { title, description, updated, crumb } = frontmatter as { title: string; description: string; updated: string; crumb: string };
+const path = Astro.url.pathname.replace(/\.html$/, '');
+const jsonLd = [
+  {
+    '@type': 'WebPage',
+    '@id': `${SITE.url}${path}#page`,
+    url: `${SITE.url}${path}`,
+    name: title,
+    dateModified: updated,
+    publisher: { '@id': `${SITE.url}/#organization` },
+  },
+  {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE.url}/` },
+      { '@type': 'ListItem', position: 2, name: crumb, item: `${SITE.url}${path}` },
+    ],
+  },
+];
+const updatedText = new Date(updated).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' });
+---
+<BaseLayout title={`${title} | ${SITE.name}`} description={description} jsonLd={jsonLd} hasEnrol={false}>
+  <PageHero crumb={crumb} title={title} lede={`Last updated ${updatedText}`} />
+  <section class="section section--slim">
+    <div class="container">
+      <article class="prose legal">
+        <slot />
+      </article>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,45 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import Pricing from '../components/Pricing.astro';
+import Faq from '../components/Faq.astro';
+import Enrol from '../components/Enrol.astro';
+import { SITE, PLANS, inr } from '../data/site';
+
+const min = Math.min(...Object.values(PLANS).map((p) => p.from));
+const items = [
+  { q: 'How much do classes cost?', a: `Fees start from ${inr(PLANS.hifz.from)} per month for the Hifz Plan (also used for Qur'an Revision) and ${inr(PLANS.basic.from)} per month for the Basic Qur'an and Tajweed plans (Tajweed is also used for Qur'an Reading).` },
+  { q: 'Which plan does each course use?', a: "Noorani Qaida uses the Basic Qur'an Plan. Tajweed and Qur'an Reading use the Tajweed Plan. Hifz and Qur'an Revision use the Hifz Plan." },
+  { q: 'How are classes billed?', a: 'Plans are billed monthly. Your fee depends on the class length (Basic and Tajweed plans) or the number of classes each month (Hifz Plan).' },
+  { q: 'Are all classes one-to-one?', a: 'Yes. Every class is one-to-one and live online, with flexible timings scheduled in IST (GMT+5:30).' },
+  { q: 'Can I change my plan later?', a: 'Yes. Message us on WhatsApp and we will move you to the plan that suits you from the next month.' },
+];
+const jsonLd = [
+  {
+    '@type': 'WebPage',
+    '@id': `${SITE.url}/pricing#page`,
+    url: `${SITE.url}/pricing`,
+    name: 'Pricing — Mirqat Institute',
+    about: { '@id': `${SITE.url}/#organization` },
+  },
+  {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE.url}/` },
+      { '@type': 'ListItem', position: 2, name: 'Pricing', item: `${SITE.url}/pricing` },
+    ],
+  },
+  { '@type': 'FAQPage', mainEntity: items.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
+];
+---
+<BaseLayout
+  title="Pricing — Online Quran Class Fees | Mirqat Institute"
+  description={`Simple monthly fees for one-to-one online Quran classes: Noorani Qaida, Tajweed, Quran reading, Hifz and revision. From ${inr(min)}/month.`}
+  jsonLd={jsonLd}
+>
+  <PageHero crumb="Pricing" title="Pricing & plans"
+    lede={`Simple monthly fees for one-to-one, live online classes — from ${inr(min)} a month.`} />
+  <Pricing tint />
+  <Faq items={items} heading="Fees, answered." kicker="Pricing FAQ" />
+  <Enrol />
+</BaseLayout>

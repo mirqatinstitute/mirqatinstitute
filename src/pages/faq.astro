@@ -1,0 +1,39 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import Faq from '../components/Faq.astro';
+import Enrol from '../components/Enrol.astro';
+import { SITE, HOME_FAQ } from '../data/site';
+
+const courses = (await getCollection('courses')).sort((a, b) => a.data.order - b.data.order);
+const all = [...HOME_FAQ, ...courses.flatMap((c) => c.data.faqs)];
+const jsonLd = [
+  { '@type': 'FAQPage', '@id': `${SITE.url}/faq#page`, mainEntity: all.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
+  {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE.url}/` },
+      { '@type': 'ListItem', position: 2, name: 'FAQ', item: `${SITE.url}/faq` },
+    ],
+  },
+];
+---
+<BaseLayout
+  title="FAQ — Online Quran Classes | Mirqat Institute"
+  description="Answers to common questions about Mirqat Institute's online Quran classes: who can join, timings, fees, Noorani Qaida, Tajweed, Hifz, revision and how to enrol."
+  jsonLd={jsonLd}
+>
+  <PageHero crumb="FAQ" title="Frequently asked questions" lede="Everything parents and students usually ask before joining — by topic and by course.">
+    <nav class="faq-jump" aria-label="Jump to a topic">
+      <a href="#faq-general">General</a>
+      {courses.map((c) => <a href={`#faq-${c.id}`}>{c.data.title}</a>)}
+    </nav>
+  </PageHero>
+
+  <Faq id="faq-general" kicker="General" heading="About Mirqat Institute." items={HOME_FAQ} tint />
+  {courses.map((c, i) => (
+    <Faq id={`faq-${c.id}`} kicker="Course" heading={`${c.data.title}.`} items={c.data.faqs} tint={i % 2 === 1} compact />
+  ))}
+  <Enrol edge={courses.length % 2 === 0 ? 'tint' : 'paper'} />
+</BaseLayout>
