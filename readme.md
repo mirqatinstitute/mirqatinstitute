@@ -65,11 +65,10 @@ Content is only hidden while JavaScript is running. Everything shows immediately
 ## Still sample content
 
 - **Testimonials** (`src/components/Testimonials.astro`): the three quotes are SAMPLE content. Replace them with real ones (with permission).
-- **Nihala Jamal** (`TEACHERS` in `src/data/site.ts`): her role is SAMPLE content.
 
 ## Policy pages
 
-`src/pages/refund-policy.md`, `privacy-policy.md` and `terms.md` are written in plain Markdown — edit the text directly and update the `updated:` date at the top. The first versions were drafted from what we knew (monthly billing, WhatsApp enquiries, one-to-one online classes) and must be checked by the academy before relying on them.
+`src/pages/refund-policy.md`, `privacy-policy.md` and `terms.md` are written in plain Markdown — edit the text directly and update the `updated:` date at the top. The current text was provided by the academy (effective 2 November 2026).
 
 ## Course reviews
 
