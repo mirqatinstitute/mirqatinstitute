@@ -7,7 +7,7 @@ order: 5
 icon: "M20 12a8 8 0 1 1-2.3-5.6M20 4v5h-5"
 level: Hifz students
 schedule: Customised
-plan: null
+plan: hifz
 formCourse: "Qur'an Revision"
 learn:
   - A systematic revision schedule for what you have memorised
@@ -33,7 +33,7 @@ faqs:
   - q: How is this different from the Hifz programme?
     a: The Hifz programme focuses on memorising new portions alongside revision. The Revision programme focuses entirely on strengthening and retaining what you have already memorised.
   - q: How much does it cost?
-    a: Contact us on WhatsApp and we will suggest a revision schedule and plan based on how much you have memorised.
+    a: Qur'an Revision follows the Hifz Plan — 20, 25 or 30 one-to-one classes a month for ₹1,300, ₹1,700 or ₹2,100.
 ---
 
 ## Why revision matters

@@ -7,9 +7,11 @@ import WhatsAppIcon from './WhatsAppIcon.astro';
 interface Props {
   /** Show just this plan (used on course pages). Otherwise: "By course" / "By plan" tabs. */
   only?: PlanKey;
+  /** On a course page: the course whose page this is (pre-selected by the plan button, named in the note). */
+  course?: { title: string; formCourse: string };
   tint?: boolean;
 }
-const { only, tint = false } = Astro.props;
+const { only, course, tint = false } = Astro.props;
 const planKeys: PlanKey[] = only ? [only] : ['basic', 'tajweed', 'hifz'];
 
 const courses = only ? [] : (await getCollection('courses')).sort((a, b) => a.data.order - b.data.order);
@@ -17,14 +19,18 @@ const range = (key: PlanKey) => {
   const prices = PLANS[key].options.map(([, p]) => p);
   return `${inr(Math.min(...prices))} – ${inr(Math.max(...prices))}`;
 };
-const optionsSummary = (key: PlanKey) => PLANS[key].options.map(([label]) => label.replace(' / month', '').replace(' classes', '')).join(' · ');
 ---
 <section class:list={['section', { 'section--tint': tint }]} id="pricing">
   <div class="container">
     <header class="section-head">
       <p class="kicker">Pricing &amp; plans</p>
       <h2>{only ? 'Plan & pricing.' : 'Simple monthly fees.'}</h2>
-      <p>All classes are one-to-one and online. Prices in Indian Rupees, billed monthly.</p>
+      <p>
+        {course && only && !PLANS[only].name.startsWith(course.title.split(' ')[0])
+          ? <>{course.title} follows the <strong>{PLANS[only].name}</strong>. </>
+          : null}
+        All classes are one-to-one and online. Prices in Indian Rupees, billed monthly.
+      </p>
     </header>
 
     {!only && (
@@ -51,7 +57,7 @@ const optionsSummary = (key: PlanKey) => PLANS[key].options.map(([label]) => lab
                     <>
                       <span class="course-price__from">from</span>
                       <strong>{inr(PLANS[key].from)}<span>/month</span></strong>
-                      <span class="course-price__range">{range(key)} · {optionsSummary(key)}</span>
+                      <span class="course-price__range">{range(key)} · {PLANS[key].optionsShort}</span>
                     </>
                   ) : (
                     <>
@@ -94,7 +100,7 @@ const optionsSummary = (key: PlanKey) => PLANS[key].options.map(([label]) => lab
                 </tbody>
               </table>
               <ul>{p.includes.map((i) => <li>{i}</li>)}</ul>
-              <a href="#enrol" class:list={['btn', 'btn--block', featured ? 'btn--cream' : 'btn--ghost']} data-course={p.course}>Choose this plan</a>
+              <a href="#enrol" class:list={['btn', 'btn--block', featured ? 'btn--cream' : 'btn--ghost']} data-course={course?.formCourse ?? p.course}>Choose this plan</a>
             </article>
           );
         })}

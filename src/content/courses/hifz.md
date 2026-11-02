@@ -1,7 +1,7 @@
 ---
 title: Hifz (Memorisation)
 seoTitle: Online Hifz Classes — Structured Quran Memorisation
-description: Memorise the Quran one-to-one online with a personalised Hifz plan, daily sabak and muraja'ah, Tajweed correction and progress tracking. From ₹1,600/month.
+description: Memorise the Quran one-to-one online with a personalised Hifz plan, daily sabak and muraja'ah, Tajweed correction and progress tracking. From ₹1,300/month.
 summary: Structured Qur'an memorisation with revision and continuous assessment, built around a personal plan.
 order: 4
 icon: "M12 3l2.5 5.5L20 9l-4 4 1 6-5-3-5 3 1-6-4-4 5.5-.5z"
@@ -34,7 +34,7 @@ faqs:
   - q: How is revision handled?
     a: Revision is built in. Alongside each new lesson (sabak), students do daily muraja'ah to keep what they have memorised strong. For students who need more, we also offer a dedicated Qur'an Revision programme.
   - q: How many classes do I need each month?
-    a: You can choose 20, 25 or 30 one-to-one classes a month — ₹1,600, ₹2,000 or ₹2,400 respectively.
+    a: You can choose 20, 25 or 30 one-to-one classes a month — ₹1,300, ₹1,700 or ₹2,100 respectively. Qur'an revision is included.
   - q: Do I need to know Tajweed before starting Hifz?
     a: Students should be able to read the Qur'an. Your teacher corrects Tajweed and pronunciation as you memorise, so mistakes are not memorised along with the words.
 ---

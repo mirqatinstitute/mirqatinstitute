@@ -31,6 +31,8 @@ export const PLANS: Record<PlanKey, {
   freq: string;
   from: number;
   optionsLabel: string;
+  /** Short summary of the options, shown in the "By course" pricing list. */
+  optionsShort: string;
   options: [string, number][];
   includes: string[];
   course: string;
@@ -38,28 +40,31 @@ export const PLANS: Record<PlanKey, {
   basic: {
     name: "Basic Qur'an Plan",
     freq: '20 classes / month',
-    from: 1300,
+    from: 1600,
     optionsLabel: 'prices by class length',
-    options: [['30 min classes', 1300], ['45 min classes', 1700], ['60 min classes', 2100]],
+    optionsShort: '30, 45 or 60 min classes',
+    options: [['30 min classes', 1600], ['45 min classes', 2000], ['60 min classes', 2400]],
     includes: ['Qaida Nooraniya', 'Arabic alphabet learning', "Basic Qur'an reading"],
     course: 'Noorani Qaida',
   },
   tajweed: {
     name: 'Tajweed Plan',
     freq: '20 classes / month',
-    from: 1300,
+    from: 1600,
     optionsLabel: 'prices by class length',
-    options: [['30 min classes', 1300], ['45 min classes', 1700], ['60 min classes', 2100]],
+    optionsShort: '30, 45 or 60 min classes',
+    options: [['30 min classes', 1600], ['45 min classes', 2000], ['60 min classes', 2400]],
     includes: ['Complete Tajweed rules', 'Makharij & Sifaat', 'Pronunciation correction', 'Madd & Ghunnah', 'Noon & Meem rules', 'Waqf & Ibtida', 'Practical recitation'],
     course: 'Tajweed',
   },
   hifz: {
     name: 'Hifz Plan',
     freq: '20, 25 or 30 classes / month',
-    from: 1600,
+    from: 1300,
     optionsLabel: 'prices by classes per month',
-    options: [['20 classes / month', 1600], ['25 classes / month', 2000], ['30 classes / month', 2400]],
-    includes: ['Personalised Hifz plan', 'New lesson (Sabak)', "Daily Muraja'ah", 'Tajweed & pronunciation correction', 'Progress tracking', 'Individual guidance'],
+    optionsShort: '20, 25 or 30 classes a month',
+    options: [['20 classes / month', 1300], ['25 classes / month', 1700], ['30 classes / month', 2100]],
+    includes: ['Personalised Hifz plan', 'New lesson (Sabak)', "Daily Muraja'ah", "Qur'an Revision", 'Tajweed & pronunciation correction', 'Progress tracking', 'Individual guidance'],
     course: 'Hifz (Memorisation)',
   },
 };
@@ -82,7 +87,7 @@ export const HOME_FAQ: { q: string; a: string }[] = [
   { q: "Do I need any prior Qur'an knowledge?", a: 'No. Complete beginners start with Noorani Qaida and basic Qur\'an reading.' },
   { q: 'Do you offer Hifz?', a: "Yes. Our Hifz plan includes a personalised plan, new lessons (sabak), daily muraja'ah and progress tracking, plus a separate Qur'an revision programme for Hifz students." },
   { q: 'What are the class timings?', a: "Timings are flexible. Classes are scheduled in IST (GMT+5:30), with slots arranged around the student's availability." },
-  { q: 'How much do classes cost?', a: "Plans start from ₹1,300 per month for the Basic Qur'an and Tajweed plans, and ₹1,600 per month for Hifz." },
+  { q: 'How much do classes cost?', a: "Plans start from ₹1,300 per month for Hifz and Qur'an Revision, and ₹1,600 per month for Noorani Qaida, Tajweed and Qur'an Reading." },
   { q: 'How do I enrol?', a: 'Contact us on WhatsApp or through the enrolment form, choose a course and class timing, complete your registration, and begin classes.' },
 ];
 

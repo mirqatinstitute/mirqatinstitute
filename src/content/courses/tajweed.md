@@ -1,7 +1,7 @@
 ---
 title: Tajweed
 seoTitle: Online Tajweed Course — Learn the Rules of Quran Recitation
-description: Master Tajweed one-to-one online — makharij, sifaat, noon and meem rules, madd, ghunnah and waqf. For all levels, from ₹1,300/month.
+description: Master Tajweed one-to-one online — makharij, sifaat, noon and meem rules, madd, ghunnah and waqf. For all levels, from ₹1,600/month.
 summary: Learn the rules of Tajweed and apply them correctly during recitation, with a teacher listening to every word.
 order: 2
 icon: "M3 12c3-6 6-6 9 0s6 6 9 0M3 17c3-6 6-6 9 0s6 6 9 0"
@@ -37,7 +37,7 @@ faqs:
   - q: Is the course theory or practice?
     a: Both. Each rule is explained clearly and then practised in real recitation until it becomes natural.
   - q: How much does the Tajweed course cost?
-    a: The Tajweed Plan is 20 one-to-one classes a month — ₹1,300 for 30-minute classes, ₹1,700 for 45 minutes or ₹2,100 for 60 minutes.
+    a: The Tajweed Plan is 20 one-to-one classes a month — ₹1,600 for 30-minute classes, ₹2,000 for 45 minutes or ₹2,400 for 60 minutes.
 ---
 
 ## What is Tajweed?
