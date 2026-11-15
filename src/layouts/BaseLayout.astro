@@ -9,6 +9,7 @@ import Seo from '../components/Seo.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import WhatsAppButton from '../components/WhatsAppButton.astro';
+import Analytics from '@vercel/analytics/astro';
 
 interface Props {
   title: string;
@@ -54,6 +55,7 @@ const { waMessage, hasEnrol = true, lang = 'en-IN', ...props } = Astro.props;
   <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png" />
   <link rel="manifest" href="/site.webmanifest" />
   <link rel="sitemap" href="/sitemap-index.xml" />
+  <Analytics />
 </head>
 <body>
   <div class="scroll-progress" aria-hidden="true"></div>
